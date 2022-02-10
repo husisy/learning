@@ -1,0 +1,54 @@
+% https://www.overleaf.com/learn/latex/Theorems_and_proofs#Introduction
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\newtheorem{theorem}{Theorem}[section]%reset counter every new section
+\newtheorem{corollary}{Corollary}[theorem]%reset counter every new theorem
+\newtheorem{lemma}{Lemma}%reuse theorem counter
+\numberwithin{lemma}{section}
+
+% \theoremstyle{definition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\begin{document}
+\section{Introduction}
+Theorems can easily be defined
+
+\begin{theorem}
+Let $f$ be a function whose derivative exists in every point, then $f$ is a continuous function.
+\end{theorem}
+
+\begin{theorem}[Pythagorean theorem]
+\label{pythagorean}
+This is a theorema about right triangles and can be summarised in the next equation
+\[ x^2 + y^2 = z^2 \]
+\end{theorem}
+
+And a consequence of theorem \ref{pythagorean} is the statement in the next corollary.
+
+\begin{corollary}
+There's no right rectangle whose sides measure 3cm, 4cm, and 6cm.
+\end{corollary}
+
+You can reference theorems such as \ref{pythagorean} when a label is assigned.
+
+\begin{remark}
+    This statement is true, I guess.
+\end{remark}
+
+\setcounter{lemma}{2}
+\begin{lemma}
+Given two line segments whose lengths are $a$ and $b$ respectively there is a real number $r$ such that $b=ra$.
+\end{lemma}
+
+\begin{proof}
+    To prove it by contradiction try and assume that the statemenet is false,
+    proceed from there and at some point you will arrive to a contradiction.
+\end{proof}
+
+\end{document}

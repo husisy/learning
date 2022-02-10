@@ -1,0 +1,2 @@
+#define draft00_ARGS_FROM_CMakeLists "@ws02_VERSION_MAJOR@_@ws02_VERSION_MINOR@"
+#cmakedefine MY_TAG00

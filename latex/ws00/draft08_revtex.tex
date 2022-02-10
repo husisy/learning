@@ -1,0 +1,52 @@
+\documentclass[a4paper, amsfonts, amssymb, amsmath, reprint, showkeys, nofootinbib, twoside]{revtex4-1}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[colorinlistoftodos, color=green!40, prependcaption]{todonotes}
+\usepackage{lipsum}
+
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage[left=23mm,right=13mm,top=35mm,columnsep=15pt]{geometry}
+\usepackage{adjustbox}
+\usepackage{placeins}
+\usepackage[T1]{fontenc}
+\usepackage{lipsum}
+\usepackage{csquotes}
+
+\usepackage[pdftex, pdftitle={Article}, pdfauthor={Author}]{hyperref} % For hyperlinks in the PDF
+%\setlength{\marginparwidth}{2.5cm}
+\bibliographystyle{apsrev4-1}
+\begin{document}
+\title{My Title}
+
+\author{Author}
+    \email[Correspondence email address: ]{email@institution.com}% Your name
+    \affiliation{University of São Paulo, Institute of Physics, São Paulo, SP, Brazil}
+
+\date{\today} % Leave empty to omit a date
+
+\begin{abstract}
+\lipsum[1]
+\end{abstract}
+
+\keywords{first keyword, second keyword, third keyword}
+
+
+\maketitle
+
+\lipsum[1]\cite{Feynman}
+
+\lipsum[2]
+
+\begin{thebibliography}{4}
+\bibitem{Feynman}
+R. P. Feynman, R. B. Leighton and M. Sands,
+\textit{Lições de Física de Feynman}
+(Editora Bookman, Porto Alegre, 2008).
+
+\end{thebibliography}
+
+\end{document}

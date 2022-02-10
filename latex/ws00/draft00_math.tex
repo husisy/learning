@@ -1,0 +1,140 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{graphicx}
+
+\DeclareMathOperator{\myMr}{M_{\mathbb{R}}}
+
+\begin{document}
+
+\noindent inline mode $E = mc^2$
+
+% unnumbered display mode math
+\[E= mc^2\]
+
+% numbered display mode math equation:
+\begin{equation}
+    E=mc^2
+\end{equation}
+
+\noindent inline mode: \(\lim_{h \rightarrow 0} f\left(x+h \right) \)
+
+\[\lim_{h \rightarrow 0} f\left(x+h \right) \]
+
+\noindent\rule{\linewidth}{0.4pt}
+
+% symbols
+\noindent Greek letters
+
+\[\alpha A \beta B \gamma \Gamma \delta \Delta \epsilon E \zeta Z \eta H \theta \Theta \iota I \kappa K \lambda \Lambda \mu M v N \xi \Xi o O \pi \Pi \rho P  \sigma \Sigma \tau T u Y \phi \Phi \chi X \psi \Psi \omega \Omega \]
+
+\noindent Binary operators
+
+\[\times \otimes \oplus \cup \cap \pm \mp \div \cdot \geq \leq \neq \approx \equiv \]
+
+\noindent Relation operators
+
+\[< > \in \subset \supset \subseteq \supseteq \]
+
+\noindent Functions
+
+\[\sin x \cos \left( x \right) \log \myMr \]
+
+\noindent Others
+
+\[\int \oint \sum \prod \]
+
+\noindent delimiter
+
+\[ \lvert a \rvert \lVert a \rVert \]
+\[ \Biggl(\biggl(\Bigl(\bigl((x)\bigr)\Bigr)\biggr)\Biggr) \]
+\[ \Biggl[\biggl[\Bigl[\bigl[[x]\bigr]\Bigr]\biggr]\Biggr] \]
+\[ \Biggl \{\biggl \{\Bigl \{\bigl \{\{x\}\bigr \}\Bigr \}\biggr \}\Biggr\} \]
+\[ \Biggl\langle\biggl\langle\Bigl\langle\bigl\langle\langle x
+\rangle\bigr\rangle\Bigr\rangle\biggr\rangle\Biggr\rangle \]
+\[ \Biggl\lvert\biggl\lvert\Bigl\lvert\bigl\lvert\lvert x
+\rvert\bigr\rvert\Bigr\rvert\biggr\rvert\Biggr\rvert \]
+\[ \Biggl\lVert\biggl\lVert\Bigl\lVert\bigl\lVert\lVert x
+\rVert\bigr\rVert\Bigr\rVert\biggr\rVert\Biggr\rVert \]
+
+\noindent ellipsis
+
+\[ x_1,x_2,\dots ,x_n\quad 1,2,\cdots ,n\quad \vdots\quad \ddots \]
+
+\noindent matrix
+
+``smallmatrix'' $ ( \begin{smallmatrix} a&b\\c&d \end{smallmatrix} ) $
+
+\[ \begin{pmatrix} a&b\\c&d \end{pmatrix} \quad
+\begin{bmatrix} a&b\\c&d \end{bmatrix} \quad
+\begin{Bmatrix} a&b\\c&d \end{Bmatrix} \quad
+\begin{vmatrix} a&b\\c&d \end{vmatrix} \quad
+\begin{Vmatrix} a&b\\c&d \end{Vmatrix} \]
+
+\noindent\rule{\linewidth}{0.4pt}
+
+
+\noindent aligning equations
+
+\begin{equation}
+    \begin{split}
+        A &= \frac{\pi r^2}{2}\\
+        &= \frac{1}{2}\pi r^2
+    \end{split}
+\end{equation}
+
+\[ \begin{split}
+    A &= \frac{\pi r^2}{2}\\
+    &= \frac{1}{2}\pi r^2
+\end{split} \]
+
+% multline*
+\begin{multline}
+    p(x) = 3x^6 + 14x^5y + 590x^4y^2 + 19x^3y^3\\
+    - 12x^2y^4 - 12xy^5 + 2y^6 - a^3b^3
+\end{multline}
+
+\begin{align*}
+    2x - 5y &=  8 \\
+   3x + 9y &=  -12
+\end{align*}
+
+\begin{gather*}
+    2x - 5y =  8 \\
+    3x^2 + 9y =  3a + c
+\end{gather*}
+
+\[ y= \begin{cases}
+    -x,\quad x\leq 0 \\
+    x,\quad x>0
+\end{cases} \]
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\noindent misc
+
+\[\int\limits_0^1 \int_0^1 \]
+
+\[ \left( \begin{tabular}{cc}
+            1 & 2 \\
+            3 & 4
+    \end{tabular} \right) ( \begin{tabular}{cc}
+            1 & 2 \\
+            3 & 4
+\end{tabular}) \]
+
+\[\binom{n}{k} = \frac{n!}{k!\left( n-k \right) !} \]
+
+\[a_0 + \cfrac{1}{a_1 + \cfrac{1}{a_2 + \cfrac{1}{a_3+\cdots}}} \]
+
+\[T^{i_1 i_2 \dots i_p}_{j_1 j_2 \dots j_q} = T(x^{i_1},\dots,x^{i_p},e_{j_1},\dots,e_{j_q})\]
+
+\[\int_0^1 \frac{1}{e^x} =  \frac{e-1}{e}\]
+
+\[\int_0^1 x^2 + y^2 \ dx \ne \int_0^1 x^2 + y^2 dx \]
+
+\[ \boxed{\mathcal{M}} \]
+
+\end{document}

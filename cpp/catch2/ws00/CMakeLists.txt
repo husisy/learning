@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.15)
+project(w00 VERSION 0.0.1 LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+find_package(Catch2 REQUIRED)
+add_executable(tbd_run test_catch_main.cpp test00.cpp)
+target_link_libraries(tbd_run Catch2::Catch2)
+
+include(CTest)
+include(Catch)
+catch_discover_tests(tbd_run)

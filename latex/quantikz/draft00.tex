@@ -1,0 +1,59 @@
+\documentclass{article}
+\usepackage{tikz}
+\usetikzlibrary{quantikz}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{xxx-Title}
+\author{xxx-Author}
+\date{\today}
+
+% https://arxiv.org/abs/1809.03842
+
+\begin{document}
+\begin{quantikz}
+\lstick{\ket{0}} & \phase{\alpha} & \gate{H}
+    & \phase{\beta} & \gate{H} & \phase{\gamma}
+    & \rstick{Arbitrary\\pure state}\qw
+\end{quantikz}
+
+\begin{quantikz}
+& \meter{0} && \meterD{1} && \measuretab{\text{out}} && \measure{\text{basis}}
+\end{quantikz}
+
+\begin{quantikz}
+\lstick{\ket{0}} & \phase{\alpha} & \gate{H} & \phase{\beta} & \gate{H} & \phase{\gamma} & \meter{$\ket{\pm}$}
+\end{quantikz}
+
+\begin{quantikz}
+\lstick{$\ket{0}$\\initial state} & \qw & \push{X} & \qw & \rstick{$\ket{1}$} \qw
+\end{quantikz}
+
+\begin{quantikz}
+\lstick{$\ket{0}$\\initial state} & \qw & \push{X} & \qw & \meter{0/1} \arrow[r] & \rstick{$\ket{1}$}
+\end{quantikz}
+
+
+\begin{quantikz}
+\lstick{ $\ket{0}^{\otimes n}$ } &[2mm] \gate{H}\qwbundle {3} & \qw
+\end{quantikz}
+
+\begin{quantikz}
+\lstick{$\ket{0}$} & \gate{H} & \ctrl{1} & \gate{U} & \ctrl{1} & \swap{2} & \ctrl{1} & \qw \\
+\lstick{$\ket{0}$} & \gate{H} & \targ{} & \octrl{-1} & \control{} & \qw & \octrl{1} & \qw \\
+&&&&&\targX{} & \gate{U} & \qw
+\end{quantikz}
+
+\begin{quantikz}
+& \targ{} & \gate{U} & \qw \\
+& \ctrl{1} \vqw{-1} & \meter{} \vcw{-1} \\
+& \targ{} & \qw
+\end{quantikz}
+
+\begin{quantikz}
+& \ctrl{1} & \qw & \gate{U} & \gate{V} \\
+& \targ{} \vqw{1} & \meter{} & \cwbend{-1} \\
+& \targ{} & \meter{} & \cw & \cwbend{-2} &
+\end{quantikz}
+
+\end{document}

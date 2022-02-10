@@ -1,0 +1,64 @@
+\documentclass{article}
+
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+% \graphicspath{{images/}}
+
+\title{Title}
+\author{Author \thanks{thanks}}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\listoffigures
+
+\listoftables
+
+\newpage
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{data/profile}
+    \caption{caption environment}
+    \label{fig:00} %must after caption
+\end{figure}
+
+ref to the Figure~\ref{fig:00}.
+
+\begin{itemize}
+    \item unordered itemize00
+    \item unordered itemize01
+\end{itemize}
+
+\begin{enumerate}
+    \item ordered enumerate00
+    \item ordered enumerate00
+\end{enumerate}
+
+\begin{tabular}{||l|c|r||}
+    \hline
+    a & b & c\\
+    dd & ee & ff\\
+    ggg & hhh & iii\\
+    \hline \hline
+\end{tabular}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        a & b\\
+        c & d\\
+        \hline
+    \end{tabular}
+    \caption{caption environment}
+    \label{table:00}
+\end{table}
+
+ref to the Table~\ref{table:00}
+
+\end{document}

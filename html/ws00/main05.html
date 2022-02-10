@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>label_title</title>
+</head>
+
+<body>
+    <form action="lalal.asp">
+        name: <br />
+        <input type="text" name="name" value="name" /> <br />
+
+        password: <br />
+        <input type="password" name="password" /> <br />
+
+        age (0~100): <br />
+        <input type="number" name="age" min="0" max="100" /> <br />
+
+        date: <br />
+        <input type="date" name="date" min="2019-01-01" max="2019-01-31" /> <br />
+
+        color: <br />
+        <input type="color" name="color" /> <br />
+
+        <input type="radio" name="sex" value="male" checked="checked">Male<br />
+        <input type="radio" name="sex" value="female">Female<br />
+
+        <select name="fruit">
+            <option value="apple">apple</option>
+            <option value="banana">banana</option>
+            <option value="cherry" selected="selected">cherry</option>
+        </select><br />
+
+        <input list="browsers" />
+        <datalist id="browsers">
+            <option value="Internet Explorer">Internet Explorer</option>
+            <option value="Firefox">Firefox</option>
+            <option value="Chrome">Chrome</option>
+        </datalist><br />
+
+        <textarea name="other_message" rows="10" cols="30">The cat was playing in the garden.</textarea><br />
+
+        <button type="button" onclick="alert('hello world!')">click me!</button><br />
+
+        <input type="submit" value="submit">
+    </form>
+
+    <form>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.15)
+project(ws_cmake VERSION 0.0.1 LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+find_package(fmt REQUIRED)
+add_executable(tbd_run draft00.cpp)
+target_link_libraries(tbd_run fmt::fmt)

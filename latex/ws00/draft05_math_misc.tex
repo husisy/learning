@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{braket}
+
+\newcommand\MyTwoRowBox[2]{\boxed{\begin{matrix} #1\\#2\end{matrix}}}
+\newcommand\MyTwoRow[2]{\begin{matrix} #1\\#2\end{matrix}}
+
+
+\begin{document}
+
+
+\[
+    \begin{matrix}
+        Y_{mn} & m=1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+        \MyTwoRow{n=1}{2} & \MyTwoRowBox{1}{0} & \MyTwoRow{}{2} & & & & & & \\
+        \MyTwoRow{3}{4} & \MyTwoRowBox{1}{0} & \MyTwoRowBox{1}{0} & \MyTwoRow{3}{2} & \MyTwoRow{}{4} & & & & \\
+        \MyTwoRow{5}{6} & \MyTwoRowBox{1}{0} & \MyTwoRowBox{1}{0} & \MyTwoRowBox{1}{0} & \MyTwoRow{3}{2} & \MyTwoRow{5}{4} & \MyTwoRow{}{6} & & \\
+        \MyTwoRow{7}{8} & \MyTwoRowBox{1}{0} & \MyTwoRowBox{1}{0} & \MyTwoRowBox{1}{0} & \MyTwoRowBox{1}{0} & \MyTwoRow{3}{2} & \MyTwoRow{5}{4} & \MyTwoRow{7}{6} & \MyTwoRow{}{8} \\
+    \end{matrix}
+\]
+
+\begin{gather}
+    g^< (t_1,t_2) = -\frac{i}{\hbar}\braket{x(t_2)x(t_1)} = -\frac{i}{2m\Omega}\left( (1+f) e^{i\Omega (t_1-t_2)} + fe^{-i\Omega (t_1-t_2)} \right) \\
+    \begin{aligned}
+        g^r (t_1,t_2) &= -\frac{i}{\hbar}\theta (t_1-t_2) \Braket{\left[ x(t_1) ,x(t_2) \right]}\\
+        &= -\frac{i}{2m\Omega}\theta (t_1-t_2) \left( e^{-i\Omega (t_1-t_2)} - e^{i\Omega (t_1-t_2)} \right)
+    \end{aligned}
+\end{gather}
+
+\[ [] \]
+
+\begin{equation}
+    \begin{aligned}
+        g^{\tilde{t}} (t_1,t_2) &= -\frac{i}{\hbar} \braket{\tilde{T} x(t_1)x(t_2)}\\
+        &= -\frac{i}{\hbar}\theta (t_2-t_1) \braket{x(t_1)x(t_2)} - \frac{i}{\hbar}\theta (t_1-t_2) \braket{x(t_2)x(t_1)}\\
+        &= \theta (t_2-t_1) g^> (t_1,t_2) + \theta (t_1-t_2) g^< (t_1,t_2)
+    \end{aligned}
+\end{equation}
+
+
+\end{document}

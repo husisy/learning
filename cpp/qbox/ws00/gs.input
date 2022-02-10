@@ -1,0 +1,16 @@
+# CH4 ground state
+species carbon   C_HSCV_PBE-1.0.xml
+species hydrogen H_HSCV_PBE-1.0.xml
+atom C    carbon       0.00000000   0.00000000   0.00000000
+atom H1   hydrogen     1.25000000   1.25000000   1.25000000
+atom H2   hydrogen     1.25000000  -1.25000000  -1.25000000
+atom H3   hydrogen    -1.25000000   1.25000000  -1.25000000
+atom H4   hydrogen    -1.25000000  -1.25000000   1.25000000
+set cell 15 0 0  0 15 0  0 0 15
+set ecut 35
+set wf_dyn PSDA
+set xc PBE
+set scf_tol 1.e-8
+randomize_wf
+run 0 200
+save gs.xml

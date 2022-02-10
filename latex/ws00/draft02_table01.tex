@@ -1,0 +1,44 @@
+\documentclass{article}
+\usepackage{dcolumn}
+\usepackage{multirow}
+
+\title{xxx-Title}
+\author{xxx-Author}
+
+\begin{document}
+
+\begin{table}
+\begin{center}
+\begin{tabular}{ p{1.6cm}<{\centering} | p{1.2cm}<{\centering} | p{0.8cm}<{\centering} | p{0.8cm}<{\centering} | p{0.8cm}<{\centering} | p{0.8cm}<{\centering} }
+	\hline\hline
+	Symmetry & $G_{\alpha\beta}$ & $g_1$ & $g_2$ & $g_3$ & $g_4$ \\
+	\hline
+	\multirow{3}{*}{$\mathcal{T}$} & $G_{xx}$ & $1$ & $0$ & $0$ & $1$ \\
+	\cline{2-6}
+	& $G_{xy}$ & $1$ & $0$ & $0$ & $1$ \\
+	\cline{2-6}
+	& $G_{yy}$ & $1$ & $0$ & $0$ & $1$ \\
+	\hline
+	\multirow{3}{*}{$\mathcal{I}$} & $G_{xx}$ & $1$ & $0$ & $0$ & $1$ \\
+	\cline{2-6}
+	& $G_{xy}$ & $1$ & $0$ & $0$ & $1$ \\
+	\cline{2-6}
+	& $G_{yy}$ & $1$ & $0$ & $0$ & $1$ \\
+	\hline
+	\multirow{3}{*}{$\mathcal{T}~\&~\mathcal{M}_x$} & $G_{xx}$ & $1$ & $0$ & $1$ & $0$ \\
+	\cline{2-6}
+	& $G_{xy}$ & $0$ & $1$ & $0$ & $1$ \\
+	\cline{2-6}
+	& $G_{yy}$ & $1$ & $0$ & $1$ & $0$ \\
+	\hline
+	\multirow{3}{*}{$\mathcal{T}~\&~\mathcal{M}_y$} & $G_{xx}$ & $1$ & $1$ & $0$ & $0$ \\
+	\cline{2-6}
+	& $G_{xy}$ & $0$ & $0$ & $1$ & $1$ \\
+	\cline{2-6}
+	& $G_{yy}$ & $1$ & $1$ & $0$ & $0$ \\
+	\hline\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\end{document}

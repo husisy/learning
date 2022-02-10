@@ -1,0 +1,83 @@
+# for personal usage
+tbd*
+.vscode/
+
+cuda/cuda/include/helper_cuda.h
+cuda/cuda/include/helper_string.h
+
+# python/
+python/**/__pycache__/
+python/**/.pytest_cache/
+python/**/.ipynb_checkpoints
+python/cirq/np_quantum_circuit.py
+python/pyquil/np_quantum_circuit.py
+python/cupy/np_quantum_circuit.py
+python/chainer/data
+python/pytorch/data
+python/paramiko/private_info.json
+python/oneflow/data
+python/nvidia_DALI/data
+python/mxnet/im2rec.py
+python/mxnet/data
+python/STDL/private_info.ini
+python/nvidia_DALI/.cache
+python/mindspore/**/checkpoint*
+python/mindspore/**/MNIST_Data
+python/mindspore/data/
+python/nni/ws00/data
+python/deepxde/data
+python/oommf/data
+python/fairseq/data
+python/cython/**/build
+python/cython/**/*.egg-info
+python/cython/**/*.html
+python/seaborn/seaborn_data
+python/sentencepiece/data
+python/pytorch/torchtext/data
+python/tvm/data
+python/deepmd/data
+python/openmm/data
+python/qiskit/token.txt
+
+# rust
+rust/**/*.exe
+rust/**/*.pdb
+
+# cpp/
+cpp/**/*.o
+cpp/**/*.a
+cpp/**/build
+cpp/**/*.so
+
+# latex
+latex/**/*.aux
+latex/**/*.lof
+latex/**/*.log
+latex/**/*.lot
+latex/**/*.fls
+latex/**/*.out
+latex/**/*.toc
+latex/**/*.fmt
+latex/**/*.fot
+latex/**/*.cb
+latex/**/*.cb2
+latex/**/.*.lb
+latex/**/*.dvi
+latex/**/*.xdv
+latex/**/*.ps
+latex/**/*.pdf
+latex/**/*.eps
+latex/**/*.bbl
+latex/**/*.bcf
+latex/**/*.blg
+latex/**/*-blx.aux
+latex/**/*-blx.bib
+latex/**/*.run.xml
+latex/**/*.fdb_latexmk
+latex/**/*.synctex.gz
+
+# cmake
+cmake/**/build/
+
+# linux
+linux/tcltk/**/pkgIndex.tcl
