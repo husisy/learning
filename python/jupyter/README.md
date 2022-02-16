@@ -36,7 +36,7 @@ jupyter lab --no-browser --port 8888 --ip 127.0.0.1
    * [documentation](https://jupyterbook.org/index.html)
 2. install
    * `pip install jupyter-book`
-   * `cnoda install -c conda-forge jupyter-book`
+   * `conda install -c conda-forge jupyter-book`
 3. jupytext
 4. MyST Markdown：方便了展示，方便了git管理，但不方便运行
 
