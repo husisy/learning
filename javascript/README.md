@@ -17,3 +17,17 @@
    * **禁止**对数组越界下标赋值，**禁止**修改数组`length`属性
 5. 变量名：大小写字母、数字，`$_`，非数字开头，非关键字
 6. 字符串是不可变的
+
+## nvm
+
+1. link
+   * [github/nvm](https://github.com/creationix/nvm)
+   * [github/nvm-windows](https://github.com/coreybutler/nvm-windows)
+
+```bash
+nvm install 16 #install before use it
+nvm list
+nvm use 16.14 #administrator required on windows
+
+npm install -g yarm
+```
