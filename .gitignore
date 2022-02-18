@@ -4,6 +4,7 @@ tbd*
 
 cuda/cuda/include/helper_cuda.h
 cuda/cuda/include/helper_string.h
+cuda/**/build/
 
 # python/
 python/**/__pycache__/
