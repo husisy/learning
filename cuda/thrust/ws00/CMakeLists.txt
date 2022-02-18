@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.15)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_BUILD_TYPE Release)
+project(hellocuda LANGUAGES CXX CUDA)
+find_package(Thrust REQUIRED CONFIG)
+find_package(CUB REQUIRED)
+thrust_create_target(Thrust)
+
+add_executable(draft00.exe draft00.cu)
+target_link_libraries(draft00.exe Thrust)
