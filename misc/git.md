@@ -6,7 +6,6 @@
    * [documentation-CN](https://git-scm.com/book/zh/v2)
    * [廖雪峰-git教程](https://www.liaoxuefeng.com/wiki/896043488029600)
    * `git help tutorial`
-   * [learn git branching](https://learngitbranching.js.org/)
    * [知乎-为什么要先git add才能git commit](https://www.zhihu.com/question/19946553/answer/29033220)
    * [git cheat sheet](https://gitee.com/liaoxuefeng/learn-java/raw/master/teach/git-cheatsheet.pdf)
    * [github/progit/progit2](https://github.com/progit/progit2)
