@@ -63,3 +63,6 @@
 7. [ ] [github/sisl](https://github.com/zerothi/sisl): python tight-binding, NEGF, DFT
 8. [ ] quantum chemistry package
 9. [ ] pde: [github/solver-in-the-loop](https://github.com/tum-pbs/Solver-in-the-Loop)
+10. [ ] [missing-semester](https://missing-semester-cn.github.io/)
+11. [ ] 南京大学-计算机科学与技术系-计算机系统基础-课程实验 [link](https://nju-projectn.github.io/ics-pa-gitbook/ics2021/)
+12. [ ] [deepmd](https://docs.deepmodeling.org/projects/deepmd/en/master/index.html)
