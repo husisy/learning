@@ -1,0 +1,14 @@
+\documentclass{article}
+\usepackage{hyperref}
+
+%https://tex.stackexchange.com/a/14844/267705
+\begin{document}
+
+\begin{Form}[action={http://your-web-server.com/path/receiveform.cgi}]
+\begin{tabular}{l}
+    \TextField{Name} \\\\
+    \CheckBox[width=1em]{Check} \\\\
+    \Submit{Submit}\\
+\end{tabular}
+\end{Form}
+\end{document}
