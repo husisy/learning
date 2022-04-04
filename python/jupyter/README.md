@@ -26,6 +26,9 @@
 ```bash
 conda install -c conda-forge jupyterlab
 jupyter notebook --version
+
+jupyter notebook --generate-config
+jupyter lab password
 jupyter lab --no-browser --port 8888 --ip 127.0.0.1
 ```
 
