@@ -37,6 +37,7 @@
 
 1. link
    * [高速上手C++11/14/17](https://github.com/changkun/modern-cpp-tutorial)1. 默认使用标准`c++11`，不打算向前兼容，暂不使用`c++14/c++17/c++20`特性
+   * [github/CppCoreGuidelines-zh-CN核心指南](https://github.com/lynnboy/CppCoreGuidelines-zh-CN)
 2. 显示返回结果
    * win-cmd: `echo %ERRORLEVEL%`
    * powershell: `echo $LASTEXITCODE`
