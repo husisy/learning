@@ -57,7 +57,7 @@
 ## filesystem
 
 1. link
-   * [gitbook / 鸟哥的 Linux 私房菜](https://legacy.gitbook.com/book/wizardforcel/vbird-linux-basic-4e/details)
+   * [gitbook / 鸟哥的 Linux 私房菜](https://legacy.gitbook.com/book/wizardforcel/vbird-linux-basic-4e/details) [gitbook](https://wizardforcel.gitbooks.io/vbird-linux-basic-4e/content/index.html)
    * [github-linuxtools](https://github.com/me115/linuxtools_rst)
 2. 文件权限
    * `rwxs`：读、写、执行、
