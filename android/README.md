@@ -2,6 +2,7 @@
 
 1. link
    * [documentation](https://developer.android.com/docs)
+   * [developer-guide](https://developer.android.com/guide)
 2. 多入口：`main activity`
 3. 多设备适配
 4. 概念：`View ViewGroup`
