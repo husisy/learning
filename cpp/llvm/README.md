@@ -3,6 +3,7 @@
 1. link
    * official site
    * [github/llvm-ir-tutorial](https://github.com/Evian-Zhang/llvm-ir-tutorial)
+   * [tutorial](https://llvm.org/docs/tutorial/index.html)
 2. `sudo apt install clang-10 llvm-10`
 3. 预处理、语法分析、语义分析
 4. abstract struct tree (AST)
