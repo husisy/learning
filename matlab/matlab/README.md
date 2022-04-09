@@ -8,6 +8,7 @@ matlab -nodisplay -singleCompThread
    * [official site](https://www.mathworks.com/)
    * [documentation](https://www.mathworks.com/help/matlab/index.html)
    * [get started with MATLAB](https://www.mathworks.com/help/matlab/getting-started-with-matlab.html)
+   * [ilovematlab.cn](https://www.ilovematlab.cn/matlab_jishuwenzhang_technical_articles/)
 2. MATLAB (MATrix LABoratory)
 3. panel
    * current folder: `cd`, `movefile()`, `mkdir()`, `rmdir()`
