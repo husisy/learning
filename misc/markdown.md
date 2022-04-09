@@ -6,6 +6,7 @@
    * [Markdown 语法说明](http://wowubuntu.com/markdown/)
    * [MathJax 特性](http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quickreference)
    * [为知笔记 Markdown 新手指南](http://www.wiz.cn/medal-8)
+   * [Learning-Markdown](http://xianbai.me/learn-md/index.html)
 
 content
 

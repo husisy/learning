@@ -5,6 +5,7 @@
    * [raspberry pi project](https://projects.raspberrypi.org/en)
    * [树莓派实验室](http://shumeipai.nxez.com/)
    * [magpi-raspberry pi beginner's guide](https://magpi.raspberrypi.org/books/beginners-guide-3rd-ed/pdf)
+   * [ubuntu-mate](https://ubuntu-mate.org/)
 2. [系统下载](https://www.raspberrypi.org/downloads/)
    * raspbian也是使用apt管理package
    * [ubuntu for raspberrypi](https://ubuntu.com/download/raspberry-pi)
