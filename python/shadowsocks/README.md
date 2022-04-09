@@ -5,6 +5,10 @@
    * [github](https://github.com/shadowsocks/shadowsocks/tree/master)
    * [shadowsocksrr](https://github.com/shadowsocksrr)
    * [秋水逸冰](https://teddysun.com/)
+   * [github/setup-ipsec-vpn](https://github.com/hwdsl2/setup-ipsec-vpn)
+   * [github/qwj/python-proxy](https://github.com/qwj/python-proxy)
+   * [github/proxy.py](https://github.com/abhinavsingh/proxy.py)
+   * [v2ray-documentation](https://www.v2ray.com/)
 
 TODO
 
