@@ -38,6 +38,7 @@
    * [github](https://github.com/realpython/python-guide/)
    * [site](https://docs.python-guide.org/)
    * [PEP20 The Zen of Python](https://www.python.org/dev/peps/pep-0020/)
+   * [the-Hitchhiker's-guide-to-python](https://pythonguidecn.readthedocs.io/zh/latest/writing/reading.html)
 2. text editor and IDE: `Vim`, `Emacs`
 3. project name: `MyProject`
 4. `./MyProject/` or `./MyProject.py`
