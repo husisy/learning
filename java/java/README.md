@@ -2,7 +2,9 @@
 
 coursera-java程序设计
 
-1. 发展历程
+1. link
+   * [廖雪峰-JAVA教程](https://www.liaoxuefeng.com/wiki/1252599548343744)
+2. 发展历程
    * 1995 JDK1.0 初创
    * 1998 JDK1.2
    * 2000 JDK1.3 改进
@@ -12,38 +14,56 @@ coursera-java程序设计
    * (2010 Oracle并购Sun)
    * 2011 JDK1.7 改进：常量、带资源的try、重抛异常
    * 2014 JDK1.8 前进大步
-2. Java Community Process (JCP), Java Specification Requests (JSRs)
+3. Java Community Process (JCP), Java Specification Requests (JSRs)
    * JSR 335: Lambda Expressions
-3. 核心机制
+4. 核心机制
    * Java Virtual Machine (JVM)：指令集、寄存器集、类文件结构、堆栈、垃圾收集堆、内存区域
    * 代码安全性检测Code Security
    * Garbage Collection
    * Java Runtime Environment (JRE) = JVM + API (lib)
    * Java Development Kit (JDK) = JRE + Tools
    * JDK-Tools: javac编译器，java执行器，javadoc文档生成器，jara打包器，jdb调试器，appletViewer运行applet程序，javap查看类信息及反汇编，javaw运行图形界面程序
-4. Application and applet
+5. Application and applet
    * `appletViewer index.html`
    * applet替代方案：Flash，SilverLight，JavaScript
-5. JDK文件目录结构
+6. JDK文件目录结构
    * `bin` 可执行工具
    * `jre`
    * `demo` 示例文件
    * `include` 与C相关的头文件
    * `lib` 程序库
    * `db` 数据库相关文件
-6. java安装，环境变量`PATH/CLASSPATH/JAVA_HOME`，*TBA*
-7. [在线文档](https://docs.oracle.com/javase/8/docs/api/index.html)
-8. 数据类型
+7. java安装，环境变量`PATH/CLASSPATH/JAVA_HOME`，*TBA*
+8. [在线文档](https://docs.oracle.com/javase/8/docs/api/index.html)
+9. 数据类型
    * 基本数据类型：整数类型`byte/short/int/long`，浮点类型`float/double`，字符型`char`，布尔型`boolean`，变量在栈
    * 引用数据类型：类`class`，接口`interface`，变量引用在堆
-9. 字符使用unicode编码，每个字符占两个字节 `'a'`, `'\u0061'`, `'\n'`
-10. 流程结构：顺序，分支，循环
-11. 简单语句
+10. 字符使用unicode编码，每个字符占两个字节 `'a'`, `'\u0061'`, `'\n'`
+11. 流程结构：顺序，分支，循环
+12. 简单语句
     * 方法调用
     * 赋值语句
     * **表达式+分号不是合法语句**
     * 注释：`//`, `/*xxx*/`, `/**xxx*/`
-12. 注释文档：`@see @version @author @param @return @exception`
+13. 注释文档：`@see @version @author @param @return @exception`
+14. install
+    * ubuntu: `sudo apt install default-jdk`
+    * verify: `java -version`, `javac -version`
+
+## MWE00
+
+`Main01.java`
+
+```java
+public class Main01 {
+    public static void main(String args[]) {
+        System.out.println("hello world!");
+    }
+}
+```
+
+1. `javac Main01.java`
+2. `java Main01`
 
 ## no reference
 
