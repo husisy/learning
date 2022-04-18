@@ -1,3 +1,4 @@
+import os
 import tempfile
 
 z0 = tempfile.TemporaryFile()
