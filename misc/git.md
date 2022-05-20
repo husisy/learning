@@ -152,6 +152,7 @@ git push remote1
 
 # https://stackoverflow.com/a/16756248
 git config --global http.proxy 'socks5://127.0.0.1:23333'
+git config --global --unset http.proxy
 
 # https://gist.github.com/rbialek/1012262
 git remote set-url
