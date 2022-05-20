@@ -119,3 +119,8 @@ dataloader0 = torch.utils.data.DataLoader(dataset0, batch_size=4)
 len(dataloader0)
 next(iter(dataloader0))
 list(dataloader0)
+
+
+# misc
+# torch.set_num_threads(1)
+# print(torch.__config__.parallel_info())
