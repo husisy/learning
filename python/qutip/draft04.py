@@ -1,11 +1,8 @@
-'''
-visualization
-ref: https://nbviewer.jupyter.org/github/qutip/qutip-notebooks/blob/master/examples/visualization-exposition.ipynb
-'''
+# visualization
+# https://nbviewer.jupyter.org/github/qutip/qutip-notebooks/blob/master/examples/visualization-exposition.ipynb
 import numpy as np
 import matplotlib.pyplot as plt
 
-np.set_printoptions(precision=3, linewidth=150)
 plt.ion()
 
 import qutip
@@ -17,7 +14,6 @@ from qutip import orbital, Bloch
 
 
 hinton(rand_dm(5))
-plt.close(plt.gcf())
 
 
 theta = np.linspace(0, np.pi, 90)
@@ -29,29 +25,23 @@ ax1 = fig.add_subplot(1, 3, 2, projection='3d')
 sphereplot(theta, phi, orbital(theta, phi, fock(3,1)), fig, ax1)
 ax2 = fig.add_subplot(1, 3, 3, projection='3d')
 sphereplot(theta, phi, orbital(theta, phi, fock(3,2)), fig, ax2)
-plt.close(plt.gcf())
 
 
 matrix_histogram(rand_dm(5).full().real)
-plt.close(plt.gcf())
 
 
 hamiltonian = tensor(sigmaz(), qeye(2)) + tensor(qeye(2), sigmaz())
 ham_interaction = 0.1 * tensor(sigmax(), sigmax())
 plot_energy_levels([hamiltonian, ham_interaction], figsize=(8,4))
-plt.close(plt.gcf())
 
 
 plot_fock_distribution((coherent(15, 1.5) + coherent(15, -1.5)).unit())
-plt.close(plt.gcf())
 
 
 plot_wigner((coherent(15, 1.5) + coherent(15, -1.5)).unit())
-plt.close(plt.gcf())
 
 
 plot_wigner_fock_distribution((coherent(15, 1.5) + coherent(15, -1.5)).unit())
-plt.close(plt.gcf())
 
 
 hamiltonian = sigmaz() + 0.3*sigmay()
@@ -60,13 +50,11 @@ initial_state = (fock(2,0) + fock(2,1)).unit()
 e_ops = [sigmax(),sigmay(),sigmaz()]
 z0 = mesolve(hamiltonian, initial_state, time_list, e_ops=e_ops)
 plot_energy_levels(z0)
-plt.close(plt.gcf())
 
 z1 = Bloch()
 z1.add_vectors(expect(hamiltonian.unit(), e_ops))
 z1.add_points(z0.expect, meth='l')
 z1.make_sphere()
-plt.close(plt.gcf())
 
 
 j = 5
@@ -78,10 +66,8 @@ phi = np.linspace(0, 2*np.pi, 50)
 Q, THETA, PHI = spin_q_function(psi, theta, phi)
 
 plot_spin_distribution_2d(Q, THETA, PHI)
-plt.close(plt.gcf())
 
 fig, ax = plot_spin_distribution_3d(Q, THETA, PHI)
-plt.close(plt.gcf())
 
 
 # energy-level of a quantum system as a function of a single parameter
