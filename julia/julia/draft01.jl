@@ -11,28 +11,42 @@ step(range(2, length=4, stop=5))
 length(range(2, stop=5, step=2))
 
 # contstruct
-zeros(2, 3) #default to Float64
-[2, 23, 233]
-[2, 23, 0.233]
-["2", "23", "233"]
-[sin, cos, tan]
-[1, "2", 3.0, sin, pi]
-Int64[2, 23, 233]
+zeros(2, 3) #Matrix(Float64,2,3)
+[1 2] #Matrix(Int64,1,2)
+[1, 2] #Vector(Int64,2)
+[2, 23, 0.233] #Vector(Float64,3)
+["2", "23", "233"] #Vector(String,3)
+[sin, cos, tan] #Vector(Function,3)
+[1, "2", 3.0, sin, pi] #Vector(Any,5)
+Int32[2, 23, 233] #Vector(Int64, 3)
 Int64[]
 String[]
-[2, 23, 233] #1-dimensional
-[2 23 233] #2-dimensional
-[2 23 233; 2333 23 2] #2-dimensional Array{Int64,2}{2,3}
-[[1, 2, 3] [4, 5, 6]] #2-dimensional Array{Int64,2}{3,2}
-[1:3...] #splat operator
+[1 2 3; 4 5 6] #Matrix(Int64,2,3)
+[[1, 2, 3] [4, 5, 6]] #Matrix(Int64,3,2)
+[1:3 4:6] #Matrix(Int64,3,2)
+[1:3; 4:6] #Vector(Int64,6)
+[[1, 2, 3]; [4, 5, 6]] #Vector(Int64,6)
+[[1, 2, 3], [4, 5, 6]] #Vector(Vector(Int64))
+[1:3, 1:3] #Vector(UnitRange(Int64),2)
+[1;; 2;; 3;; 4] #Matrix(Int64,1,4)
+[1; 2; 3; 4] #Vector(Int64,4)
+[1 2 3 4] #Matrix(Int64,4,1)
+[[1 1]; 2 3; [4 4]] #Matrix(Int64,3,2)
+# [1, 1; 2, 3; 4, 4] #Wrong
+Array(1:3) #Vector(Int64,3)
 
-[x^2 for x in 1:3]
-[(x,y) for x in 1:3, y in 1:4] #shape=(3,4)
-[x^2 for x in 1:10 if x!=5]
-(x^2 for x in 1:3) #generator
+[1; 2;; 3; 4;; 5; 6;;; 7; 8;; 9; 10;; 11; 12] #Array(Int64,2,3,2)
+
+sum(1/x^2 for x=1:1000)
+[x^2 for x=1:3]
+[(x,y) for x=1:3, y=1:4] #Matrix(Tuple(Int64,Int64),3,4)
+[(x,y) for x=rand(Float64,1,2), y=rand(Float64,3,4)] #Array(Tuple(Float64,Float64),1,2,3,4)
+[(x,y) for x=rand(Float64,1,2) for y=rand(Float64,3,4)] #Vector(Tuple(Float64,Float64),24)
+[x^2 for x=1:10 if x!=5]
+(x^2 for x=1:3) #generator
 collect(x^2 for x in 1:3)
 
-
+[1:3...] #splat operator
 collect(1:3) #most time unnecessary
 zeros(2, 3)
 zeros(Int32, 2, 3)
@@ -65,9 +79,9 @@ Array{Int}([])
 Array{Int}[]
 Int[]
 
-[[1, 2], [3,4]] #Array{Array{Int64,1},1}
-Array([[1, 2], [3,4]]) #Array{Array{Int64,1},1}
-Array[[1, 2], [3,4]] #Array{Array,1}
+[[1, 2], [3,4]] #Vector(Vector(Int64,2),2)
+Array([[1, 2], [3,4]]) #Vector(Vector(Int64,2),2)
+Array[[1, 2], [3,4]] #Vector(Array,2)
 
 [1:3, 4:6] #Array{UnitRange{Int64},1}
 Array([1:3, 4:6]) #Array{UnitRange{Int64},1}
@@ -89,6 +103,8 @@ a[1], a[2], a[end], a[end-1], a[2:2:end], a[[3,6,2]]
 a[[true, true, false, true, true, true, false, true, false, false, false]]
 a2 = [1 2 3; 4 5 6; 7 8 9]
 a2[2], a2[1,2], a2[1,3], a2[:,2], a2[2,:], a2[2:3,:], a2[:]
+# getindex
+# setindex!
 
 a = collect(1:5)
 a.*2, a./2, a.*a, a./a
