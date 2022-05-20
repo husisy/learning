@@ -9,6 +9,7 @@
    * `import Pkg; Pkg.add("CuArrays")`
    * `] add CUDAdrv`
    * `] add CUDAnative`
+   * `] add CUDA`
 3. test `Pkg.test(["CUDAdrv", "CUDAnative", "CuArrays"])`
 
 ## 国内镜像
