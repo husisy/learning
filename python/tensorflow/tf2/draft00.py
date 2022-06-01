@@ -6,7 +6,25 @@ import tensorflow as tf
 from utils import next_tbd_dir
 
 logdir = next_tbd_dir()
-hf_file = lambda *x,_dir=logdir: os.path.join(_dir, *x)
+
+
+(x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
+# x_train(np,uint8,(60000,28,28))
+# y_train(np,uint8,(60000,))
+# x_test(np,uint8,(10000,28,28))
+# y_test(np,uint8,(10000,))
+x_train = x_train/255
+x_test = x_test/255
+
+model = tf.keras.models.Sequential([
+    tf.keras.layers.Flatten(input_shape=(28, 28)),
+    tf.keras.layers.Dense(128, activation='relu'),
+    tf.keras.layers.Dropout(0.2),
+    tf.keras.layers.Dense(10, activation='softmax')
+])
+model.compile('adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+model.fit(x_train, y_train, epochs=5)
+model.evaluate(x_test, y_test)
 
 
 class MyModel(tf.keras.Model):
@@ -59,10 +77,10 @@ for example in ds_train:
     if int(ckpt.step) % 10 == 0:
         save_path = manager.save()
 
-zc0 = tf.Variable(tf.constant([2.33]))
-tmp0 = tf.train.Checkpoint(dense1=tf.train.Checkpoint(bias=zc0))
+z0 = tf.Variable(tf.constant([2.33]))
+tmp0 = tf.train.Checkpoint(dense1=tf.train.Checkpoint(bias=z0))
 new_root = tf.train.Checkpoint(model=tmp0)
 status = new_root.restore(tf.train.latest_checkpoint(logdir))
 
-zc0 = tf.train.load_checkpoint(tf.train.latest_checkpoint(logdir))
-zc1 = {x:zc0.get_tensor(x) for x in zc0.get_variable_to_dtype_map().keys()}
+z0 = tf.train.load_checkpoint(tf.train.latest_checkpoint(logdir))
+z1 = {x:z0.get_tensor(x) for x in z0.get_variable_to_dtype_map().keys()}

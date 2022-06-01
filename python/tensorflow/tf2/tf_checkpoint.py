@@ -8,7 +8,7 @@ hfe = lambda x,y:np.max(np.abs(x-y)/(np.abs(x)+np.abs(y)+1e-3))
 hfe_r5 = lambda x,y:round(hfe(x,y), 5)
 
 
-def tf_checkpoint_basic():
+def demo_tf_checkpoint_basic():
     checkpoint_prefix = next_tbd_dir() + os.sep
     np1 = np.random.rand(3, 5).astype(np.float32)
     tf1 = tf.Variable(np1, dtype=tf.float32)
@@ -16,7 +16,7 @@ def tf_checkpoint_basic():
     checkpoint.save(checkpoint_prefix)
     tf1.assign(np.random.rand(*tf1.shape.as_list()))
     checkpoint.restore(tf.train.latest_checkpoint(checkpoint_prefix))
-    print('tf_checkpoint_basic: ', hfe_r5(np1, tf1.numpy()))
+    assert hfe(np1, tf1.numpy()) < 1e-5
 
 
 class MyModel(tf.keras.Model):
@@ -33,7 +33,7 @@ class MyModel(tf.keras.Model):
         x = self.dense2(x)
         return x
 
-def tf_checkpoint_advance():
+def demo_tf_checkpoint_advance():
     checkpoint_prefix = next_tbd_dir() + os.sep
     np1 = np.random.rand(3, 28, 28)
 
@@ -54,10 +54,3 @@ def tf_checkpoint_advance():
     tf1 = model1(np1)
 
     print('tf_checkpoint_advance: ', hfe_r5(tf0.numpy(), tf1.numpy()))
-
-
-if __name__ == "__main__":
-    tf_checkpoint_basic()
-    print()
-    tf_checkpoint_advance()
-
