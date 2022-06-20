@@ -130,3 +130,25 @@ def test_polar():
     assert np.abs(npA - npU @ npP).max() < 1e-7
     assert hfe(npU @ npU.T.conj(), np.eye(N0)) < 1e-7
     assert np.all(np.linalg.eigvalsh(npP)>=0)
+
+
+def test_schur():
+    # https://en.wikipedia.org/wiki/Schur_decomposition
+    N0 = 5
+    np0 = hf_randc(N0, N0)
+    Tmat, Umat = scipy.linalg.schur(np0, output='complex')
+    assert np.abs(np0 - Umat @ Tmat @ Umat.T.conj()).max() < 1e-7
+    assert hfe(Umat @ Umat.T.conj(), np.eye(N0))<1e-7
+    assert np.abs(np.tril(Tmat, -1)).max() < 1e-7
+
+
+def test_solve_sylvester():
+    N0 = 4
+    np_rng = np.random.default_rng()
+    np0 = np_rng.normal(size=(N0,N0))
+    np1 = np_rng.normal(size=(N0,N0))
+    np2 = np_rng.normal(size=(N0,N0))
+    ret0 = scipy.linalg.solve_sylvester(np0, np1, np2)
+    assert np.abs(np0@ret0 + ret0@np1 - np2).max() < 1e-7
+    ret_ = np.linalg.solve(np.kron(np0, np.eye(N0)) + np.kron(np.eye(N0),np1.T), np2.reshape(-1)).reshape(N0,N0)
+    assert np.abs(ret0-ret_).max()<1e-7
