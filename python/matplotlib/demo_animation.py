@@ -1,9 +1,23 @@
+import os
+import random
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 import scipy.integrate
 plt.ion()
+
+
+def next_tbd_dir(dir0='tbd00', maximum_int=100000):
+    if not os.path.exists(dir0): os.makedirs(dir0)
+    tmp1 = [x for x in os.listdir(dir0) if x[:3]=='tbd']
+    exist_set = {x[3:] for x in tmp1}
+    while True:
+        tmp1 = str(random.randint(1,maximum_int))
+        if tmp1 not in exist_set: break
+    tbd_dir = os.path.join(dir0, 'tbd'+tmp1)
+    os.mkdir(tbd_dir)
+    return tbd_dir
 
 
 def demo_animation_pause():
@@ -149,3 +163,22 @@ def demo_jupyterlab_animation():
     plt.close(fig) #fig is not necessary anymore
     ret = HTML(ani.to_jshtml())
     return ret
+
+
+def demo_imagemagick_convert_gif():
+    plt.ioff()
+    xdata = np.linspace(0, 2*np.pi, 100)
+    hf0 = lambda phi: np.cos(xdata + phi)
+    phi_list = np.linspace(0, 4*np.pi, 20)
+    folder = next_tbd_dir()
+
+    fig,ax = plt.subplots()
+    line = ax.plot(xdata, hf0(0), label=r'$\cos(x+\phi)$')[0]
+    ax.set_xlim(xdata.min(), xdata.max())
+    ax.set_ylim(-1.1, 1.1)
+    ax.grid()
+    ax.legend(loc='upper right')
+    for ind0,phi in enumerate(phi_list):
+        line.set_ydata(hf0(phi))
+        fig.savefig(os.path.join(folder, f'{ind0:04d}'))
+    os.system(f'convert -delay 10 -loop 0 {folder}/????.png {folder}/animation.gif')
