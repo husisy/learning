@@ -15,3 +15,8 @@ print(pfa1**2, np.linalg.det(A))
 # from pfapack.ctypes import pfaffian as cpf
 # pfa1 = cpf(A)
 # pfa2 = cpf(A, method="H")
+
+# fail not apply to skew-hermitian matrix
+# tmp0 = np.random.rand(6,6) + 1j*np.random.rand(6,6)
+# A = tmp0 - tmp0.T.conj()
+# pfapack.pfaffian.pfaffian(A)
