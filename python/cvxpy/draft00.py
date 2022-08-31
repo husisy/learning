@@ -64,3 +64,20 @@ objective = cvxpy.Minimize(cvxpy.sum_squares(A @ x - b))
 constraints = [0 <= x, x <= 1]
 prob = cvxpy.Problem(objective, constraints)
 prob.solve()
+
+
+
+## semi-definite programming
+n = 3
+p = 3
+C = np.random.randn(n, n)
+A = [np.random.randn(n, n) for _ in range(p)]
+b = [np.random.randn() for _ in range(p)]
+# b = np.random.randn(p)
+# A = np.random.randn(p, n, n)
+X = cvxpy.Variable((n,n), symmetric=True)
+# The operator >> denotes matrix inequality.
+constraints = [X >> 0] + [cvxpy.trace(A[i] @ X) == b[i] for i in range(p)]
+obj = cvxpy.Minimize(cvxpy.trace(C @ X))
+prob = cvxpy.Problem(obj, constraints)
+prob.solve()
