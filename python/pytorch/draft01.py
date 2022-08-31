@@ -9,7 +9,7 @@ hfe = lambda x,y,eps=1e-5:np.max(np.abs(x-y)/(np.abs(x)+np.abs(y)+eps))
 
 class Net(torch.nn.Module):
     def __init__(self):
-        super(Net, self).__init__()
+        super().__init__()
         self.fc1 = torch.nn.Linear(10, 20)
         self.fc2 = torch.nn.Linear(20, 1)
     def forward(self, x):
