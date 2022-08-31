@@ -15,8 +15,7 @@ assert problem.is_dpp()
 cvxpylayer = cvxpylayers.torch.CvxpyLayer(problem, parameters=[A, b], variables=[x])
 A_tch = torch.randn(m, n, requires_grad=True)
 b_tch = torch.randn(m, requires_grad=True)
-
-solution, = cvxpylayers.torch.cvxpylayer(A_tch, b_tch)
+solution, = cvxpylayer(A_tch, b_tch)
 solution.sum().backward()
 
 
