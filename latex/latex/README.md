@@ -16,6 +16,7 @@ LaTeX世界观
    * [texlive-zh-cn.pdf](http://www.tug.org/texlive/doc/texlive-zh-cn/texlive-zh-cn.pdf)
    * [github/Ctex-org](https://github.com/CTeX-org)
    * [CTAN/documentclass](https://ctan.org/topic/class)
+   * [oeis/latex-math-symbols](https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols)
 2. 安装说明
    * 官网上推荐win用户安装proTeXt，*未测试*，以下文字都基于TeXLive，see [link](https://www.tug.org/begin.html)
    * [下载链接的网站](https://www.tug.org/texlive/acquire-netinstall.html)，[install-tl-windows.exe](http://mirror.ctan.org/systems/texlive/tlnet/install-tl-windows.exe)，[install-tl-unx.tar.gz](http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz)
