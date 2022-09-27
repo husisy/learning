@@ -45,3 +45,10 @@ def array_byte_ordering():
     np0 = np.random.randint(2**15, size=(2,)).astype(np.uint16)
     np1 = np0.view(np.uint8)
     print(hfb(np0), hfb(np1))
+
+
+def demo_unpackbits():
+    # hfb(255)
+    z0 = np.arange(254, 260).astype(np.int64)
+    tmp0 = z0.view(np.uint64).view(np.uint8).reshape(-1, 8)
+    z1 = np.unpackbits(tmp0, axis=-1, bitorder='little')
