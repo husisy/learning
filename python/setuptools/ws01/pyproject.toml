@@ -1,0 +1,10 @@
+[project]
+name = "mypackage"
+version = "0.0.1"
+
+[tool.setuptools.packages.find]
+where = ["python"]
+
+[build-system]
+requires = ["setuptools", "wheel", "toml"]
+build-backend = "setuptools.build_meta"

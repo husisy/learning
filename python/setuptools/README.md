@@ -18,6 +18,7 @@
    * namespace package
    * `easy_install` **deprecated**
 6. 对于`scripts`的使用，`#! python`必须放首行，否则会出现奇奇怪怪的`unable to open X server`错误
+7. `setup.py`会逐渐被`project.toml`替代
 
 ```Python
 # license: https://choosealicense.com/
