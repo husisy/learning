@@ -15,6 +15,9 @@
 mkdocs new my-project
 mkdocs serve
 mkdocs build
+
+pip install pymdown-extensions
+pip install mkdocs-material
 ```
 
 ```yaml
