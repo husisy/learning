@@ -38,6 +38,11 @@
     * type declarations
     * operator
     * generic function
+12. 特殊按键
+    * `]` Pkg REPL
+    * `;` shell REPL
+    * `?`
+13. `julia --project draft00.jl`
 
 ## indexing
 
