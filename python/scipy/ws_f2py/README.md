@@ -6,9 +6,10 @@
 usage
 
 ```bash
-f2py -m add add.f
+# f2py -m my_f2py_module my_f2py_module.f
 # apt install gfortran
-f2py -c -m add add.f
+f2py -m my_f2py_module -c my_f2py_module.f
+# python -m numpy.f2py
 ```
 
 ```Python
