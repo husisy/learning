@@ -2,7 +2,8 @@
 
 1. link
    * [documentation](https://www.mkdocs.org/)
-   * [github](https://github.com/mkdocs/mkdocs/)
+   * [github/mkdocs](https://github.com/mkdocs/mkdocs/)
+   * [github/mkdocs-jupyter](https://github.com/danielfrg/mkdocs-jupyter)
 2. install
    * `conda install -c conda-forge mkdocs`
    * `pip install mkdocs`
@@ -16,8 +17,7 @@ mkdocs new my-project
 mkdocs serve
 mkdocs build
 
-pip install pymdown-extensions
-pip install mkdocs-material
+pip install mkdocs-jupyter mkdocs-material pymdown-extensions
 ```
 
 ```yaml
