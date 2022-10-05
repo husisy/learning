@@ -39,6 +39,7 @@ python/tvm/data
 python/deepmd/data
 python/openmm/data
 python/qiskit/token.txt
+python/scipy/ws_f2py/**/*.cpython*
 
 # rust
 rust/**/*.exe
