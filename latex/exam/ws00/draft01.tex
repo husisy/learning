@@ -1,0 +1,76 @@
+%% The newest version of this package should always be available
+%% from GitHub: https://github.com/jesseopdenbrouw/exam-randomizechoices
+
+% \documentclass[addpoints]{exam}
+\documentclass[answers,addpoints]{exam} %add answer
+
+\usepackage{parskip}
+\usepackage[colorlinks,linkcolor=blue]{hyperref}
+\usepackage{mathtools}
+\usepackage[a4paper]{geometry}
+
+\usepackage[randomize,nokeeplast]{exam-randomizechoices}
+\setrandomizerseed{998}
+
+
+
+\usepackage{amssymb}
+\checkboxchar{$\square$}
+\checkedchar{$\raisebox{0.3ex}{\checkmark}\hspace{-0.95em}\square$}
+
+\CorrectChoiceEmphasis{\color{red}\slshape}
+
+\begin{document}
+
+
+\section*{Exam}
+The total number of points to earn is \numpoints.
+
+\hrulefill
+
+
+\begin{questions}
+
+
+\question[5] What is the result of $1+1$?
+
+\begin{randomizechoices}
+\choice 1
+\CorrectChoice 2
+\choice 3
+\choice 4
+\end{randomizechoices}
+
+
+%%%%1
+\question[5]
+One of these things is not like the others; one of these
+things is not the same. Which one is different?
+
+\begin{randomizechoices}
+\choice John
+\choice Paul
+\choice George
+\choice Ringo
+\CorrectChoice Socrates
+\end{randomizechoices}
+
+\end{questions}
+
+\newpage
+
+Key table
+
+\printkeytable[1-30]
+
+% \printkeytable[1-30]\quad\printkeytable[31-60]\quad\printkeytable[61-83]
+
+% \writekeylist[testfile.txt]{\mykeylist}
+% \writekeylist{\mykeylist}
+
+% \savekeylist[\yesthekeylist]
+
+% {\color{red}\ttfamily\yesthekeylist}
+
+That's all folks!
+\end{document}
