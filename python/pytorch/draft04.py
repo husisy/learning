@@ -17,8 +17,7 @@ np_rng = np.random.default_rng()
 np0 = np_rng.normal(size=(10,3,224,224)).astype(np.float32)
 torch0 = torch.tensor(np0, dtype=torch.float32, device='cuda')
 torch_model = torchvision.models.alexnet(pretrained=True).cuda()
-torch_model.eva
-l()
+torch_model.eval()
 with torch.no_grad():
     ret_ = scipy.special.softmax(torch_model(torch0).cpu().numpy())
 
