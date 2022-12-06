@@ -10,7 +10,9 @@
 2. install
    * `pip install qiskit[visualization]`
    * `pip install qiskit qiskit-terra[visualization]`
+   * `pip install qiskit[finance]`
    * `pip install qiskit-machine-learning sparse`
+   * `pip install git+https://github.com/qiskit-community/qiskit-textbook.git#subdirectory=qiskit-textbook-src`
    * install `pytorch`
 3. Aer, BasicAer, Terra
 4. completely positive and trace-preserving (CPTP) gate
