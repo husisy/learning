@@ -82,15 +82,24 @@ conda install -y -n nocuda -c pytorch pytorch torchvision torchaudio cpuonly
 conda install -y -n nocuda -c conda-forge cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum
 
 conda create -y -n cuda112
-conda install -y -n cuda112 -c conda-forge cudatoolkit=11.2
+conda install -y -n cuda112 -c conda-forge cudatoolkit=11.2 cudnn=8.1.0
 conda install -y -n cuda112 -c conda-forge cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum
 conda activate cuda112
 pip install tensorflow
+# mkdir -p $CONDA_PREFIX/etc/conda/activate.d
+# echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/' > $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
+
 
 conda create -y -n cuda113
 conda install -y -n cuda113 -c conda-forge cudatoolkit=11.3
 conda install -y -n cuda113 -c pytorch pytorch torchvision torchaudio
 conda install -y -n cuda113 -c conda-forge cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cupy nccl
+
+# fail
+# conda create -y -n cuda117
+# conda install -y -n cuda117 -c conda-forge cudatoolkit=11.7
+# conda install -y -n cuda117 -c pytorch pytorch torchvision torchaudio
+# conda install -y -n cuda117 -c conda-forge cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cupy nccl
 ```
 
 ## conda
