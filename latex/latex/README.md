@@ -61,6 +61,9 @@ tlmgr install cctbook
 update-tlmgr-latest
 tlmgr option repository https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet
 tlmgr remove --all
+
+# wget https://mirror.ctan.org/systems/texlive/tlnet/update-tlmgr-latest.sh
+# bash ./update-tlmgr-latest.sh
 ```
 
 杂项
