@@ -81,3 +81,29 @@ constraints = [X >> 0] + [cvxpy.trace(A[i] @ X) == b[i] for i in range(p)]
 obj = cvxpy.Minimize(cvxpy.trace(C @ X))
 prob = cvxpy.Problem(obj, constraints)
 prob.solve()
+
+
+## backward
+p = cvxpy.Parameter()
+x = cvxpy.Variable()
+obj = cvxpy.Minimize(cvxpy.square(x - 2*p))
+constraints = [x >= 0]
+prob = cvxpy.Problem(obj, constraints)
+p.value = 3.0
+prob.solve(requires_grad=True, eps=1e-10) #x=2*p
+prob.backward()
+assert abs(p.gradient-2)<1e-7
+
+
+## backward
+b = cvxpy.Parameter()
+x = cvxpy.Variable()
+obj = cvxpy.Minimize(cvxpy.square(x - 2 * b))
+constraints = [x >= 0]
+prob = cvxpy.Problem(obj, constraints)
+b.value = 3.
+prob.solve(requires_grad=True, eps=1e-10)
+x.gradient = 4.
+prob.backward()
+# dz/dp = dz/dx dx/dp = 4. * 2. == 8.
+assert abs(b.gradient-8)<1e-7
