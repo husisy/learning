@@ -25,20 +25,8 @@ jnp2 = jnp0.at[[1],[1,2]].set(10)
 jnp3 = jax.ops.index_update(jnp0, jax.ops.index[1], 10)
 jnp4 = jax.ops.index_add(jnp0, jax.ops.index[:1, 1:], 10)
 
-# lax
-jnp.add(1, 1.0)
-# jax.lax.add(1, 1.0) #fail TypeError
-jax.lax.add(1.0, 1.0)
-
 
 ## jit
-hf0 = lambda x: (x-x.mean(0)) / x.std(0)
-hf0_jit = jax.jit(hf0)
-jnp0 = jax.random.normal(jnp_rng(), (100,2), dtype=jnp.float32)
-jnp1 = hf0_jit(jnp0)
-tmp0 = jax.make_jaxpr(hf0)(jnp0)
-
-
 hf0 = lambda x: x.reshape(np.prod(x.shape))
 hf1 = lambda x: x.reshape(jnp.array(x.shape).prod())
 hf0_jit = jax.jit(hf0)
@@ -59,15 +47,6 @@ jnp1 = hf0_jit(jnp0)
 # rcParams['image.interpolation'] = 'nearest'
 # rcParams['image.cmap'] = 'viridis'
 # rcParams['axes.grid'] = False
-
-@jax.jit
-def demo_jax_cond(jnp0):
-    hf_true = lambda x: x
-    hf_false = lambda x: -x
-    ret = jax.lax.cond(jnp0.sum()>0, hf_true, hf_false, jnp0)
-    return ret
-jnp0 = jax.random.normal(jnp_rng(), (3,2), dtype=jnp.float32)
-jnp1 = demo_jax_cond(jnp0)
 
 
 ## grad
