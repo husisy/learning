@@ -2,11 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 plt.ion()
 
-hfe = lambda x,y,eps=1e-5: np.max(np.abs(x-y)/(np.abs(x)+np.abs(y)+eps))
-
 import qiskit
+import qiskit.visualization
 import qiskit.providers.aer
-import qiskit.tools.visualization
 
 aer_qasm_sim = qiskit.providers.aer.QasmSimulator()
 aer_state_sim = qiskit.providers.aer.StatevectorSimulator()
@@ -18,7 +16,7 @@ qc0.cx(0, 1)
 qc0.measure([0,1], [0,1])
 # qc0.draw() #text mpl latex latex_source
 # qc0.draw('mpl') #import matplotlib first
-# qiskit.tools.visualization.circuit_drawer
+# qiskit.visualization.circuit_drawer
 qc0_compiled = qiskit.transpile(qc0, aer_qasm_sim)
 result0 = aer_qasm_sim.run(qc0_compiled, shots=1000).result()
 count0 = result0.get_counts(qc0)
@@ -72,7 +70,7 @@ qc0.measure(q[0], c[0])
 qc0.rz(0.5, q[1]).c_if(c, 2)
 
 dag = qiskit.converters.circuit_to_dag(qc0)
-# qiskit.tools.visualization.dag_drawer(dag)
+# qiskit.visualization.dag_drawer(dag)
 nodei = dag.op_nodes()[3]
 nodei.name
 nodei.op
@@ -93,3 +91,8 @@ op_new.apply_operation_back(qiskit.circuit.library.U2Gate(0.1, 0.2), qargs=[p[1]
 op_old = dag.op_nodes(op=qiskit.circuit.library.CXGate)[0]
 dag.substitute_node_with_dag(node=op_old, input_dag=op_new, wires=[p[0], p[1]])
 qc1 = qiskit.converters.dag_to_circuit(dag)
+
+
+# unitary
+np0 = np.array([[1,1],[1,-1]])/np.sqrt(2)
+qiskit.visualization.array_to_latex(np0) #in jupyter

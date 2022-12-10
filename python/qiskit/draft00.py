@@ -2,17 +2,20 @@ import numpy as np
 import matplotlib.pyplot as plt
 plt.ion()
 
-hfe = lambda x,y,eps=1e-5: np.max(np.abs(x-y)/(np.abs(x)+np.abs(y)+eps))
-
 import qiskit
 import qiskit.providers.aer
-import qiskit.test.mock
+import qiskit.visualization
+# import qiskit.test.mock
 
+aer_sim = qiskit.Aer.get_backend('aer_simulator')
 aer_qasm_sim = qiskit.providers.aer.QasmSimulator()
 aer_state_sim = qiskit.providers.aer.StatevectorSimulator()
 aer_unitary_sim = qiskit.providers.aer.UnitarySimulator()
 # backend = qiskit.Aer.get_backend('statevector_simulator')
 # backend = qiskit.Aer.get_backend('unitary_simulator')
+
+np_rng = np.random.default_rng()
+hf_randc = lambda *size: np_rng.normal(size=size) + 1j*np_rng.normal(size=size)
 
 ##
 qc0 = qiskit.QuantumCircuit(2, 2) #quantum_register, classical_register
@@ -23,7 +26,7 @@ qc0.measure([0,1], [0,1])
 qc0_compiled = qiskit.transpile(qc0, aer_qasm_sim)
 result = aer_qasm_sim.run(qc0_compiled, shots=1000).result()
 counts = result.get_counts(qc0_compiled) #str->int
-# qc0.draw('mpl')
+# qc0.draw('mpl') #initial_state=True
 
 
 ## demo compose operation (below two are equivalent)
@@ -151,3 +154,64 @@ transpiled_qc = qiskit.transpile(qc, backend=qiskit.test.mock.FakeVigo())
 tmp0 = [transpiled_qc.bind_parameters({theta:x}) for x in theta_range]
 qobj = qiskit.compiler.assemble(tmp0, backend=qiskit.test.mock.FakeVigo())
 counts = aer_qasm_sim.run(qobj).result().get_counts()
+
+
+## half adder https://qiskit.org/textbook/ch-states/atoms-computation.html
+for bitstr in ['00','01','10','11']:
+    circ0 = qiskit.QuantumCircuit(4,2)
+    if bitstr[0]=='1':
+        circ0.x(0)
+    if bitstr[1]=='1':
+        circ0.x(1)
+    circ0.barrier()
+    circ0.cx(0,2)
+    circ0.cx(1,2)
+    circ0.ccx(0,1,3)
+    circ0.barrier()
+    circ0.measure(2,0)
+    circ0.measure(3,1)
+
+    qc0_compiled = qiskit.transpile(circ0, aer_qasm_sim)
+    result = aer_qasm_sim.run(qc0_compiled, shots=1000).result()
+    counts = result.get_counts(qc0_compiled) #str->int
+    print(bitstr, counts)
+
+
+## get state vector
+def get_circuit_statevector(circ0):
+    circ0 = circ0.copy()
+    circ0.save_statevector()
+    qobj = qiskit.assemble(circ0)
+    ret = aer_sim.run(qobj).result().get_statevector().data
+    return ret
+num_qubit = 2
+tmp0 = hf_randc(2**num_qubit)
+np0 = tmp0 / np.linalg.norm(tmp0)
+circ0 = qiskit.QuantumCircuit(num_qubit)
+circ0.initialize(np0, list(range(num_qubit)))
+np1 = get_circuit_statevector(circ0)
+
+## get unitary
+def get_circuit_unitary(circ0):
+    circ0 = circ0.copy()
+    circ0.save_unitary()
+    qobj = qiskit.assemble(circ0)
+    ret = aer_sim.run(qobj).result().get_unitary().data
+    return ret
+circ0 = qiskit.QuantumCircuit(2)
+circ0.x(1)
+np0 = get_circuit_unitary(circ0)
+
+
+circ0 = qiskit.QuantumCircuit(2) #SWAP
+circ0.cnot(0, 1)
+circ0.cnot(1, 0)
+circ0.cnot(0, 1)
+get_circuit_unitary(circ0)
+
+
+circ0 = qiskit.QuantumCircuit(2) #close to Toffoli
+circ0.ch(0, 2)
+circ0.cz(1, 2)
+circ0.ch(0, 2)
+# get_circuit_unitary(circ0) #fail
