@@ -17,7 +17,7 @@ for i_episode in range(3):
         # action(int) {0,1}
         #   action=0: left
         #   action=1: right
-        observation, reward, done, info = env.step(action)
+        observation, reward, terminated, done, info = env.step(action)
         # observation/state(np,float,(4,)): position, velocity, angle, angular velocity
         # reward(float)
         # done(bool)
