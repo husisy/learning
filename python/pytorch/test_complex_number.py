@@ -57,3 +57,17 @@ def test_complex_matrix_inverse():
     tmp0 = np.linalg.inv(np0).T.conj()
     ret_ = - tmp0 @ np1 @ tmp0
     assert hfe(ret_, ret0) < 1e-7
+
+
+    torch0 = torch.tensor(np0, dtype=torch.complex128, requires_grad=True)
+    torch1 = torch.tensor(np1, dtype=torch.complex128)
+    loss = torch.sum(torch.linalg.inv(torch0) * torch1).real
+    loss.backward()
+    ret_ = torch0.grad.detach().numpy().copy()
+
+
+    torch0 = torch.tensor(np0, dtype=torch.complex128, requires_grad=True)
+    torch1 = torch.tensor(np1, dtype=torch.complex128)
+    tmp0 = torch.linalg.inv(torch0)
+    tmp0.backward(torch1.conj())
+    ret0 = torch0.grad.detach().numpy().copy()
