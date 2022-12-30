@@ -12,6 +12,7 @@ LaTeX世界观
 1. link
    * [official site](https://www.tug.org/)
    * [一份其实很短的 LaTeX 入门文档](https://liam.page/2014/09/08/latex-introduction/)
+   * [latexwiki](https://en.wikibooks.org/wiki/LaTeX)
    * [手动编译](https://en.wikibooks.org/wiki/LaTeX/Basics#Compilation)
    * [texlive-zh-cn.pdf](http://www.tug.org/texlive/doc/texlive-zh-cn/texlive-zh-cn.pdf)
    * [github/Ctex-org](https://github.com/CTeX-org)
