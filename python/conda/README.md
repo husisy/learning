@@ -95,11 +95,23 @@ conda install -y -n cuda113 -c conda-forge cudatoolkit=11.3
 conda install -y -n cuda113 -c pytorch pytorch torchvision torchaudio
 conda install -y -n cuda113 -c conda-forge cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cupy nccl
 
-# fail
-# conda create -y -n cuda117
+
+conda create -y -n cuda117
 # conda install -y -n cuda117 -c conda-forge cudatoolkit=11.7
+conda install -y -n cuda117 -c pytorch -c nvidia pytorch torchvision torchaudio pytorch-cuda=11.7
 # conda install -y -n cuda117 -c pytorch pytorch torchvision torchaudio
-# conda install -y -n cuda117 -c conda-forge cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cupy nccl
+conda install -y -n cuda117 -c conda-forge cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cupy nccl
+
+
+conda create -y -n cuda117
+# conda install -y -n cuda117 -c conda-forge cudatoolkit=11.7
+conda install -y -n cuda117 -c pytorch -c nvidia pytorch torchvision torchaudio pytorch-cuda=11.7
+# conda install -y -n cuda117 -c pytorch pytorch torchvision torchaudio
+conda install -y -n cuda117 -c conda-forge cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cupy nccl
+
+conda create -y -n metal
+conda install -y -n metal -c pytorch pytorch torchvision torchaudio
+conda install -y -n metal -c conda-forge cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum
 ```
 
 ## conda
