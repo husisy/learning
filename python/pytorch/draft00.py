@@ -4,6 +4,7 @@ import torch.nn.functional as F
 
 hfe = lambda x,y,eps=1e-5:np.max(np.abs(x-y)/(np.abs(x)+np.abs(y)+eps))
 
+torch.__config__.show()
 
 # dtype
 torch.get_default_dtype()

@@ -1,7 +1,7 @@
 import os
 import numpy as np
 from tqdm import tqdm
-from collections import defaultdict
+import collections
 
 import torch
 import torchvision
@@ -56,7 +56,7 @@ optimizer = torch.optim.SGD(net.parameters(), lr=0.1)
 lr_scheduler = torch.optim.lr_scheduler.ExponentialLR(optimizer, gamma=0.9)
 # lr_scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, [50,150], gamma=0.1)
 
-metric_history = defaultdict(list)
+metric_history = collections.defaultdict(list)
 for ind_epoch in range(10):
     with tqdm(total=len(trainloader), desc='epoch-{}'.format(ind_epoch)) as pbar:
         net.train()
