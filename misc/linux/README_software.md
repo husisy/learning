@@ -356,6 +356,7 @@ sed -n '269p;270p' README_software.md
 17. 一个terminal配置多个github账号 [link](https://gist.github.com/rbialek/1012262) [link](https://www.freecodecamp.org/news/manage-multiple-github-accounts-the-ssh-way-2dadc30ccaca/)
 18. misc
     * `ssh -o ServerAliveInterval=5 -o ServerAliveCountMax=1 <host>`, 保存ssh连接较长时间存活 [link](https://unix.stackexchange.com/a/34201)
+    * `ssh-keygen -t ed25519 -a 100` [stackexchange-link](https://security.stackexchange.com/a/144044)
 
 ```bash
 proxy --port 23333 --hostname 127.0.0.1
