@@ -2,6 +2,8 @@
 
 import numpy as np
 
+np.show_config()
+
 ## property
 z0 = np.random.randn(2, 3)
 z0.ndim
