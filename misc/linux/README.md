@@ -8,6 +8,7 @@
    * [ubuntu documentation](https://help.ubuntu.com/)
    * [centos documentation](https://wiki.centos.org/Documentation)
    * [CentOS gitbook](https://www.gitbook.com/book/ninghao/centos/details)
+   * [github/unix-shell-init](https://github.com/rbenv/rbenv/wiki/unix-shell-initialization)
 
 ## install ubuntu desktop system
 
