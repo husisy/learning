@@ -61,7 +61,7 @@ sysctl -n machdep.cpu.brand_string #Apple M1 Ultra, Apple M2
    * macOS: `fn`, `ctrl+space`
 3. 特殊字符输入
    * winOS: `ctrl+shift+b`
-   * macOS: `option+shift+b`
+   * macOS: `option+shift+b`, `ctrl+command+space`
    * 搜狗输入法：`v,1`
 4. 切换
    * winOS切换窗口: 三指左右滑动，四指上划然后选择, `ctrl+tab`, `super+tab`然后选择
@@ -77,7 +77,7 @@ sysctl -n machdep.cpu.brand_string #Apple M1 Ultra, Apple M2
    * macOS: TODO
 6. new
    * winOS: `ctrl+n`, `ctrl+t` TODO
-   * macOS: `command+shift+n` chrome创建新匿名窗口，vscode创建新窗口
+   * macOS: `command+shift+n` chrome创建新匿名窗口，vscode创建新窗口, finder创建新文件夹
    * macOS: `command+n` 同一应用创建新窗口，例如chrome，finder，terminal。vscode创建新tab
    * macOS: `command+t` 当前窗口创建新tab，例如chrome，finder，terminal
 7. 文本编辑跳转go to，例如vscode，word等场景，选择select只需要在如下命令中同时按下`shift`故不赘述
@@ -86,7 +86,9 @@ sysctl -n machdep.cpu.brand_string #Apple M1 Ultra, Apple M2
    * winOS begin/end of line: `fn+arrow`
    * macOS select all: `command+a`
    * macOS next token: `option+arrow`
-   * macOS begin/end of line: `command+arrow`, `fn+arrow` (only in vscode/chrome, not in wechat)
+   * macOS begin/end of line: `command+left/right`, `fn+left/right` (only in vscode/chrome, not in wechat)
+   * macOS begin/end of doc: `command+up/down`
+   * macOS next/previous page: `fn+up/down`
 8. copy/cut/paste
    * winOS: `ctrl+c`, `ctrl+x`, `ctrl+v`
    * winOS history clipboard: `super+v`
@@ -101,7 +103,7 @@ sysctl -n machdep.cpu.brand_string #Apple M1 Ultra, Apple M2
     * macOS: `command+m` 被缩放至Dock最右侧，不再被`command+tab`切换
 11. logout, lock, sleep, shutdown
     * winOS: `win+x,u,i`, `win+l`, `win+x,u,s`, `win+x,u,u`
-    * macOS: `command+shift+q`, `command+ctrl+q`, TODO, TODO
+    * macOS: `command+shift+q`, `command+ctrl+q` (点按电源键), TODO, TODO
 12. screenshot rectangular region to clipboard
     * winOS: `super+s`
     * macOS (modify setting): `shift+command+4`
@@ -120,7 +122,8 @@ sysctl -n machdep.cpu.brand_string #Apple M1 Ultra, Apple M2
     * winOS delete: `delete`
     * winOS new file/folder: TODO
     * macOS delete: `command+delete`
-    * macOS new file/folder: TODO
+    * macOS new file/folder: TODO `shift+command+n`
+    * macOS preview: `space`
 17. remote
     * winOS enable ssh-server: setting, xxx, optional feature, openssh server
     * winOS GUI remote (xrdp): setting, xxx
@@ -129,6 +132,11 @@ sysctl -n machdep.cpu.brand_string #Apple M1 Ultra, Apple M2
     * macOS GUI remote (VNC): setting, general, sharing, screen sharing
       * VNC (ipad user): install "Mocha VNC lite" (free for 5 minutes) or "Mocha VNC" (48 HKD)
       * VNC (mac user): screen sharing
+18. setting
+    * winOS: AN
+    * macOS: `command+comma`
+19. terminal
+    * fullscreen: `command+enter`
 
 macOS recommanded software
 
@@ -142,6 +150,9 @@ macOS recommanded software
 6. xcode
 7. conda (see code snippet below) [link](https://docs.conda.io/en/latest/miniconda.html)
    * metal-related package: `tensorflow`, `pytorch` (see code block below), `taichi`
+8. maccy, history clipboard [github](https://github.com/p0deje/Maccy)
+9. lyx [official-site](https://www.lyx.org/)
+10. 快速纯文本：光标移动至屏幕右下角点击一个方块启动note
 
 ```bash
 # conda
