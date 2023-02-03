@@ -10,6 +10,8 @@ cuda/**/build/
 python/**/__pycache__/
 python/**/.pytest_cache/
 python/**/.ipynb_checkpoints
+python/setuptools/**/*.egg-info/
+python/setuptools/*/build/
 python/cirq/np_quantum_circuit.py
 python/pyquil/np_quantum_circuit.py
 python/cupy/np_quantum_circuit.py
