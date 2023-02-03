@@ -235,7 +235,7 @@ latex: mmp
 2. 编译方式二
    * `latexmk -pdf draft00.tex`
    * 清理文件 `latexmk -c`
-3. 在ubuntu平台编译失败, see [github-issue-xetex中fandol字体script的问题](https://github.com/CTeX-org/forum/issues/34)
+3. 在ubuntu/mac平台编译失败, see [github-issue-xetex中fandol字体script的问题](https://github.com/CTeX-org/forum/issues/34)
    * `/documentclass[UTF8,fontset=ubuntu]{ctexart}`，然后使用xelatex编译通过，但vscode remote ssh下未通过
    * see [link](https://stackoverflow.com/a/57734531/7290857)
    * see [link](https://tex.stackexchange.com/a/284933)
