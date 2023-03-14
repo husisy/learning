@@ -7,6 +7,7 @@
 2. install
    * `pip install cvxpy`
    * `conda install -c conda-forge cvxpy`
+   * (macOS) `OPENBLAS="$(brew --prefix openblas)" pip install --upgrade scs` [link](https://www.cvxgrp.org/scs/install/python.html)
 3. trade-off curves
 4. curvature: constant, affine, convex, concave, unknown
 5. Disciplined Parametrized Programming (DPP)

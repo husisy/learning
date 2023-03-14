@@ -1,6 +1,8 @@
 import cvxpy
 import numpy as np
 
+np_rng = np.random.default_rng()
+
 cvxX = cvxpy.Variable()
 cvxY = cvxpy.Variable()
 cvxZ = cvxpy.Variable()
