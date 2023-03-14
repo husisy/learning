@@ -1,0 +1,150 @@
+% https://en.wikibooks.org/wiki/LaTeX/Algorithms
+% https://tex.stackexchange.com/q/231191
+% use algorithmicx, not others
+\documentclass[%
+ reprint,
+%superscriptaddress,
+%groupedaddress,
+%unsortedaddress,
+%runinaddress,
+%frontmatterverbose,
+%preprint,
+%preprintnumbers,
+%nofootinbib,
+%nobibnotes,
+%bibnotes,
+ amsmath,amssymb,
+ aps,
+% pra,
+%prb,
+%rmp,
+%prstab,
+%prstper,
+%floatfix,
+]{revtex4-2}
+% \documentclass{article}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\begin{document}
+
+\begin{algorithmic}
+\If {$i\geq maxval$}
+    \State $i\gets 0$
+\Else
+    \If {$i+k\leq maxval$}
+        \State $i\gets i+k$
+    \EndIf
+\EndIf
+\end{algorithmic}
+
+\begin{algorithm}[H]
+\caption{Euclid’s algorithm}\label{euclid}
+\begin{algorithmic}[1]
+\Procedure{Euclid}{$a,b$}\Comment{The g.c.d. of a and b}
+    \State $r\gets a\bmod b$
+    \While{$r\not=0$}\Comment{We have the answer if r is 0}
+        \State $a\gets b$
+        \State $b\gets r$
+        \State $r\gets a\bmod b$
+    \EndWhile\label{euclidendwhile}
+    \State \textbf{return} $b$\Comment{The gcd is b}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+\caption{UDA algorithm. number of qubits $n$, number of intially picked terms $N_0$, number of trial $N_1$, threshold $\delta$}
+\begin{algorithmic}[1]
+\Procedure{T}{$A$}\Comment{criteria for UDA}
+    \If {$\mathcal{L}_{2^n,0}>\delta,\mathcal{L}_{2^n-1,1}>\delta$ for $N_1$ trials}
+        \State \textbf{return} True
+    \Else
+        \State \textbf{return} False
+    \EndIf
+\EndProcedure
+\Procedure{UDA}{$n,N_0,N_1,\delta$}
+    \State $B\gets \left\{I^{\otimes n}\right\}$
+    \Repeat
+        \State $A\gets$ randomly pick $N_0$ from $\left\{I,X,Y,Z\right\}^{\otimes n} \backslash B$
+    \Until{not $T(A)$}
+    \While{$A\cup B\subset \left\{ I,X,Y,Z \right\} ^{\otimes n}$}
+        \State randomly pick $x$ from $\left\{ I,X,Y,Z \right\} ^{\otimes n}\backslash(A\cup B)$
+        \State $A\gets A\cup \left\{x\right\}$
+        \If {not $T(A)$}
+            \State $A\gets A \backslash \left\{x\right\}$
+            \State $B\gets B\cup \left\{x\right\}$
+        \EndIf
+    \EndWhile
+    \State \textbf{return} $A$
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+
+% \begin{algorithm}[H]
+% \caption*{UDA algorithm}
+% \begin{algorithmic}
+% \STATE \textbf{Input}:
+% \STATE \textbf{Subroutine} $T(A)$ input matrix subspace $A$
+%     \bindent
+%     \IF{ $\mathcal{L}_{2^n,0},\mathcal{L}_{2^n-1,1}>\delta$ for $N_1$ trials}
+%         \STATE return True
+%     \ELSE
+%         \STATE return False
+%     \ENDIF
+%     \eindent
+% \STATE $B\gets \left\{I^{\otimes n}\right\}$
+% \Do
+%     \STATE $A\gets$ randomly pick $N_0$ from $\left\{I,X,Y,Z\right\}^{\otimes n} \backslash B$
+% \doWhile {not $T(A)$}
+% \WHILE {$A\cup B\subset \left\{ I,X,Y,Z \right\} ^{\otimes n}$}
+%     \STATE random pick $x$ from $\left\{ I,X,Y,Z \right\} ^{\otimes n}-A-B$
+%     \STATE $A\gets A\cup \left\{x\right\}$
+%     \IF {not $T(A)$}
+%         \STATE $A\gets A - \left\{x\right\}$
+%         \STATE $B\gets B\cup \left\{x\right\}$
+%     \ENDIF
+% \ENDWHILE
+% \STATE repeat $T(A)$ for $5$ times
+% \end{algorithmic}
+% \end{algorithm}
+
+\begin{algorithm}[H]
+\caption{Part 1}
+\begin{algorithmic}[1]
+\Procedure {BellmanKalaba}{$G$, $u$, $l$, $p$}
+    \ForAll {$v \in V(G)$}
+        \State $l(v) \leftarrow \infty$
+    \EndFor
+    \State $l(u) \leftarrow 0$
+    \Repeat
+    \For {$i \leftarrow 1, n$}
+    \State $min \leftarrow l(v_i)$
+    \For {$j \leftarrow 1, n$}
+    \If {$min > e(v_i, v_j) + l(v_j)$}
+    \State $min \leftarrow e(v_i, v_j) + l(v_j)$
+    \State \Comment For some reason we need to break here!
+    \algstore{bkbreak}
+\end{algorithmic}
+\end{algorithm}
+
+And we need to put some additional text between\dots
+
+\begin{algorithm}[H]
+\caption{Part 2}
+\begin{algorithmic}[1]
+\algrestore{bkbreak}
+\State $p(i) \leftarrow v_j$
+\EndIf
+\EndFor
+\State $l’(i) \leftarrow min$
+\EndFor
+\State $changed \leftarrow l \not= l’$
+\State $l \leftarrow l’$
+\Until{$\neg changed$}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\end{document}
