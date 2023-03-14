@@ -3,16 +3,19 @@ import numpy as np
 import gym
 
 
+# play animation in jupyter notebook connecting remote server
+# https://stackoverflow.com/a/44426542/7290857
+
 # CartPole-v0
 # MountainCar-v0
 # MsPacman-v0
 # Hopper-v1 #fail on windows
-env = gym.make('CartPole-v0')
+env = gym.make('CartPole-v1', render_mode="rgb_array")
 for i_episode in range(3):
     observation = env.reset()
     for t in range(300):
         env.render()
-        print(observation) #numpy array
+        # print(observation) #numpy array
         action = env.action_space.sample() #take a random action
         # action(int) {0,1}
         #   action=0: left
