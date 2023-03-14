@@ -3,7 +3,10 @@
 1. link
    * [official-site](http://qutip.org/index.html)
    * [github](https://github.com/qutip/qutip)
-2. bra / ket / density matrix
+2. install
+   * `conda install -c conda-forge qutip`
+   * `pip install qutip`
+3. bra / ket / density matrix
 
 ## Optimal control
 
