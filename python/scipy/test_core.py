@@ -2,6 +2,25 @@ import numpy as np
 import scipy
 
 hfe = lambda x,y,eps=1e-5:np.max(np.abs(x-y)/(np.abs(x)+np.abs(y)+eps))
+np_rng = np.random.default_rng()
+
+
+def test_reshape_c_fortran_order():
+    # given a fortran matrix (N0*N1,N2*N3), how to reshape it into (N0*N2,N1*N3)
+    # also see cvxpy/test_misc.py/test_cvxpy_tensor_transpose_fortran_order()
+    N0 = 2
+    N1 = 3
+    N2 = 4
+    N3 = 5
+
+    np0_c = np_rng.normal(size=(N0*N1,N2*N3))
+    np0_f = np.asfortranarray(np0_c)
+
+    ret_ = np0_c.reshape(N0,N1,N2,N3).transpose(0,2,1,3).reshape(N0*N2,N1*N3)
+    index_fortran = np.arange(N0*N1*N2*N3).reshape(N2,N3,N0,N1).transpose(3,1,2,0).reshape(-1)
+    ret1 = np.reshape(np0_f.reshape(-1, order='F')[index_fortran], (N0*N2,N1*N3), order='F')
+    assert np.abs(ret_-np.ascontiguousarray(ret1)).max() < 1e-10
+
 
 def test_poly1d(N0=3, N1=5):
     np_coefficient = np.random.rand(N0) #from high order to low
