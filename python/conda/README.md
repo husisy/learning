@@ -60,23 +60,6 @@ pip install tensorflow
 for pytorch env
 
 ```bash
-conda create -y -n cuda102
-conda install -y -n cuda102 -c pytorch pytorch torchvision cudatoolkit=10.2
-conda install -y -n cuda102 -c conda-forge cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum
-
-# pip install --extra-index-url https://developer.download.nvidia.com/compute/redist nvidia-dali-cuda100
-# pip install tensorflow
-conda create -y -n cuda110
-conda install -y -n cuda110 -c pytorch pytorch torchvision torchaudio cudatoolkit=11.0
-conda install -y -n cuda110 -c conda-forge cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum
-conda activate cuda110
-pip install tensorflow
-
-conda create -y -n cuda111
-conda install -y -n cuda111 -c conda-forge cudatoolkit=11.1
-conda install -y -n cuda111 -c pytorch pytorch torchvision torchaudio
-conda install -y -n cuda111 -c conda-forge cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cupy nccl
-
 conda create -y -n nocuda
 conda install -y -n nocuda -c pytorch pytorch torchvision torchaudio cpuonly
 conda install -y -n nocuda -c conda-forge cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum
@@ -89,19 +72,10 @@ pip install tensorflow
 # mkdir -p $CONDA_PREFIX/etc/conda/activate.d
 # echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/' > $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
 
-
 conda create -y -n cuda113
 conda install -y -n cuda113 -c conda-forge cudatoolkit=11.3
 conda install -y -n cuda113 -c pytorch pytorch torchvision torchaudio
 conda install -y -n cuda113 -c conda-forge cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cupy nccl
-
-
-conda create -y -n cuda117
-# conda install -y -n cuda117 -c conda-forge cudatoolkit=11.7
-conda install -y -n cuda117 -c pytorch -c nvidia pytorch torchvision torchaudio pytorch-cuda=11.7
-# conda install -y -n cuda117 -c pytorch pytorch torchvision torchaudio
-conda install -y -n cuda117 -c conda-forge cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cupy nccl
-
 
 conda create -y -n cuda117
 # conda install -y -n cuda117 -c conda-forge cudatoolkit=11.7
@@ -168,6 +142,7 @@ conda基础命令
    * [documentation](https://pip.pypa.io/en/latest/reference/)
    * [Python Packaging User Guide](https://packaging.python.org/)
    * [Installing pip/setuptools/wheel with Linux Package Managers](https://packaging.python.org/guides/installing-using-linux-tools/)
+   * why you should use `python -n pip` [link](https://snarky.ca/why-you-should-use-python-m-pip/)
 2. install `pip`, `setuptools`, `wheel`
    * win: `python -m pip install --upgrade pip setuptools wheel`
    * ubuntu: `sudo apt install python3-venv python3-pip python3-setuptools python3-wheel`, `alias python=python3`, `alias pip=pip3`
