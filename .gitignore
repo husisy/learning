@@ -79,6 +79,7 @@ latex/**/*-blx.bib
 latex/**/*.run.xml
 latex/**/*.fdb_latexmk
 latex/**/*.synctex.gz
+latex/latex/*Notes.bib
 
 # cmake
 cmake/**/build/
