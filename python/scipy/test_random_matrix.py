@@ -77,12 +77,12 @@ def rand_invariant_matrix(N0, kind='normal', tag_complex=True, seed=None):
     np_rng = np.random.default_rng(seed)
     unitary0 = rand_unitary_matrix(N0, tag_complex, seed=np_rng.integers(10000))
     if kind=='normal':
-        np0 = np_rng.normal(size=N0) + 1j*np_rng.uniform(2*np.pi, size=N0)
+        np0 = np_rng.normal(size=N0) + 1j*np_rng.uniform(0, 2*np.pi, size=N0)
     elif kind=='hermitian':
         np0 = np_rng.normal(size=N0)
     else:
-        np0 = 1j*np_rng.uniform(2*np.pi, size=N0)
-    tmp0 = np.exp(1j*np_rng.uniform(2*np.pi, size=N0))
+        np0 = 1j*np_rng.uniform(0, 2*np.pi, size=N0)
+    tmp0 = np.exp(1j*np_rng.uniform(0, 2*np.pi, size=N0))
     ret0 = (unitary0*tmp0) @ unitary0.T.conj()
     ret1 = (unitary0*np.exp(np0)) @ unitary0.T.conj()
     return ret0,ret1

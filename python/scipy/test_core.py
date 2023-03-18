@@ -22,19 +22,6 @@ def test_reshape_c_fortran_order():
     assert np.abs(ret_-np.ascontiguousarray(ret1)).max() < 1e-10
 
 
-def test_poly1d(N0=3, N1=5):
-    np_coefficient = np.random.rand(N0) #from high order to low
-    np_root = np.random.rand(N0)
-    np_x = np.random.rand(N1)
-    ret_ = np.sum(np_coefficient[::-1,np.newaxis] * (np_x**(np.arange(N0))[:,np.newaxis]), axis=0)
-    ret0 = np.poly1d(np_coefficient)(np_x)
-    assert hfe(ret_, ret0) < 1e-7
-
-    ret_ = np.product(np_x-np_root[:,np.newaxis], axis=0)
-    ret0 = np.poly1d(np_root, r=True)(np_x)
-    assert hfe(ret_, ret0) < 1e-7
-
-
 def test_pad(N0=3, N1=5):
     np0 = np.random.rand(N0, N1)
 

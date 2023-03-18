@@ -1,7 +1,22 @@
 import numpy as np
 import scipy.integrate
 import matplotlib.pyplot as plt
-plt.ion()
+# plt.ion()
+
+
+def test_Polynomial(N0=3, N1=5):
+    np_coefficient = np.random.rand(N0) #degree: 0,1,2,...,
+    np_x = np.random.rand(N1)
+    ret_ = np.sum(np_coefficient[:,np.newaxis] * (np_x**(np.arange(N0))[:,np.newaxis]), axis=0)
+    ret0 = np.polynomial.Polynomial(np_coefficient)(np_x)
+    assert hfe(ret_, ret0) < 1e-7
+
+    np_root = np.random.rand(N0)
+    ret0 = np.polynomial.Polynomial.fromroots(np_root)(np_x)
+    ret_ = np.product(np_x-np_root[:,np.newaxis], axis=0)
+    assert hfe(ret_, ret0) < 1e-7
+
+
 
 def chebyshev2_chebval(x, coeff):
     '''

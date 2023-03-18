@@ -1,11 +1,16 @@
+import pytest
 import numpy as np
 import scipy.linalg
+
+try:
+    import tensorflow as tf
+except ImportError:
+    tf = None
 
 hfe = lambda x,y,eps=1e-5: np.max(np.abs(x-y)/(np.abs(x)+np.abs(y)+1e-3))
 
 
 def tf_hessian_matrix(hf0, x0):
-    import tensorflow as tf
     tf0 = tf.convert_to_tensor(x0)
     with tf.GradientTape() as tape0:
         tape0.watch(tf0)
@@ -43,6 +48,7 @@ def np_hessian_matrix(hf0, x0, zero_eps=1e-4):
             ret[ind1,ind0] = tmp4
     return ret
 
+@pytest.mark.skipif(tf is None, reason="tensorflow not installed")
 def test_hessian_matrix():
     hf0 = lambda x: (x[0]**(1/2)) * (x[1]**(1/3)) * (x[2]**(1/4)) * (x[3]**(1/5))
     x0 = np.random.rand(4) + 1
