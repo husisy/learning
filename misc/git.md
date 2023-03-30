@@ -65,6 +65,10 @@
    * 走通minimum working example-00，然后按“创建-添加-提交-修改-提交-修改-提交”顺序进行项目
    * 走通minimum working example-xx，使用github/gitee来掌握pull/push使用
    * 走通其它minimum working example
+9. 个人偏见
+   * 当代码量超过1000行时，git能够有效保证你的代码依旧能有效被组织
+   * 如果你的工作场景中有大量的时间在git相关命令上，那多半是git的使用方式不对
+   * 为什么有stage这个状态：使用起来像是图形界面的打勾
 
 ## minimum working example00
 
@@ -158,10 +162,19 @@ git config --global --unset http.proxy
 git remote set-url
 ```
 
-## zcnote
+## git lfs
 
-why git, 当代码量超过1000行时，git能够有效保证你的代码依旧能有效被组织
+1. link
+   * [official-site](https://git-lfs.com/)
+   * [github/git-lfs](https://github.com/git-lfs/git-lfs)
+2. install
+   * macOS: `brew install git-lfs`
+   * ubuntu: `sudo apt-get install git-lfs`
 
-1. 如果你的工作场景中有大量的时间在git相关命令上，那多半是git的使用方式不对
-2. 为什么有stage这个状态：使用起来像是图形界面的打勾
-3. 不要给初学者讲git的原理，从git的使用场景开始讲起
+```bash
+git lfs install
+git lfs track "*.pkl "
+# .gitattributes
+git add data/*.pkl
+git add .gitattributes
+```
