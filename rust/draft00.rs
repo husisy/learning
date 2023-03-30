@@ -1,6 +1,12 @@
 fn main() {
+    println!("Hello world!");
+
+    let tmp0 = 3;
+    println!("integer tmp0={tmp0}");
+    let tmp0 = "233";
+    println!("stirng tmp0={tmp0}");
+
     println!("# std::format");
-    println!("Hello World!");
     println!("println! str-{}, number-{}", "233", 233);
     print!("print! \n");
     println!("{0}{1}{1}", 2, 3);
