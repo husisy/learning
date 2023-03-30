@@ -5,6 +5,7 @@
    * [Regular Expression HOWTO](https://docs.python.org/3/howto/regex.html#regex-howto)
    * [pypi/regex](https://pypi.org/project/regex/)
    * [浅谈Python 正则表达式](https://zhuanlan.zhihu.com/p/26019553)
+   * [github/google/re2](https://github.com/google/re2)
 2. metacharacter: `. ^ $ * + ? { } [ ] \ | ( )`
 3. `[]`
    * `[abc]`
