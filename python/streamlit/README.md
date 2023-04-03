@@ -9,3 +9,6 @@
    * `pip install streamlit`
 3. `streamlit hello`
 4. `streamlit run app.py`
+5. similar package
+   * [github/gradio](https://github.com/gradio-app/gradio)
+   * [github/flet](https://github.com/flet-dev/flet)
