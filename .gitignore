@@ -7,6 +7,7 @@ cuda/cuda/include/helper_string.h
 cuda/**/build/
 
 # python/
+python/**/.env
 python/**/__pycache__/
 python/**/.pytest_cache/
 python/**/.ipynb_checkpoints
@@ -42,6 +43,7 @@ python/deepmd/data
 python/openmm/data
 python/qiskit/token.txt
 python/scipy/ws_f2py/**/*.cpython*
+python/openai/data
 
 # rust
 rust/**/*.exe
