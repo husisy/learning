@@ -13,6 +13,8 @@ TODO
 
 ```bash
 PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@hostname\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
+
+omz update #update oh-my-zsh
 ```
 
 ## apt package manager
