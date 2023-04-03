@@ -22,3 +22,4 @@
    * `path`: 类似`string`，但可以包含斜杠
    * `uuid`: 接受`UUID`字符串
 7. HTTP方法：`GET,POST,HEAD,OPTIONS`
+8. `load_dotenv=True` [stackoverflow-link](https://stackoverflow.com/a/58416673/7290857)
