@@ -48,5 +48,5 @@ micromamba install -y -n cuda117 cython ipython pytest matplotlib h5py pandas py
 
 micromamba create -y -n metal
 micromamba install -y -n metal -c pytorch pytorch torchvision torchaudio
-micromamba install -y -n metal cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum
+micromamba install -y -n metal cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cvxpy scs
 ```
