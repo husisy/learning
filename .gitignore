@@ -44,6 +44,7 @@ python/openmm/data
 python/qiskit/token.txt
 python/scipy/ws_f2py/**/*.cpython*
 python/openai/data
+python/flask/**/*.sqlite3
 
 # rust
 rust/**/*.exe
