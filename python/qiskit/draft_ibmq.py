@@ -1,7 +1,7 @@
 import os
 import numpy as np
 import matplotlib.pyplot as plt
-plt.ion()
+# plt.ion()
 
 import qiskit
 import qiskit.providers.aer

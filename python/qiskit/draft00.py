@@ -25,7 +25,7 @@ qc0.measure([0,1], [0,1])
 # compile the qc0 down to low-level QASM instructions supported by the backend
 qc0_compiled = qiskit.transpile(qc0, aer_qasm_sim)
 result = aer_qasm_sim.run(qc0_compiled, shots=1000).result()
-counts = result.get_counts(qc0_compiled) #str->int
+counts = result.get_counts(qc0_compiled) #str->int #c1c0
 # qc0.draw('mpl') #initial_state=True
 
 
