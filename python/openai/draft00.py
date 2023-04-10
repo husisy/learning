@@ -2,6 +2,7 @@ import os
 import openai
 import dotenv
 import tiktoken
+import numpy as np
 
 dotenv.load_dotenv()
 openai.api_key = os.environ["OPENAI_API_KEY"]
@@ -78,3 +79,18 @@ tmp0 = f'Translate the following English text to Chinese: {text}'
 chatgpt.chat(tmp0, reset=True)
 
 chatgpt.chat('design a one-day trip in Hong Kong', reset=True)
+
+
+# example with batching
+num_repeat = 3
+prompts = [f"{3*x}+{3*x}=" for x in range(num_repeat)]
+response = openai.Completion.create(model="text-davinci-003", prompt=prompts, max_tokens=20, temperature=0)
+# x.index x['index']
+tmp0 = sorted(response.choices, key=lambda x:x.index)
+answer_list = [x.text for x in tmp0] #0 6 12
+
+response = openai.Embedding.create(input=prompts, engine='text-embedding-ada-002')
+tmp0 = sorted(response['data'], key=lambda x:x.index)
+assert tuple(x.index for x in tmp0)==tuple(range(num_repeat))
+embedding_np = np.array([x.embedding for x in tmp0], dtype=np.float64)
+assert embedding_np.shape==(num_repeat, 1536)
