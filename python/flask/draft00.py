@@ -1,4 +1,5 @@
 import flask
+import markupsafe
 
 app = flask.Flask(__name__)
 
@@ -7,16 +8,20 @@ def index():
     print(flask.request.method) #'GET'
     return 'my index page'
 #localhost:5000/
+# localhost:5000/index
 
 @app.route('/hello')
 def hello():
     return 'my hello world'
 #localhost:5000/hello
 
-@app.route('/user/<username>')
-def show_user_profile(username):
-    return 'user: {}'.format(username)
+@app.route('/user/<name>')
+def show_user_profile(name):
+    ret = f'user: {markupsafe.escape(name)}'
+    # ret = 'user: {}'.format(markupsafe.escape(name))
+    return ret
 #locahost:5000/user/233
+# Jinja will do markupsafe.escape automatically
 
 @app.route('/post/<int:post_id>')
 def show_post(post_id):
@@ -58,3 +63,12 @@ def projects():
 # python -m flask run
 # python -m flask run --host=0.0.0.0 --port=3307
 
+
+with app.test_request_context():
+    # input name of function, return url
+    print(flask.url_for('index')) #/
+    print(flask.url_for('show_user_profile', name='world')) #/user/world
+
+with app.test_request_context('/hello', method='GET'):
+    assert flask.request.path == '/hello'
+    assert flask.request.method == 'GET'

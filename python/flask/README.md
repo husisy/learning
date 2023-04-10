@@ -4,8 +4,8 @@
    * [github](https://github.com/pallets/flask)
    * [documentation](https://flask.palletsprojects.com/en/1.1.x/)
 2. 安装
-   * `conda install -c conda-forge flask coverage`
-   * `pip install flask coverage`
+   * `mamba install flask coverage waitress`
+   * `pip install flask coverage waitress`
 3. 特殊环境变量
    * `export FLASK_APP=draft00.py`, win-cmd `set FLASK_APP=draft00.py`, powershell `$env:FLASK_APP="draft00.py"`
    * 调试模式`export FLASK_ENV=development`
@@ -23,3 +23,4 @@
    * `uuid`: 接受`UUID`字符串
 7. HTTP方法：`GET,POST,HEAD,OPTIONS`
 8. `load_dotenv=True` [stackoverflow-link](https://stackoverflow.com/a/58416673/7290857)
+9. secret key: `python -c 'import secrets; print(secrets.token_hex())'`
