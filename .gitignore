@@ -49,6 +49,9 @@ python/flask/**/*.sqlite3
 # rust
 rust/**/*.exe
 rust/**/*.pdb
+rust/**/debug/
+rust/**/target/
+rust/**/Cargo.lock
 
 # cpp/
 cpp/**/*.o
