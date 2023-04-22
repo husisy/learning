@@ -54,10 +54,6 @@ pdb.run('hf0()')
 3. `gettempdir() gettempprefix()`
 4. recommend to use keyword arguments
 
-## gzip
-
-TODO
-
 ## tarfile
 
 1. `gzip`, `bz2`, `lzma`
@@ -198,3 +194,22 @@ with open(file,'rb') as fid:
 1. link
    * [documentation](https://docs.python.org/3/library/concurrent.futures.html)
 2. 当且仅当所有进程抛错中断时会导致主进程中断进而打印出错信息（或者进程结束），否则表现为挂起
+
+## hashlib,hmac,secrets
+
+1. link
+   * [documentation](https://docs.python.org/3/library/hashlib.html)
+   * common weakness enumeration (CWE) [link](https://cwe.mitre.org/index.html)
+   * common vulnerabilities and exposures (CVE) [link](https://www.cve.org/)
+2. concept
+   * secure hash algorithm (message digest algorithm)
+   * SHAKE variable length digests
+3. file hashing
+4. keyed hashing
+5. randomized hashing
+
+secrets
+
+1. @2015, `32bytes/256bits` of randomness is sufficient for the typical use (against brute force attack)
+2. timing attacks: `secrets.compare_digest`, `hmac.compare_digest`
+3. password: salted, hashed
