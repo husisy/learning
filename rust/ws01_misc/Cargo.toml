@@ -1,0 +1,21 @@
+[package]
+name = "ws01_misc"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rand = { version = "0.8.5", features = ["small_rng"] }
+rand_chacha = "0.3.1"
+rand_distr = "0.4.3"
+rand_pcg = "0.3.1"
+rand_seeder = "0.2.3"
+pmac = "0.7.1"
+aes = "0.8.2"
+hmac = "0.12.1"
+sha2 = "0.10.6"
+hex-literal = "0.4.1"
+aes-siv = {version="0.7.0", features=["heapless"]}
+hex = "0.4.3"
+tfhe = { version = "*", features = ["boolean", "shortint", "integer", "x86_64-unix"] }
