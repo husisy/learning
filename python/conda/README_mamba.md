@@ -46,6 +46,10 @@ micromamba create -y -n cuda117
 micromamba install -y -n cuda117 -c pytorch -c nvidia pytorch torchvision torchaudio pytorch-cuda=11.7
 micromamba install -y -n cuda117 cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cupy nccl
 
+micromamba create -y -n cuda118
+micromamba install -y -n cuda118 -c pytorch -c nvidia pytorch torchvision torchaudio pytorch-cuda=11.8
+micromamba install -y -n cuda118 cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cupy nccl
+
 micromamba create -y -n metal
 micromamba install -y -n metal -c pytorch pytorch torchvision torchaudio
 micromamba install -y -n metal cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cvxpy scs
