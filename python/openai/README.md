@@ -246,3 +246,66 @@ enc = tiktoken.encoding_for_model("gpt-4")
 TODO pdfminzer [link](https://github.com/pdfminer/pdfminer.six)
 
 TODO chatgpt-telegram-bot [link](https://github.com/zzh1996/chatgpt-telegram-bot)
+
+## DeepLearningAI/ChatGPT
+
+[link](https://learn.deeplearning.ai/chatgpt-prompt-eng)
+
+1. two types of large language models (LLM)
+   * base LLM: predict next word, based on text training data
+   * instruction tuned LLM: fine-tune on instructions and good attempts at following instructions. reinforcement learning with human feedback (RLHF)
+2. principle
+   * write clear and specific instructions. "clear" is NOT "short"
+   * give the model time to think
+3. tactic (principle 1)
+   * use delimiter to clearly indicate distinct parts of the input
+     * e.g.: triple quotes `"""`, triple backticks (escaped in MarkDown), triple dashes `---`, angle brackets `<>`, xml tags `<tag></tag>`
+     * avoiding prompt injections
+   * ask for structured output: html, json
+   * check whether conditions are satisfied: check assumptions required to do the task
+   * few-shot prompting: give successful examples of completing tasks, then ask model to perform the task
+4. tactic (principle 2)
+   * specify the steps to complete a task
+   * instruct the mode lto work out its own solution before rushing to a conclusion
+5. (model limitations) hallucination: make statements that sound plausible but are not true
+   * reducing hallucinations: first find relevant information then asswer the question based on the relevant information
+6. iterative prompt development
+   * idea
+   * implementation (code/data/prompt)
+   * experimental result
+   * error analysis
+7. prompt guidelines
+   * be clear and specific
+   * analyze why result does not give desired output
+   * refine the idea and the prompt
+   * repeat
+8. iterative process
+   * try something
+   * analyze where the result does not give what you want
+   * clarify instructions, give more time to think
+   * refine prompts with a batch of examples
+9. summarize
+   * summarize with a word / sentence / character limit
+   * summarize with a focus on xxx
+   * try 'extract' instead of 'summarize'
+   * summarize multiple product reviews
+10. inferring
+    * sentiment: positive, negative
+    * identify types of emotions
+    * identify anger
+    * extract infromation
+    * inferring topics
+    * determining certain topics
+11. transforming
+    * translation
+    * universal translator
+    * tone transformation
+    * format conversion
+    * spellcheck/grammar check
+12. expanding
+    * `sign the email as "AI customer agent"`
+13. `temperature`
+    * `temperature=0`: for tasks that require reliability, predictability
+    * larger `temperature`: for tasks that require variety
+14. chatbot
+    * [holoviz/panel/documentation](https://panel.holoviz.org/reference/widgets/TextInput.html) [github](https://github.com/holoviz/panel)
