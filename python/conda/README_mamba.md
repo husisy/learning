@@ -43,14 +43,14 @@ micromamba repoquery depends python-dotenv
 micromamba repoquery depends --recursive conda-forge python-dotenv
 
 micromamba create -y -n cuda117
-micromamba install -y -n cuda117 -c pytorch -c nvidia pytorch torchvision torchaudio pytorch-cuda=11.7
-micromamba install -y -n cuda117 cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cupy nccl
+micromamba install -y -n cuda117 cudatoolkit=11.7 pytorch cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cupy nccl
 
+# mosek not support python=3.11
 micromamba create -y -n cuda118
-micromamba install -y -n cuda118 -c pytorch -c nvidia pytorch torchvision torchaudio pytorch-cuda=11.8
-micromamba install -y -n cuda118 cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cupy nccl
+micromamba install -y -n cuda118 cudatoolkit=11.8 pytorch python=3.10 cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cupy nccl cvxpy cvxpy
+micromamba install -y -n cuda118 -c MOSEK MOSEK
 
 micromamba create -y -n metal
-micromamba install -y -n metal -c pytorch pytorch torchvision torchaudio
-micromamba install -y -n metal cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cvxpy scs
+micromamba install -y -n metal pytorch cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cvxpy scs
+micromamba install -y -n metal -c MOSEK MOSEK
 ```

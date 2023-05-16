@@ -83,6 +83,10 @@ conda install -y -n cuda117 -c pytorch -c nvidia pytorch torchvision torchaudio 
 # conda install -y -n cuda117 -c pytorch pytorch torchvision torchaudio
 conda install -y -n cuda117 -c conda-forge cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cupy nccl
 
+conda create -y -n cuda118
+conda install -y -n cuda118 pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
+conda install -y -n cuda118 -c conda-forge cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cupy nccl cvxpy scs
+
 conda create -y -n metal
 conda install -y -n metal -c pytorch pytorch torchvision torchaudio
 conda install -y -n metal -c conda-forge cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum
