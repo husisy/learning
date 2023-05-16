@@ -1,5 +1,7 @@
 # Large Language Model
 
+also see `python/openai/README.md`
+
 前言
 
 1. 该文档中Large Language Model (LLM)一般特指ChatGPT/GPT4，
