@@ -178,3 +178,37 @@ git lfs track "*.pkl "
 git add data/*.pkl
 git add .gitattributes
 ```
+
+## github action
+
+1. link
+   * [documentation](https://docs.github.com/en/actions)
+2. `.github/workflow/xxx.yml`
+3. concept
+   * event
+   * workflow
+   * job
+   * action, github marketplace
+   * runner `runs-on`: `windows-latest`, `ubuntu-latest`, `macos-latest`
+4. special variable
+   * `github.event_name`
+   * `github.actor`
+   * `runner.os`
+   * `github.ref`
+   * `github.repository`
+
+```yaml
+name: learn-github-actions
+run-name: ${{ github.actor }} is learning GitHub Actions
+on: [push]
+jobs:
+  check-bats-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+      - run: npm install -g bats
+      - run: bats -v
+```
