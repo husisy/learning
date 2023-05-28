@@ -54,6 +54,16 @@ fn hf1(x: &str) -> &str {
     &x[..]
 }
 
+fn demo_logical_operation() {
+    assert!(true);
+    assert!(true==true);
+    assert!(!false);
+    assert!((1+2)==3);
+    assert_eq!(1+2, 3);
+    assert!(true && true);
+    assert!(true || false);
+}
+
 fn main() {
     println!("Hello, world!");
 
@@ -67,4 +77,6 @@ fn main() {
 
     // let x = "helll world";
     println!("{}", hf1("helll world")); //TODO why pass???
+
+    demo_logical_operation();
 }

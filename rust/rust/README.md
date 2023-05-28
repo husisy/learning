@@ -7,6 +7,8 @@
    * [doc/rust-by-example](https://doc.rust-lang.org/stable/rust-by-example/)
    * [cargo-creates](https://crates.io/)
    * [github/sunface/rust-course](https://github.com/sunface/rust-course) rust中文教程
+   * [rust-playground](https://play.rust-lang.org/)
+   * [github/pyo3](https://github.com/PyO3)
 2. install
    * mac/linux: `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
 3. `rustup`
