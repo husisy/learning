@@ -42,6 +42,9 @@ micromamba repoquery search python-dotenv
 micromamba repoquery depends python-dotenv
 micromamba repoquery depends --recursive conda-forge python-dotenv
 
+micromamba create -y -n nocuda
+micromamba install -y -n nocuda pytorch cython ipython pytest matplotlib h5py pandas pillow protobuf scipy requests tqdm lxml opt_einsum
+
 micromamba create -y -n cuda117
 micromamba install -y -n cuda117 cudatoolkit=11.7 pytorch cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cupy nccl
 
