@@ -11,22 +11,14 @@
    * [github/pyo3](https://github.com/PyO3)
 2. install
    * mac/linux: `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
-3. `rustup`
    * uninstall `rustup self uninstall`
    * update `rustup update`
-4. `cargo`
-   * `cargo build`
-   * `cargo run`
-   * `cargo test`
-   * `cargo doc`
-   * `cargo publish`
-   * `cargo new hello-world` (default enable git, unless already within a git folder)
+3. `cargo`
    * manifest file: `Cargo.toml`
    * package registry: [crates.io](https://crates.io/)
-5. `rustfmt`
-6. rust macro vs function
+4. rust macro vs function
    * `println!`
-7. misc
+5. misc
    * `.toml`: Tom's Obvious Minimal Language
    * crates
    * prelude
@@ -36,10 +28,10 @@
    * match, arm
    * shadowing
    * statement, expression
-8. function
+6. function
    * parameter: 定义函数时写在括号里的东东
    * argument: 调用函数时写在括号里的东东
-9. type: `u32`, `f64`, `BigInt`
+7. type: `u32`, `f64`, `BigInt`
 
 package
 
@@ -59,6 +51,12 @@ error handling
    * `panic!("crash and exit")`
    * `RUST_BACKTRACE=1`
 3. unwinding, abort
+4. `panic=abort/unwind`
+   * `rustc -C panic=abort xxx.rs`
+   * `Cargo.toml`: default to `unwind` in `[profile.dev]` and `[profile.release]`
+5. `unimplemented`, `expect`, `unwrap`
+6. `unwrap` returns a `panic` when it receives a `None`
+   * `assert x is not None` (in Python)
 
 ## minimum working example
 
@@ -78,29 +76,33 @@ fn main() {
 ### mwe01
 
 ```bash
-cargo new ws00_cargo #default enable git
-# cargo new ws00_cargo --lib
-cd ws00_cargo
+cargo new ws00 #default enable git, unless already within a git folder
+# cargo new ws00 --lib
+cd ws00
 cargo build
 cargo run
-# ./target/debug/ws00_cargo
+# ./target/debug/ws00
 cargo check
 cargo build --release
 # Cargo.lock
+
+# cargo test
+# cargo doc
+# cargo publish
 ```
 
 ```toml
 [package]
-name = "ws00_cargo"
+name = "ws00"
 version = "0.1.0"
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 ```
 
 ## library
+
+### rustfmt
 
 ### rand
 
