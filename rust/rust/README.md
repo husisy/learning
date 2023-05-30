@@ -13,12 +13,24 @@
    * mac/linux: `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
    * uninstall `rustup self uninstall`
    * update `rustup update`
-3. `cargo`
+3. concept
+   * word size, usize: `64bit` on x86-64,
+   * string, string literal
+   * ownership, reference, mutable reference, borrowing, slice, dereference
+4. rule
+   * each value in rust has an owner
+   * only one owner at a time
+   * when the owner goes out of scope, the value will be dropped
+   * at any given time, either one mutable reference, or any number of immutable reference
+   * reference must always be valid
+5. short advice
+   * use package: add `rand = "0.8"` to `[dependencies]` in `Cargo.toml`, add `use rand;` in `main.rs`
+6. `cargo`
    * manifest file: `Cargo.toml`
    * package registry: [crates.io](https://crates.io/)
-4. rust macro vs function
+7. rust macro vs function
    * `println!`
-5. misc
+8. misc
    * `.toml`: Tom's Obvious Minimal Language
    * crates
    * prelude
@@ -28,10 +40,26 @@
    * match, arm
    * shadowing
    * statement, expression
-6. function
+9.  function
    * parameter: 定义函数时写在括号里的东东
    * argument: 调用函数时写在括号里的东东
-7. type: `u32`, `f64`, `BigInt`
+
+```rust
+//type
+u32 //unsigned integer
+usize
+i32 //integer
+f32 //float
+BigInt
+'a' //character
+"a" //string
+true //boolean
+() //unit type
+```
+
+```rust
+#![allow(dead_code)]
+```
 
 package
 
@@ -86,6 +114,8 @@ cargo check
 cargo build --release
 # Cargo.lock
 
+# cargo add rand --features small_rng
+# cargo add rand rand_chacha
 # cargo test
 # cargo doc
 # cargo publish
