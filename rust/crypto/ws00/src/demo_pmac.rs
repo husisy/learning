@@ -3,8 +3,8 @@ use aes::Aes128;
 use pmac::{Pmac,Mac};
 
 // https://github.com/RustCrypto/MACs
-pub fn demo_pmac_basic() {
-    println!("\n#[demo_pmac_basic]");
+fn demo_basic() {
+    println!("\n## demo_basic");
 
     // Create `Mac` trait implementation, namely PMAC-AES128
     let mut mac = Pmac::<Aes128>::new_from_slice(b"very secret key.").unwrap();
@@ -20,4 +20,10 @@ pub fn demo_pmac_basic() {
     mac.update(b"input message");
     // `verify` will return `Ok(())` if tag is correct, `Err(MacError)` otherwise
     mac.verify(&tag_bytes).unwrap();
+}
+
+
+pub fn demo_all() {
+    println!("\n# demo_pmac");
+    demo_basic();
 }

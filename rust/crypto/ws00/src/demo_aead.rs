@@ -5,8 +5,8 @@ use aes_siv::aead::{Aead, KeyInit, OsRng, AeadInPlace};
 // use heapless::Vec;
 use aes_siv::aead::heapless::Vec;
 
-pub fn demo_aes_siv_basic() {
-    println!("\n#[demo_aes_siv_basic]");
+fn demo_basic() {
+    println!("\n## demo_basic]");
     let key = Aes256SivAead::generate_key(&mut OsRng);
     let cipher = Aes256SivAead::new(&key);
     let nonce = Nonce::from_slice(b"any unique nonce"); // 128-bits; unique per message
@@ -22,8 +22,8 @@ pub fn demo_aes_siv_basic() {
 }
 
 
-pub fn demo_aes_siv_in_place() {
-    println!("\n#[demo_aes_siv_in_place]");
+fn demo_basic_in_place() {
+    println!("\n## demo_basic_in_place");
     let key = Aes256SivAead::generate_key(&mut OsRng);
     let cipher = Aes256SivAead::new(&key);
     let nonce = Nonce::from_slice(b"any unique nonce"); // 128-bits; unique per message
@@ -37,4 +37,11 @@ pub fn demo_aes_siv_in_place() {
     // Decrypt `buffer` in-place, replacing its ciphertext context with the original plaintext
     cipher.decrypt_in_place(nonce, b"", &mut buffer).expect("decryption failure!");
     assert_eq!(&buffer, b"plaintext message");
+}
+
+
+pub fn demo_all() {
+    println!("\n# demo_aes_siv");
+    demo_basic();
+    demo_basic_in_place();
 }

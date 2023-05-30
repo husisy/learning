@@ -3,8 +3,8 @@ use tfhe::boolean::gen_keys;
 use tfhe::boolean::server_key::{BinaryBooleanGates}; //ServerKey
 // use tfhe::boolean::client_key::ClientKey;
 
-pub fn demo_tfhe_basic() {
-    println!("\n#[demo_tfhe_basic]");
+fn demo_basic() {
+    println!("\n## demo_basic");
     let (client_key, server_key) = gen_keys();
 
     // We use the client secret key to encrypt two messages:
@@ -21,4 +21,9 @@ pub fn demo_tfhe_basic() {
     // We use the client key to decrypt the output of the circuit:
     let output = client_key.decrypt(&ct_6);
     assert_eq!(output, true);
+}
+
+pub fn demo_all() {
+    println!("\n# demo_tfhe");
+    demo_basic();
 }

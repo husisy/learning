@@ -1,0 +1,16 @@
+[package]
+name = "ws00"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+pmac = "0.7"
+aes = "0.8"
+hex = "0.4"
+hex-literal = "0.4"
+sha2 = "0.10"
+hmac = "0.12"
+aes-siv = {version="0.7", features=["heapless"]}
+tfhe = { version = "0.2", features = ["boolean", "shortint", "integer", "x86_64-unix"] }
