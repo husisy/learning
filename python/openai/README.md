@@ -247,6 +247,11 @@ TODO pdfminzer [link](https://github.com/pdfminer/pdfminer.six)
 
 TODO chatgpt-telegram-bot [link](https://github.com/zzh1996/chatgpt-telegram-bot)
 
+## Azure/openai
+
+1. link
+   * [MS-doc/get-started](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/quickstart)
+
 ## DeepLearningAI/ChatGPT
 
 [link](https://learn.deeplearning.ai/chatgpt-prompt-eng)
