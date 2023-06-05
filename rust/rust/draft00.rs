@@ -139,9 +139,14 @@ fn demo_string() {
     println!("\n# demo_string");
     let x0 = String::from("hello");
     println!("x0={}", x0);
-    let mut x1 = x0;
+    let mut x1 = x0; //value borrowed here after move, x0 cannot be accessed anymore
     x1.push_str(" world!");
-    println!("x1={}", x1);
+    // println!("x0={x0}"); //panic
+    println!("x1={x1}");
+
+    let x2 = &x1[..5];
+    let x3 = &x1[5..]; //&x1[5..s.len()]
+    println!("x2={x2}, x3={x3}");
 }
 
 fn demo_reference(){
