@@ -15,7 +15,7 @@
    * update `rustup update`
 3. concept
    * word size, usize: `64bit` on x86-64,
-   * string, string literal
+   * string, string literal, string slice
    * ownership, reference, mutable reference, borrowing, slice, dereference
 4. rule
    * each value in rust has an owner
@@ -40,9 +40,20 @@
    * match, arm
    * shadowing
    * statement, expression
-9.  function
+   * deref coercion
+9. function
    * parameter: 定义函数时写在括号里的东东
    * argument: 调用函数时写在括号里的东东
+10. struct
+    * `{a:a, b:b, c, d}`
+    * `{a:a, b:b, ..c}`
+    * `struct Dummy(i32,i32,i32)` tuple structs
+    * `struct Dummy;` unit-like struct
+    * lifetime
+    * associated function
+    * reading `&self`, mutating `&mut self`, comsuming `self`
+11. enum
+    * `Option<T>`, `None`, `Some(T)`
 
 ```rust
 //type
@@ -51,14 +62,26 @@ usize
 i32 //integer
 f32 //float
 BigInt
-'a' //character
-"a" //string
+'a' //char character
+"a" //String literal
 true //boolean
 () //unit type
+// str //not exist
+&str //String slice
+&mut str //mutable String slice
+String
+&String
+[u8,16] //array
+&[u8] //slice of array
+&mut [u8] //mutable slice of array
 ```
 
 ```rust
 #![allow(dead_code)]
+
+#[derive(Debug)]
+
+dbg!(&x); //stderr
 ```
 
 package

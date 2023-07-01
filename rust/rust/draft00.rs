@@ -144,7 +144,7 @@ fn demo_string() {
     // println!("x0={x0}"); //panic
     println!("x1={x1}");
 
-    let x2 = &x1[..5];
+    let x2 = &x1[..5]; // x2 is of type &str (immutable reference)
     let x3 = &x1[5..]; //&x1[5..s.len()]
     println!("x2={x2}, x3={x3}");
 }
@@ -161,10 +161,30 @@ fn demo_reference(){
     println!("x0={}", x0);
 }
 
+
+fn _misc00_hf0(x: String) {
+    println!("[hf0] {x}");
+}
+
+fn _misc00_hf1(x: &str) -> &str {
+    &x[..]
+    // &x
+}
+
+fn demo_misc00(){
+    println!("\n# demo_misc00");
+    _misc00_hf0("233".to_string()); //move? immutable reference?
+
+    // let x = "helll world";
+    println!("[hf1] {}", _misc00_hf1("helll world")); //move? immutable reference?
+}
+
 // rustc draft00.rs
 // ./draft00
 fn main() {
     println!("Hello world!");
+
+    demo_misc00();
 
     demo_print();
 
