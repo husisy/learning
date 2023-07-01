@@ -9,8 +9,8 @@
    * openai web crawl QA tutorial [link](https://platform.openai.com/docs/tutorials/web-qa-embeddings)
    * [github/openai-python](https://github.com/openai/openai-python)
 2. install
-   * `conda install -c conda-forge openai`
-   * `pip install openai`
+   * `conda install -c conda-forge openai tiktoken`
+   * `pip install openai tiktoken`
 3. token
    * many tokens start with a white space: `" hello"`, `" bye"`
    * `1` token is approximately `4` characters or `0.75` words for English text
