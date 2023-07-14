@@ -14,20 +14,79 @@ def test_torch_multinomial():
     # TODO how to unittest replacement=False
 
 
+def test_torch_numpy_share_data():
+    # https://numpy.org/doc/stable/user/basics.interoperability.html
+    np_rng = np.random.default_rng()
+    for np_type,torch_type in [(np.float32,torch.float32), (np.float64,torch.float64)]:
+        np0 = np_rng.normal(size=3).astype(np_type)
+        torch0 = torch.as_tensor(np0, dtype=torch_type)
+        torch0[0] = 1
+        assert abs(np0[0]-1) < 1e-10
+        np1 = np.asarray(torch0, dtype=np_type)
+        np1[1] = 2
+        assert abs(torch0[1].item()-2) < 1e-10
+
+    for np_type,torch_type in [(np.complex64,torch.complex64), (np.complex128,torch.complex128)]:
+        np0 = (np_rng.normal(size=3)+np_rng.normal(size=3)*1j).astype(np_type)
+        torch0 = torch.as_tensor(np0, dtype=torch_type)
+        torch0[0] = 1 + 1j
+        assert abs(np0[0]-1-1j) < 1e-10
+        np1 = np.asarray(torch0, dtype=np_type)
+        np1[1] = 2 + 2j
+        assert abs(torch0[1].item()-2-2j) < 1e-10
+
+    for np_type,torch_type in [(np.int32,torch.int32), (np.int64,torch.int64)]:
+        np0 = np_rng.integers(-100, 0, size=3).astype(np_type)
+        torch0 = torch.as_tensor(np0, dtype=torch_type)
+        torch0[0] = 1
+        assert abs(np0[0]-1) < 1e-10
+        np1 = np.asarray(torch0, dtype=np_type)
+        np1[1] = 2
+        assert abs(torch0[1].item()-2) < 1e-10
+
+    # not share memory below
+    np0 = np_rng.uniform(0, 1, size=3).astype(np.float64)
+    torch0 = torch.tensor(np0, dtype=torch.float64)
+    torch0[0] = -1
+    assert np0[0]>=0
+
 def test_torch_cupy_share_data():
-    import torch.utils.dlpack
+    # https://docs.cupy.dev/en/stable/user_guide/interoperability.html
     import cupy as cp
-    np0 = np.random.rand(3, 5)
-    torch0 = torch.tensor(np0.copy()).to('cuda')
+    for cp_type,torch_type in [(cp.float32,torch.float32), (cp.float64,torch.float64)]:
+        cp0 = cp.random.rand(3).astype(cp_type)
+        torch0 = torch.as_tensor(cp0, dtype=torch_type, device='cuda')
+        torch0[0] = 1
+        assert abs(cp0[0].item()-1) < 1e-10
+        cp1 = cp.asarray(torch0, dtype=cp_type)
+        cp1[1] = 2
+        assert abs(torch0[1].item()-2) < 1e-10
 
-    cp0 = cp.fromDlpack(torch.utils.dlpack.to_dlpack(torch0))
-    cp0[0,0] = 0.233
-    assert hfe(torch0.to('cpu').numpy(), cp0.get()) < 1e-5
+    for cp_type,torch_type in [(cp.complex64,torch.complex64), (cp.complex128,torch.complex128)]:
+        cp0 = (cp.random.rand(3)+cp.random.rand(3)*1j).astype(cp_type)
+        torch0 = torch.as_tensor(cp0, dtype=torch_type, device='cuda')
+        torch0[0] = 1 + 1j
+        assert abs(cp0[0].item()-1-1j) < 1e-10
+        cp1 = cp.asarray(torch0, dtype=cp_type)
+        cp1[1] = 2 + 2j
+        assert abs(torch0[1].item()-2-2j) < 1e-10
 
-    cp1 = cp.array(np0)
-    torch1 = torch.utils.dlpack.from_dlpack(cp1.toDlpack())
-    torch1[0,0] = 0.233
-    assert hfe(torch1.to('cpu').numpy(), cp1.get()) < 1e-5
+    for cp_type,torch_type in [(cp.int32,torch.int32), (cp.int64,torch.int64)]:
+        cp0 = cp.random.randint(-100, 0, size=3).astype(cp_type)
+        torch0 = torch.as_tensor(cp0, dtype=torch_type, device='cuda')
+        torch0[0] = 1
+        assert abs(cp0[0].item()-1) < 1e-10
+        cp1 = cp.asarray(torch0, dtype=cp_type)
+        cp1[1] = 2
+        assert abs(torch0[1].item()-2) < 1e-10
+
+    torch0 = torch.randn(3, dtype=torch.float64, device='cuda')
+    cp0 = cp.from_dlpack(torch.utils.dlpack.to_dlpack(torch0))
+    cp0[0] = 1
+    assert abs(torch0[0].item()-1) < 1e-10
+    torch1 = torch.utils.dlpack.from_dlpack(cp0.toDlpack())
+    torch1[1] = 2
+    assert abs(cp0[1].item()-2) < 1e-10
 
 
 def test_torch_memory_format():
