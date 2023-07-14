@@ -84,3 +84,18 @@ HTML stuff
 
 这是另一个普通段落。
 ```
+
+## Mermaid
+
+1. link
+   * [website](https://mermaid.js.org/)
+   * [github/mermaid](https://github.com/mermaid-js/mermaid)
+   * [vscode-extension/mermaid](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid)
+
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
