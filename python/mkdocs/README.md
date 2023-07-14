@@ -4,6 +4,7 @@
    * [documentation](https://www.mkdocs.org/)
    * [github/mkdocs](https://github.com/mkdocs/mkdocs/)
    * [github/mkdocs-jupyter](https://github.com/danielfrg/mkdocs-jupyter)
+   * [github/catalog](https://github.com/mkdocs/catalog) list of plugin
 2. install
    * `conda install -c conda-forge mkdocs`
    * `pip install mkdocs`
