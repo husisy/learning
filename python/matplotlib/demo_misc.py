@@ -1,4 +1,5 @@
 import io
+import pathlib
 import PIL.Image
 import numpy as np
 import matplotlib
@@ -114,3 +115,16 @@ def plt_txt_to_nparray(text, w_pixel, figsize=(3,2), fontsize=48):
 
 def demo_plt_txt_to_nparray():
     plt_txt_to_nparray('hello\nworld', 480)
+
+
+def demo_noto_font():
+    ## fc-list :lang=zh family
+    ## matplotlib.font_manager.get_font_names()
+
+    ## https://matplotlib.org/stable/tutorials/text/text_props.html
+    ## https://matplotlib.org/stable/gallery/text_labels_and_annotations/font_file.html
+    ## download font from https://fonts.google.com/noto/specimen/Noto+Sans+SC
+    fig,ax = plt.subplots()
+    font_path = pathlib.Path('NotoSansSC-Regular.otf')
+    ax.text(0, 0, 'hello, 你好', font=font_path)
+    fig.tight_layout()
