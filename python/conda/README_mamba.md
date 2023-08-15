@@ -48,12 +48,13 @@ micromamba install -y -n nocuda pytorch cython ipython pytest matplotlib h5py pa
 micromamba create -y -n cuda117
 micromamba install -y -n cuda117 cudatoolkit=11.7 pytorch cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cupy nccl
 
-# mosek not support python=3.11
 micromamba create -y -n cuda118
-micromamba install -y -n cuda118 cudatoolkit=11.8 pytorch python=3.10 cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cupy nccl cvxpy
+micromamba install -y -n cuda118 cudatoolkit=11.8 pytorch python cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cupy nccl cvxpy pytest-xdist pytest-cov
 micromamba install -y -n cuda118 -c MOSEK MOSEK
 
 micromamba create -y -n metal
-micromamba install -y -n metal pytorch cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cvxpy scs
+micromamba install -y -n metal cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cvxpy scs pytest-xdist pytest-cov
 micromamba install -y -n metal -c MOSEK MOSEK
+micromamba activate metal
+pip install torch torchvision
 ```
