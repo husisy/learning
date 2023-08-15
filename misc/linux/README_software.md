@@ -218,6 +218,22 @@ sudo umount 127.0.0.1:/opt/tbd00
 sudo mount -o port=2049 -t nfs 127.0.0.1:/opt/tbd00 /opt/tbd01
 ```
 
+## nmcli
+
+1. link
+   * [documentation](https://developer-old.gnome.org/NetworkManager/stable/nmcli.html)
+   * [askubuntu-link](https://askubuntu.com/q/461825) How to connect to WiFi from the command line
+
+```bash
+nmcli --help
+nmcli connection #nmcli c
+nmcli device #nmcli d
+sudo nmcli d wifi rescan
+nmcli d wifi list
+sudo iwlist wlp4s0 scanning
+nmcli c delete id xxx
+```
+
 ## polipo
 
 install polipo on ubuntu-20.04 [link](https://gist.github.com/fonsecas72/0ef04265a3d0c5822e5d441b8d2de1f8)
