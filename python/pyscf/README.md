@@ -43,3 +43,12 @@ Python-based simulations of chemistry framework
    * NWChem pruning scheme
    * mesh grids
    * elements/radial/angular: `H,He/50/302`, `Li-Ne/75/302`, `Na-Ar/80/434`, `K-Kr/90/434`, `Rb-Xe/95/434`, `Cs-Rn/100/434`
+
+## Wannier90
+
+1. link
+   * [official-website](https://wannier.org/)
+   * [user-guide](https://wannier.org/user-guide/)
+2. install
+   * executable: `cp ./config/make.inc.gfort make.inc && make`
+   * dynamic library: `cp ./config/make.inc.gfort.dynlib make.inc && make dynlib`
