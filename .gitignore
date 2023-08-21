@@ -46,6 +46,7 @@ python/scipy/ws_f2py/**/*.cpython*
 python/openai/data
 python/flask/**/*.sqlite3
 python/replicate/**/.cog/
+python/networkx/data
 
 # rust
 rust/**/*.exe
