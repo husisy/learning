@@ -1,6 +1,6 @@
 # linux software
 
-首字母序
+alphabetic order
 
 TODO
 
@@ -160,6 +160,16 @@ sudo service ufw status
 sudo service fwupd start
 sudo fwupdmgr refresh #proxy maybe is required
 sudo fwupdmgr update
+```
+
+## imgcat
+
+1. link
+   * [github](https://github.com/danielgatis/imgcat)
+
+```bash
+# macos
+brew install danielgatis/imgcat/imgcat
 ```
 
 ## iostat
