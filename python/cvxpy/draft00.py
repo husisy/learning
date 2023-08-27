@@ -83,7 +83,7 @@ constraints = [X >> 0] + [cvxpy.trace(A[i] @ X) == b[i] for i in range(p)]
 obj = cvxpy.Minimize(cvxpy.trace(C @ X))
 prob = cvxpy.Problem(obj, constraints)
 prob.solve()
-
+constraints[0].dual_value #(np,float64,(3,3))
 
 ## backward
 p = cvxpy.Parameter()
@@ -109,3 +109,46 @@ x.gradient = 4.
 prob.backward()
 # dz/dp = dz/dx dx/dp = 4. * 2. == 8.
 assert abs(b.gradient-8)<1e-7
+
+
+## dual variable
+cvxX = cvxpy.Variable()
+cvxY = cvxpy.Variable()
+constraints = [cvxX+cvxY==1, cvxX-cvxY>=1]
+obj = cvxpy.Minimize((cvxX - cvxY)**2)
+prob = cvxpy.Problem(obj, constraints)
+prob.solve()
+[x.dual_value for x in constraints] #[0, 2]
+obj.value #1.0
+
+
+N0 = 6
+N1 = 3
+cvxX = cvxpy.Variable(N0)
+hf0 = lambda *x: np_rng.uniform(-1, 1, size=x)
+for ind0 in range(100):
+    matA = hf0(N1,N0)
+    vec_a = hf0(N1)
+    matB = hf0(N1,N0)
+    vec_b = hf0(N1)
+    vec_c = hf0(N0)
+    obj = cvxpy.Minimize(vec_c @ cvxX)
+
+    constraints = [
+        matA @ cvxX == vec_a,
+        matB @ cvxX <= vec_b,
+    ]
+    prob = cvxpy.Problem(obj, constraints)
+    prob.solve()
+    if not np.isinf(prob.value):
+        dual0 = constraints[0].dual_value.copy()
+
+        matD = hf0(N1+1, N1)
+        constraints = [
+            (matD @ matA) @ cvxX == (matD @ vec_a),
+            matB @ cvxX <= vec_b,
+        ]
+        prob = cvxpy.Problem(obj, constraints)
+        prob.solve()
+        dual1 = constraints[0].dual_value.copy()
+        assert np.abs(matD.T @ dual1 - dual0).max() < 1e-8
