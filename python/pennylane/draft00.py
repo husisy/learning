@@ -1,5 +1,25 @@
 import pennylane as qml
-from pennylane import numpy as np
+# qml.numpy
+import numpy as np
+import matplotlib.pyplot as plt
+
+np_rng = np.random.default_rng()
+
+device = qml.device('default.qubit', wires=2, shots=1000) #shots=None
+@qml.qnode(device)
+def hf0(x, y):
+    qml.RZ(x, wires=0)
+    qml.CNOT(wires=[0,1])
+    qml.RY(y, wires=1)
+    ret = qml.expval(qml.PauliZ(1))
+    return ret
+x0 = hf0(np.pi/4, 0.3) #(np,float64)
+print(qml.draw(hf0)(np.pi/4, 0.3))
+# qml.drawer.use_style('black_white')
+fig,ax = qml.draw_mpl(hf0)(np.pi/4, 0.3)
+# broadcasting
+x1 = hf0(*np_rng.uniform(0, 2*np.pi, size=(2,5))) #(np,float64,(5,))
+device.capabilities()['supports_broadcasting']
 
 
 ## Gaussian transformation

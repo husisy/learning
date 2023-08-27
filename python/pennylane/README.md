@@ -5,5 +5,10 @@
    * [documentation-pennylane](https://pennylane.readthedocs.io/en/latest/)
    * documentation-
 2. install
-   * `pip install pennylane`
+   * `pip install pennylane pennylane-lightning`
    * `pip install strawberryfields`
+3. devices
+   * `default.qubit`
+   * `default.mixed`
+   * `lightning.qubit`
+   * `default.gaussian`
