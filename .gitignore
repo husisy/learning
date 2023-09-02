@@ -94,3 +94,11 @@ cmake/**/build/
 
 # linux
 linux/tcltk/**/pkgIndex.tcl
+
+# javascript
+javascript/**/node_modules/
+
+# javascript/nextjs
+javascript/nextjs/**/package.json
+javascript/nextjs/**/package-lock.json
+javascript/nextjs/**/.next/
