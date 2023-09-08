@@ -19,6 +19,7 @@
    * JWT: Json Web Token [jwt.io](https://jwt.io/)
    * JOSE: JavaScript Object Signing and Encryption
    * JWS: JSON Web Signature
+   * TLS Termination Proxy
 5. security
    * OAuth2
    * OpenID connect
