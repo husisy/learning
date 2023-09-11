@@ -1,0 +1,1 @@
+{"log":{"loglevel":"warning","access":"/path/to/access.log","error":"/path/to/error.log"},"inbounds":[{"port":10086,"listen":"0.0.0.0","protocol":"vmess","settings":{"clients":[{"id":"aaa-bbb-ccc-ddd-eee"}]}}],"outbounds":[{"protocol":"freedom"}]}
