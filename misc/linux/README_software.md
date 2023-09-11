@@ -455,14 +455,23 @@ iptables -A OUTPUT -p tcp -d 987.654.32.1 -j REJECT
 
 ## systemctl
 
+1. play with `cups.service` or `cups` (commmon unix printing system) and remember to `sudo systemctl restart cups` at the end
+2. `cups` and `cups.service` is almost the same
+3. common services
+   * `ssh`
+   * `cups`
+
 ```bash
-sudo systemctl start x
-sudo systemctl stop x
-sudo systemctl status x
-sudo systemctl restart x
-sudo systemctl reload x
-sudo systemctl enable x #auto start after restart computer
-sudo systemctl disable x
+sudo systemctl list-units --type=service --state=active #list all services
+sudo systemctl start cups
+sudo systemctl stop cups
+sudo systemctl status cups
+sudo systemctl restart cups
+sudo systemctl reload cups
+sudo systemctl enable cups #auto start after restart computer
+sudo systemctl disable cups
+# sudo systemctl edit cups
+sudo journalctl -u cups #view logs, -u: --unit
 ```
 
 ## tar
