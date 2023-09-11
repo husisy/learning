@@ -1,0 +1,5 @@
+example.com {
+	root * /var/www
+	file_server
+	reverse_proxy /api/* localhost:5000
+}
