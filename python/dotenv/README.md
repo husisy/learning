@@ -21,4 +21,6 @@ import dotenv
 dotenv.load_dotenv() #default to .env
 os.environ['XXX']
 os.getenv('XXX')
+
+dotenv.dotenv_values('.env')['xxx'] #not override existing environment variables
 ```
