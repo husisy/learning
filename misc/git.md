@@ -179,6 +179,24 @@ git add data/*.pkl
 git add .gitattributes
 ```
 
+## git jupyter
+
+1. link
+   * [stackoverflow-link](https://stackoverflow.com/a/58004619/7290857) How to clear Jupyter Notebook's output in all cells from the Linux terminal?
+
+`.git/config` or global `~/.gitconfig` (use tab not 4 space)
+
+```text
+[filter "strip-notebook-output"]
+    clean = "jupyter nbconvert --ClearOutputPreprocessor.enabled=True --to=notebook --stdin --stdout --log-level=ERROR"
+```
+
+`.gitignore`
+
+```text
+*.ipynb filter=strip-notebook-output
+```
+
 ## github action
 
 1. link
