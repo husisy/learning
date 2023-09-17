@@ -15,6 +15,8 @@
 4. `channel_last` is able to achieve over `22%` performance gains with apex, see [github/apex](https://pytorch.org/tutorials/intermediate/memory_format_tutorial.html#performance-gains)
 5. 偏见
    * **禁止**使用`torch0.data`属性，使用`torch0.detach()`替代，该属性只用作向后兼容， [link](https://pytorch.org/docs/stable/onnx.html#avoid-using-data-field)
+6. extension
+   * [github/torchquad](https://github.com/esa/torchquad) integral of function
 
 TODO
 
