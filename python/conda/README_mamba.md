@@ -56,5 +56,14 @@ micromamba create -y -n metal
 micromamba install -y -n metal cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cvxpy scs pytest-xdist pytest-cov
 micromamba install -y -n metal -c MOSEK MOSEK
 micromamba activate metal
-pip install torch torchvision
+pip install --force-reinstall "numpy>=1.26"
+pip install torch torchvision #conda-forge/macOS/pytorch is broken
+
+# install numpy>=1.26
+micromamba create -y -n metal-acc
+micromamba install -y -n metal-acc "libblas=*=*accelerate" cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cvxpy scs pytest-xdist pytest-cov
+micromamba install -y -n metal-acc -c MOSEK MOSEK
+micromamba activate metal-acc
+pip install --force-reinstall "numpy>=1.26" #conda-forge/numpy is broken
+pip install torch torchvision #conda-forge/macOS/pytorch is broken
 ```
