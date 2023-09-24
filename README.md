@@ -1,10 +1,10 @@
 # learning
 
-开心就好
+Just be happy. [中文版](README_zh.md)
 
-## 仓库内容与组织方式
+## Repository Content and Organization
 
-该仓库包含各种计算机技能的代码片段以及个人笔记，并且按照编程语言进行归类组织，包括但不限于
+This repository contains various code snippets related to computer skills and personal notes. They are categorized and organized based on programming languages, including but not limited to:
 
 ```bash
 .
@@ -24,37 +24,37 @@
     └── boost
 ```
 
-通常一级目录夹表示编程语言，二级目录表示基于该语言的库。这些文件夹下的文件通常可以按照文件名推断其用处
+Usually, the top-level directory indicates the programming language, and the second level represents libraries based on that language. The purpose of the files under these directories can generally be inferred from their names:
 
-1. `xxx.md`：说明性文字，例如`README.md`通常会包含该库的官网、文档等链接，安装命令以及最小可运行代码示例minimum working example (MWE)
-2. `draft_x.y`: 代码片段，例如`draft00.py`通常是一系列的代码片段，建议在交互式环境下（例如`ipython/bash`）运行并观察结果
-3. `demo_x.y`：函数封装的代码片段，通常由`draft_x.y`整理而来，例如`python/matplotlib/demo_3d.py`展示三维图像绘制
-   * 但并非所有的`draft`都适合整理为`demo`
-4. `test_x.y`：单元测试代码片段，通常由`demo_x.y`整理而来，例如`python/scipy/test_linalg.py`中会测试`svd`分解得到的`U`矩阵是幺正的
-   * 调试特定库的错误时，我有时会运行一遍这些`test_x.y`文件（命令行下输入`pytest -v xxx`即可）来确保库的安装是正确的
-5. `ws_xx/`文件夹：当一个功能无法用一个`draft_x.y`文件来展示时，便放在单独的文件夹下
-   * `ws`是`workspce`的缩写
+1. `xxx.md`: Explanatory text. For example, `README.md` typically includes official website links, documentation links, installation commands, and a minimum working example (MWE).
+2. `draft_x.y`: Code snippets. For example, `draft00.py` is usually a series of code snippets. It's recommended to run them in an interactive environment (like `ipython/bash`) and observe the results.
+3. `demo_x.y`: Encapsulated code snippets, usually refined from `draft_x.y`. For instance, `python/matplotlib/demo_3d.py` demonstrates 3D image plotting.
+   * However, not all `drafts` are suitable for refining into `demo`.
+4. `test_x.y`: Unit test code snippets, typically refined from `demo_x.y`. For example, `python/scipy/test_linalg.py` would test if the `U` matrix obtained from the `svd` decomposition is unitary.
+   * When debugging a specific library error, I sometimes run these `test_x.y` files (enter `pytest -v xxx` in the command line) to ensure the library is installed correctly.
+5. `ws_xx/` directories: When a feature cannot be demonstrated with a single `draft_x.y` file, it's placed in a separate directory.
+   * `ws` is short for `workspace`.
 
-## 如何使用该仓库
+## How to Use This Repository
 
-1. 学习某个具体的库：找到该库所在的目录，先阅读`README.md`，其中包含参考链接以及安装命令，然后依次是`draft_x.y`运行一系列的代码片段。这些代码片段往往是自明的，但也因为缺少注释而显得晦涩难懂，建议同时阅读`README.md`中记录的官方文档
-2. 从最小代码片段构建项目代码：`draft_x.y`中包含一系列的最小可运行代码片段，作为构建项目的基础砖块再合适不过
-3. 对项目代码中不确定的代码行为，编写最小运行代码来确定其行为，并记录于该仓库
-4. 构建自己的笔记系统：每个人的知识体系差异巨大，所需要的笔记系统自然也会很不一样。笔者认为重要的工具也许完全不适用于其他领域，但笔记的组织方式应该是通用的。因此笔者强烈建议读者开始建立自己的笔记系统
+1. To learn about a specific library: Locate the directory, first read `README.md`, which contains reference links and installation commands. Next, execute a series of code snippets in the `draft_x.y` series. These code snippets are often self-explanatory but may appear obscure and difficult to understand due to a lack of comments. It's recommended to simultaneously read the official documentation recorded in `README.md`.
+2. Build project code from minimal code snippets: `draft_x.y` contains a series of minimal runnable code snippets, which are perfect foundational building blocks for constructing projects.
+3. For uncertain code behaviors in the project code, write the minimal runnable code to determine its behavior and record it in this repository.
+4. Build your own note system: Everyone's knowledge system varies greatly, so the note system they need will naturally differ. The important tools personal believed may not be suitable for other fields, but the way of organizing notes should be universal. Therefore, I strongly suggest that readers start building their own note system.
 
-## 其他
+## Other
 
-1. 该仓库**不**接受pull request
-   * 该仓库的组织方式以及内容很大程度上是个人风格决定的，且很难达成共识（行宽，空格，换行等）
-   * 每个人的笔记系统会很不一样，我很难想象有人会在该仓库的基础上进一步添加内容，也许重头建立个人专属的笔记系统会更合适
-   * 如果你一定需要在该仓库的基础上进一步添加内容，直接fork该仓库并添加内容就好了
-2. 关于license
-   * 选择license是一件极其头疼的事情，见[choose-a-license](https://choosealicense.com/) [开源指南](https://opensourceway.community/open-source-guide/legal/)等。直到我看到这个Linus对于GNUv2协议的解释「我給你源代碼，你給我你對它的修改，我們就扯平了I give you source code, you give me your changes back, we are even.」，我很喜欢这个简洁的解释，所以我选择GNUv2
-   * 必须承认的是，这个仓库的大部分文字是“偷”来的。通过阅读其他仓库的源码和文档，吸收其中的关键部分组成这个仓库，最糟糕的是部分代码只是复制粘贴而无理解吸收（明显的抄袭行为），但愿之后我会有空整理这类代码。对于其中license不兼容的文字，恳请告知，我会将其删除
+1. This repository **does not** accept pull requests.
+   * The organization and content of this repository are largely determined by personal style and it's difficult to reach a consensus (on aspects like line width, spaces, line breaks, etc.).
+   * Everyone's note system will vary greatly. I can hardly imagine anyone adding content to this repository. Perhaps it would be more appropriate to establish a personal note system from scratch.
+   * If you really need to add content based on this repository, simply fork this repository and add content.
+2. About the license:
+   * Choosing a license is an extremely headache-inducing task. See [choose-a-license](https://choosealicense.com/) and [Open Source Guide](https://opensourceway.community/open-source-guide/legal/). It was only after I saw Linus's explanation of the GNUv2 protocol - "I give you source code, you give me your changes back, we are even." - that I liked this succinct explanation, so I chose GNUv2.
+   * It must be admitted that most of the text in this repository is "stealing" from somewhere by reading the source code and documentation of other repositories, absorbing the key parts into this repository. The worst part is that some code is just copy-pasted without understanding (obvious plagiarism). I hope that I will have time to sort out this kind of code in the future. For the text where the license is incompatible, please inform me, and I will delete it.
 
 ## TODO
 
-1. [ ] 向前向后兼容性问题
+1. [ ] backward compatibility and forward compatibility
 2. [ ] python-qt5
 3. [ ] indexing and kernel
 4. [ ] `python/deepxde`
@@ -64,5 +64,5 @@
 8. [ ] quantum chemistry package
 9. [ ] pde: [github/solver-in-the-loop](https://github.com/tum-pbs/Solver-in-the-Loop)
 10. [ ] [missing-semester](https://missing-semester-cn.github.io/)
-11. [ ] 南京大学-计算机科学与技术系-计算机系统基础-课程实验 [link](https://nju-projectn.github.io/ics-pa-gitbook/ics2021/)
+11. [ ] NJU/ics2023 [link](https://nju-projectn.github.io/ics-pa-gitbook/ics2021/)
 12. [ ] [deepmd](https://docs.deepmodeling.org/projects/deepmd/en/master/index.html)
