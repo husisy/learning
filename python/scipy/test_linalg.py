@@ -152,3 +152,19 @@ def test_solve_sylvester():
     assert np.abs(np0@ret0 + ret0@np1 - np2).max() < 1e-7
     ret_ = np.linalg.solve(np.kron(np0, np.eye(N0)) + np.kron(np.eye(N0),np1.T), np2.reshape(-1)).reshape(N0,N0)
     assert np.abs(ret0-ret_).max()<1e-7
+
+
+def test_cayley_map():
+    # https://en.wikipedia.org/wiki/Cayley_transform
+    N0 = 5
+    np_rng = np.random.default_rng()
+    eye0 = np.eye(N0)
+    tmp0 = np_rng.normal(size=(N0, N0))
+    np0 = tmp0 - tmp0.T
+    np1 = np.linalg.solve(eye0-np0, eye0+np0)
+    assert np.abs(np1@np1.T - eye0).max() < 1e-10
+
+    tmp0 = np_rng.normal(size=(N0, N0)) + 1j*np_rng.normal(size=(N0, N0))
+    np0 = tmp0 - tmp0.T.conj()
+    np1 = np.linalg.solve(eye0-np0, eye0+np0)
+    assert np.abs(np1@np1.T.conj() - eye0).max() < 1e-10
