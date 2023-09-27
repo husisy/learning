@@ -5,6 +5,7 @@
    * [github/mkdocs](https://github.com/mkdocs/mkdocs/)
    * [github/mkdocs-jupyter](https://github.com/danielfrg/mkdocs-jupyter)
    * [github/catalog](https://github.com/mkdocs/catalog) list of plugin
+   * [github/pygments](https://github.com/pygments/pygments): generic syntax highligher
 2. install
    * `conda install -c conda-forge mkdocs`
    * `pip install mkdocs`
