@@ -7,6 +7,8 @@
    * [github/fhs-install-v2ray](https://github.com/v2fly/fhs-install-v2ray)
    * [uuid-generator](https://www.uuidgenerator.net/)
    * 漫谈各种黑科技式 DNS 技术在代理环境中的应用 [link](https://tachyondevel.medium.com/%E6%BC%AB%E8%B0%88%E5%90%84%E7%A7%8D%E9%BB%91%E7%A7%91%E6%8A%80%E5%BC%8F-dns-%E6%8A%80%E6%9C%AF%E5%9C%A8%E4%BB%A3%E7%90%86%E7%8E%AF%E5%A2%83%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8-62c50e58cbd0)
+   * WARP [blog-link](https://chirpset.com/t/topic/463) see `go/caddy/README.md`
+   * [v2ray/config](https://www.v2fly.org/config/overview.html)
 2. install
    * download from github release page
    * verify `md5 /path/to/v2ray-linux-64.zip`, `cat /path/to/v2ray-linux-64.zip.dgst`
