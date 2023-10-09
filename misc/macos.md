@@ -180,3 +180,38 @@ possible bug
 
 1. 三指上划的视图下，快捷键“command+space”依旧可以弹出搜索框，但无法输入任何字符
 2. 快捷键“command+space”现弹出搜索框，然后三指上划，此时的视图下执行”command+space”快捷键没有任何反馈
+
+```bash
+# restart ssh service https://superuser.com/a/478042
+sudo launchctl stop com.openssh.sshd
+sudo launchctl start com.openssh.sshd
+sudo launchctl unload /System/Library/LaunchDaemons/ssh.plist
+sudo launchctl load -w /System/Library/LaunchDaemons/ssh.plist
+
+
+# list all user name
+dscacheutil -q user | grep 'name:'
+
+## gui works, but the following commands not
+LastID=`dscl . -list /Users UniqueID | awk '{print $2}' | sort -n | tail -1`
+NextID=$((LastID + 1))
+sudo dscl . -create /Users/cguo
+sudo dscl . -create /Users/cguo UniqueID $NextID
+sudo dscl . -passwd /Users/cguo doChangePasswordNow43
+sudo dscl . -create /Users/cguo RealName "Guo Cong"
+sudo dscl . -create /Users/cguo UserShell /bin/zsh
+# sudo dscl . -create /Users/cguo PrimaryGroupID 80
+sudo dscl . -create /Users/cguo NFSHomeDirectory /Users/cguo
+sudo dscl . -append /Groups/staff GroupMembership cguo
+
+su - username
+```
+
+## Personal complain
+
+总有人无缘由鼓吹macOS好用甚至大放厥词「macOS全方面吊打win/linux」，我当然承认macOS的触摸板和显示屏等很多方面显著优于win/Linux，但我也认为macOS存在很多方面不如winOS，例如快捷键相应速度不如win（这一点仅是个人感觉而无法量化）。下面是一些我在windows/ubuntu下容易做到的事情，但我在macOS花了很多时间依旧没有做到的事情。对于那些“脑残粉”（特指那些不分场景地鼓吹macOS好用的人），fix it or shut up!
+
+1. 命令行下创建新用户（当然我在GUI下创建新用户成功了）
+2. 命令行下禁止ssh密码登录但允许publick/secret key登录
+3. 仅第二显示屏显示
+4. （待补充）
