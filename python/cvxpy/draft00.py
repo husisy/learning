@@ -84,6 +84,7 @@ obj = cvxpy.Minimize(cvxpy.trace(C @ X))
 prob = cvxpy.Problem(obj, constraints)
 prob.solve()
 constraints[0].dual_value #(np,float64,(3,3))
+print(prob.value)
 
 ## backward
 p = cvxpy.Parameter()
