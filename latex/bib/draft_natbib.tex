@@ -1,0 +1,31 @@
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage{lipsum}
+\usepackage[square,numbers]{natbib}
+\bibliographystyle{abbrvnat}
+% \bibliographystyle{unsrtnat}
+
+%Includes "References" in the table of contents
+\usepackage[nottoc]{tocbibind}
+
+\title{xx-title}
+\author{xx-author}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{sec-1}
+
+book \cite{latexcompanion}, paper \cite{einstein}, website \cite{knuthwebsite}, repeat \cite{latexcompanion,knuthwebsite}.
+
+\section{sec-2}
+
+\lipsum[1]
+
+\bibliography{data/reference00.bib}
+
+\end{document}

@@ -1,0 +1,33 @@
+\documentclass{article}
+% sorting=none
+\usepackage[backend=biber,style=alphabetic,sorting=ynt]{biblatex}
+\addbibresource{data/reference00.bib}
+\usepackage{lipsum}
+
+\title{xx-title}
+\author{xx-author}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{sec-1}
+
+paper \cite{einstein}, book \cite{dirac}, book \cite{latexcompanion}
+
+Donald Knuth's website \cite{knuthwebsite}, (CTAN) \cite{ctan} Donald Knuth's items \cite{knuth-fa,knuth-acp}.
+
+\medskip
+
+%Prints the entire bibliography with the title "Whole bibliography"
+\printbibliography[heading=bibintoc,title={Whole bibliography}]
+
+%Filters bibliography
+\printbibliography[heading=subbibintoc,type=article,title={Articles only}]
+\printbibliography[type=book,title={Books only}]
+
+\printbibliography[keyword={physics},title={Physics-related only}]
+\printbibliography[keyword={latex},title={\LaTeX-related only}]
+
+\end{document}
