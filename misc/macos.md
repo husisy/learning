@@ -155,10 +155,13 @@ macOS recommanded software
 10. 快速纯文本：光标移动至屏幕右下角点击一个方块启动note
 
 ```bash
-# conda
-conda create -y -n metal
-conda install -y -n metal -c pytorch pytorch torchvision torchaudio
-conda install -y -n metal -c conda-forge cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum
+# MUST do https://apple.stackexchange.com/a/408379
+softwareupdate --install-rosetta
+
+# mamba (conda-forge)
+mamba create -y -n metal
+mamba install -y -n metal -c pytorch pytorch torchvision torchaudio
+mamba install -y -n metal cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum
 ```
 
 ```Python
