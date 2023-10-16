@@ -2,6 +2,7 @@
 
 1. link
    * [documentation](https://www.mkdocs.org/)
+     * [link](https://squidfunk.github.io/mkdocs-material/publishing-your-site/) publishing your site, github-action
    * [github/mkdocs](https://github.com/mkdocs/mkdocs/)
    * [github/mkdocs-jupyter](https://github.com/danielfrg/mkdocs-jupyter)
    * [github/catalog](https://github.com/mkdocs/catalog) list of plugin
