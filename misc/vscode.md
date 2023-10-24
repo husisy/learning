@@ -1,5 +1,8 @@
 # vscode
 
+1. useful command palette
+   * `Developer: Open Process Explorer`
+
 ## extension
 
 1. link
