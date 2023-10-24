@@ -26,6 +26,22 @@
 7. 偏见
    * 在`tf.keras.Model`中**禁止**使用`__call__`，**只**能使用`call`，`__call__`不能完全替代`call`的作用
 
+```bash
+# x86-64 cpu environment for tensorflow
+micromamba create -n env-tf
+micromamba install -y -n env-tf python=3.11 cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cvxpy scs pytest-xdist
+micromamba activate env-tf
+pip install tensorflow
+
+# x86-64 cuda118 tensorflow
+micromamba create -y -n cuda118-tf
+micromamba install -y -n cuda118-tf cudatoolkit=11.8 cudnn python=3.11 cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cvxpy scs
+micromamba activate cuda118-tf
+pip install tensorflow
+## replace <USERNAME> with your name
+# export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/<USERNAME>/micromamba/envs/cuda118-tf/lib"
+```
+
 TODO list
 
 1. link
