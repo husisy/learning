@@ -9,6 +9,7 @@
    * [知乎-为什么要先git add才能git commit](https://www.zhihu.com/question/19946553/answer/29033220)
    * [git cheat sheet](https://gitee.com/liaoxuefeng/learn-java/raw/master/teach/git-cheatsheet.pdf)
    * [github/progit/progit2](https://github.com/progit/progit2)
+   * [numpy/git-usage](https://numpy.org/doc/stable/dev/gitwash/index.html)
 2. install
    * linux: `sudo apt install git`
    * windows: download from the offical site
