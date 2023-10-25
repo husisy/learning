@@ -15,7 +15,7 @@ python -c "import mypackage; mypackage.say()"
 run scripts
 
 ```bash
-myscripts
+myscript00
 ```
 
 uninstall

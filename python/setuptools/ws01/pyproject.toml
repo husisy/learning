@@ -8,3 +8,6 @@ where = ["python"]
 [build-system]
 requires = ["setuptools", "wheel", "toml"]
 build-backend = "setuptools.build_meta"
+
+[project.scripts]
+myscript00 = "mypackage:_scripts_run"
