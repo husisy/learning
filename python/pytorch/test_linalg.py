@@ -66,3 +66,30 @@ def test_linalg_det(N0=3, N1=23):
     ret1 = (tmp0 * torch.exp(tmp1)).numpy()
     assert hfe(ret_, ret0) < 1e-5
     assert hfe(ret_, ret1) < 1e-5
+
+
+def test_linalg_qr():
+    N0 = 5
+    N1 = 3
+    matA = torch.randn(N0, N1, dtype=torch.float64) + 1j*torch.randn(N0, N1, dtype=torch.float64)
+    matQ,matR = torch.linalg.qr(matA, mode='reduced')
+    assert torch.abs(matA - matQ @ matR).max().item() < 1e-10
+    assert torch.abs(torch.tril(matR, -1)).max() < 1e-10
+    assert torch.abs(matQ.T @ matQ.conj() - torch.eye(N1, dtype=torch.float64)).max() < 1e-10
+
+    hf0 = lambda matA,matB: torch.dot(matB.reshape(-1), torch.linalg.qr(matA, mode='reduced')[0].reshape(-1)).real
+    matB = torch.randn(N0, N1, dtype=torch.float64) + 1j*torch.randn(N0, N1, dtype=torch.float64)
+    tmp0 = matA.clone()
+    tmp0.requires_grad_(True)
+    ret0 = torch.autograd.grad(hf0(tmp0, matB), [tmp0])[0]
+    ret_ = torch.zeros_like(matA)
+    zero_eps = 1e-4
+    for ind0 in range(N0):
+        for ind1 in range(N1):
+            tmp0,tmp1,tmp2,tmp3 = [matA.clone() for _ in range(4)]
+            tmp0[ind0,ind1] += zero_eps
+            tmp1[ind0,ind1] -= zero_eps
+            tmp2[ind0,ind1] += zero_eps*1j
+            tmp3[ind0,ind1] -= zero_eps*1j
+            ret_[ind0,ind1] = (hf0(tmp0, matB) - hf0(tmp1, matB) + 1j*(hf0(tmp2, matB) - hf0(tmp3, matB)))/(2*zero_eps)
+    assert torch.abs(ret0 - ret_).max().item() < 1e-6
