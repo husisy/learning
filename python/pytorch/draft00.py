@@ -125,3 +125,17 @@ list(dataloader0)
 # misc
 # torch.set_num_threads(1)
 # print(torch.__config__.parallel_info())
+
+## forward-AD mode https://pytorch.org/tutorials/intermediate/forward_ad_usage.html
+primal = torch.randn(10, 10)
+tangent = torch.randn(10, 10)
+hf0 = lambda x,y: x*x + y*y
+with torch.autograd.forward_ad.dual_level():
+    dual_input = torch.autograd.forward_ad.make_dual(primal, tangent) #view of tangent
+    assert torch.autograd.forward_ad.unpack_dual(dual_input).tangent is tangent
+
+    plain_tensor = torch.randn(10, 10)
+    dual_output = hf0(dual_input, plain_tensor)
+
+    jvp = torch.autograd.forward_ad.unpack_dual(dual_output).tangent
+assert torch.autograd.forward_ad.unpack_dual(dual_output).tangent is None #not available outside the context

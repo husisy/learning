@@ -66,3 +66,18 @@ def test_gradient_accumulate():
     for grad_i,grad_accumulate in zip(zip(*grad_list0), zip(*grad_list1)):
         tmp0 = [sum(grad_i[:(x+1)]) for x in range(len(grad_i))]
         assert all(hfe(x,y)<1e-4 for x,y in zip(tmp0,grad_accumulate))
+
+
+def test_forward_AD_mode():
+    N0 = 5
+    torch0 = torch.rand(N0, requires_grad=True, dtype=torch.float64)
+    torch1 = torch.rand(3, N0, dtype=torch.float64)
+    torch2 = torch.rand(N0, dtype=torch.float64)
+    hf0 = lambda x,y: torch.sum((y @ (x*x))**2) #dummy function
+    grad_ = torch.autograd.grad(hf0(torch0, torch1), [torch0])[0]
+    ret_ = torch.dot(grad_, torch2).item()
+    with torch.autograd.forward_ad.dual_level():
+        dual_input = torch.autograd.forward_ad.make_dual(torch0, torch2)
+        dual_output = hf0(dual_input, torch1)
+        ret0 = torch.autograd.forward_ad.unpack_dual(dual_output).tangent.item()
+    assert abs(ret_-ret0) < 1e-10
