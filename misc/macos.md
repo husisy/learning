@@ -1,5 +1,27 @@
 # macOS
 
+## user guide
+
+1. link
+   * [macos/user-guide](https://support.apple.com/en-hk/guide/mac-help/mchlp1446/mac)
+   * [macos/modifier-key](https://support.apple.com/en-hk/guide/mac-help/cpmh0011/14.0/mac/14.0)
+2. concept
+   * menu bar (from left to right): apple menu (apple icon), app menu, notch （刘海屏）, status menu, control center, notification center
+   * dock
+   * desktop: four finger spread, `ctrl+left`, `ctrl+right`
+   * mission control: three finger up, `ctrl+up`
+   * spotlight search: `command+space`
+   * launchpad (four finger pinch)
+3. misc
+   * hold `command`, then drag icon on menu bar
+   * notification centre: trackpad swipe from right edge
+   * turn on/off focus mode
+   * `ctrl+click` is right click, is double finger tap
+   * app expose: three finger down, `ctrl+down`
+
+
+## user guide for win user
+
 本文档
 
 1. 只记录winOS和macOS操作习惯上的对应关系
