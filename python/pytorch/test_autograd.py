@@ -81,3 +81,14 @@ def test_forward_AD_mode():
         dual_output = hf0(dual_input, torch1)
         ret0 = torch.autograd.forward_ad.unpack_dual(dual_output).tangent.item()
     assert abs(ret_-ret0) < 1e-10
+
+
+def test_inplace_indexing_grad():
+    torch0 = torch.tensor([2,3,3], dtype=torch.float64, requires_grad=True)
+    torch1 = torch.zeros(2,2, dtype=torch.float64)
+    index = torch.tril_indices(2,2)
+    torch1[index[0],index[1]] = torch0
+    torch1[1,1] = 0.233
+    torch1.mean().backward()
+    ret_ = np.array([1/4,1/4,0])
+    assert np.abs(ret_-torch0.grad.detach().numpy()).max() < 1e-10
