@@ -171,3 +171,73 @@ TODO chatgpt-telegram-bot [link](https://github.com/zzh1996/chatgpt-telegram-bot
 
 1. link
    * [MS-doc/get-started](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/quickstart)
+
+## Google/Gemini
+
+1. link
+2. instal `pip install --upgrade google-cloud-aiplatform`
+
+## misc
+
+github/litellm
+
+github/open-interpreter
+
+[github/lit-gpt](https://github.com/Lightning-AI/lit-gpt)
+
+## github-copilot
+
+1. link
+   * [github-link](https://github.com/microsoft/Mastering-GitHub-Copilot-for-Paired-Programming) Mastering-GitHub-Copilot-for-Paired-Programming
+   * [github-link](https://github.com/tensorchord/Awesome-LLMOps) awesome-llmops
+   * [github-link](https://github.com/Giskard-AI/giskard) giskard, The testing framework for ML models, from tabular to LLMs
+
+## ollama
+
+1. link
+   * [github/ollama](https://github.com/jmorganca/ollama)
+   * [documentation/api](https://github.com/jmorganca/ollama/blob/main/docs/api.md)
+   * [codellama](https://ollama.ai/blog/how-to-prompt-code-llama)
+
+## litellm
+
+1. link
+   * [github/litellm](https://github.com/BerriAI/litellm)
+   * [github/awesome-LLM](https://github.com/Hannibal046/Awesome-LLM)
+   * [github/awesome-code-LLM](https://github.com/huybery/Awesome-Code-LLM)
+2. install
+   * `pip install litellm`
+3. `top_p`, `top_k`, `temperature`
+
+other company
+
+1. monitor
+   * [langfuse](https://langfuse.com/)
+   * [langchain](https://www.langchain.com/)
+   * [helicone](https://www.helicone.ai/)
+   * [promptlayer](https://promptlayer.com/)
+   * [traceloop](https://www.traceloop.com/)
+   * [slack](https://slack.dev/bolt-python/concepts)
+2. Bedrock (amazon, Anthropic) [blog-link](https://www.amazon.science/news-and-features/amazon-bedrock-offers-access-to-multiple-generative-ai-models)
+3. Cohere (Canadian) [official-website](https://cohere.com/)
+4. code-related
+   * [continue](https://continue.dev/)
+   * [cody](https://sourcegraph.com/cody)
+
+## llama-index
+
+1. link
+   * [github](https://github.com/run-llama/llama_index)
+   * [documentation](https://docs.llamaindex.ai/en/stable/index.html)
+   * [llamahub](https://llamahub.ai/)
+2. install
+   * `pip install llama-index`
+   * `mamba install -c conda-forge llama-index`
+3. concept
+   * retrieval augmented generation (RAG)
+   * stages: loading, indexing, storing, querying, evaluation
+   * `Document`: a PDF, an API output, retrieve data from a database
+   * `node`: a "chunk" of a `Document`
+   * `Connector,Reader`
+4. use cases
+   * QA: semantic search (top-k search)
