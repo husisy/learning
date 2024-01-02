@@ -68,6 +68,12 @@ micromamba install -y -n metal -c MOSEK MOSEK
 micromamba activate metal
 pip install torch torchvision #conda-forge/macOS/pytorch is broken
 
+micromamba create -y -n metal-tf
+micromamba install -y -n metal-tf cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm opt_einsum
+micromamba activate metal-tf
+pip install tensorflow
+
+
 # install numpy>=1.26
 micromamba create -y -n metal-acc
 micromamba install -y -n metal-acc "libblas=*=*accelerate" cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cvxpy scs pytest-xdist pytest-cov
