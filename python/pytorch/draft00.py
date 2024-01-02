@@ -139,3 +139,23 @@ with torch.autograd.forward_ad.dual_level():
 
     jvp = torch.autograd.forward_ad.unpack_dual(dual_output).tangent
 assert torch.autograd.forward_ad.unpack_dual(dual_output).tangent is None #not available outside the context
+
+
+def demo_degenerate_eigh_numerical_instable():
+    np_rng = np.random.default_rng(233)
+    np1 = np_rng.normal(size=(4,4))
+    EVC_ = np.kron(np.eye(2),np.linalg.svd(np_rng.normal(size=(2,2)))[0])
+    eps_list = np.concatenate([np.zeros(1), 10**np.linspace(-18, -13, 10)]) #about 1e-16
+    z0 = []
+    for eps in eps_list:
+        tmp0 = np.array([1, 2, 2+eps, 3])
+        np0 = (EVC_ * tmp0) @ EVC_.T
+        torch0 = torch.tensor(np0, dtype=torch.float64, requires_grad=True)
+        torch1 = torch.tensor(np1, dtype=torch.float64)
+        EVL,EVC = torch.linalg.eigh((torch0+torch0.T)/2)
+        loss = torch.trace(((EVC*torch.log(EVL)) @ EVC.T) @ torch1)
+        loss.backward()
+        z0.append(torch0.grad.detach().numpy().copy())
+        if np.any(np.isnan(z0[-1])):
+            print(eps)
+    z0 = np.stack(z0)
