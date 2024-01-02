@@ -2,6 +2,7 @@
 
 1. link
    * [learngit-js](https://learngitbranching.js.org/)
+   * [github-link](https://github.com/skills/introduction-to-github) introduction to github
    * [documentation](https://git-scm.com/book/en/v2)
    * [documentation-CN](https://git-scm.com/book/zh/v2)
    * [廖雪峰-git教程](https://www.liaoxuefeng.com/wiki/896043488029600)
