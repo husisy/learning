@@ -155,10 +155,10 @@ sysctl -n machdep.cpu.brand_string #Apple M1 Ultra, Apple M2
       * VNC (ipad user): install "Mocha VNC lite" (free for 5 minutes) or "Mocha VNC" (48 HKD)
       * VNC (mac user): screen sharing
 18. setting
-    * winOS: AN
+    * winOS: NA
     * macOS: `command+comma`
 19. terminal
-    * fullscreen: `command+enter`
+    * fullscreen: `command+enter` (macOS), `ctrl+enter` (winOS)
 
 macOS recommanded software
 
