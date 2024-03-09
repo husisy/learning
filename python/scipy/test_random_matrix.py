@@ -3,6 +3,18 @@ import numpy as np
 hfe = lambda x,y,eps=1e-5:np.max(np.abs(x-y)/(np.abs(x)+np.abs(y)+eps))
 
 
+def test_rng_spawn():
+    def hf0(seed):
+        np_rng0 = np.random.default_rng(seed)
+        np_rng1 = np_rng0.spawn(1)[0]
+        return np_rng1
+    seed = np.random.default_rng().integers(0, int(2**30), size=1).item()
+    np_rng_A = hf0(seed)
+    np_rng_B = hf0(seed)
+    np0 = np_rng_A.integers(0, 100, size=10)
+    np1 = np_rng_B.integers(0, 100, size=10)
+    assert np.all(np0==np1)
+
 def rand_unitary_matrix(N0, tag_complex=True, seed=None):
     np_rng = np.random.default_rng(seed)
     if tag_complex:
