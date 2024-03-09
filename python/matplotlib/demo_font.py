@@ -4,6 +4,8 @@ import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 
+# plt.ion()
+
 def demo_NOTO_font():
     ## macos
     # brew tap homebrew/cask-fonts
@@ -38,3 +40,14 @@ def demo_NOTO_font():
     ax.axis('off')
     fig.tight_layout()
     fig.savefig('tbd00.png', dpi=200)
+
+
+def demo_latex_amsmath():
+    # matplotlib.verbose.level = 'debug-annoying'
+    # https://stackoverflow.com/q/46259617/7290857
+    # https://github.com/matplotlib/matplotlib/issues/22166
+    matplotlib.rcParams['text.usetex'] = False #default=False (mathtext mode)
+    matplotlib.rcParams['text.latex.preamble'] = r'\usepackage{amsmath}'
+    fig,ax = plt.subplots()
+    ax.set_xlabel(r'$E=mc^2$')
+    ax.set_title(r'$\lVert X \rVert_2$')
