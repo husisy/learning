@@ -23,11 +23,36 @@
 1. link
    * [github/nvm](https://github.com/creationix/nvm)
    * [github/nvm-windows](https://github.com/coreybutler/nvm-windows)
+   * [npm-registry](https://www.npmjs.com/)
 
 ```bash
-nvm install 16 #install before use it
+nvm install 21 #install before use it
 nvm list
-nvm use 16.14 #administrator required on windows
+nvm use 21
+nvm alias default node
 
-npm install -g yarm
+npm list -g --depth 0 #list gobal installed package
+npm install -g yarn
+npm uninstall -g yarn
+```
+
+## mermaid-cli
+
+1. link
+   * [github/mermaid-cli](https://github.com/mermaid-js/mermaid-cli)
+2. install
+   * `npm install -g @mermaid-js/mermaid-cli`
+
+```bash
+mmdc -i input.mmd -o output.svg
+```
+
+`input.mmd`
+
+```text
+mindmap
+Root
+    A
+      B
+      C
 ```
