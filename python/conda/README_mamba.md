@@ -46,8 +46,10 @@ micromamba create -y -n nocuda
 micromamba install -y -n nocuda pytorch cython ipython pytest matplotlib h5py pandas pillow protobuf scipy requests tqdm lxml opt_einsum
 
 micromamba create -y -n cuda118
-micromamba install -y -n cuda118 cudatoolkit=11.8 pytorch python cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cupy nccl cvxpy pytest-xdist pytest-cov
+micromamba install -y -n cuda118 pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
+micromamba install -y -n cuda118 python cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cupy nccl cvxpy pytest-xdist pytest-cov
 micromamba install -y -n cuda118 -c MOSEK MOSEK
+pip install --force-reinstall "numpy>=1.26" #conda-forge/numpy is broken
 
 # x86-64 cpu environment for tensorflow
 micromamba create -n env-tf

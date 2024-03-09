@@ -48,34 +48,9 @@ miniconda安装
 6. 安装环境（见下代码块）
 
 ```bash
-# tensorflow-2.1 doesn't support python3.8 yet @20200422
-# conda config --add channels conda-forge
-conda create -n python_tf2
-conda install -n python_tf2 -c conda-forge python=3.7 cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum
-conda activate python_tf2
-pip install tensorflow
-# conda-forge: opencv bokeh pydot nltk flask cchardet joblib scikit-learn seaborn scikit-image
-```
-
-for pytorch env
-
-```bash
 conda create -y -n nocuda
 conda install -y -n nocuda -c pytorch pytorch torchvision torchaudio cpuonly
 conda install -y -n nocuda -c conda-forge cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum
-
-conda create -y -n cuda112
-conda install -y -n cuda112 -c conda-forge cudatoolkit=11.2 cudnn=8.1.0
-conda install -y -n cuda112 -c conda-forge cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum
-conda activate cuda112
-pip install tensorflow
-# mkdir -p $CONDA_PREFIX/etc/conda/activate.d
-# echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/' > $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
-
-conda create -y -n cuda113
-conda install -y -n cuda113 -c conda-forge cudatoolkit=11.3
-conda install -y -n cuda113 -c pytorch pytorch torchvision torchaudio
-conda install -y -n cuda113 -c conda-forge cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cupy nccl
 
 conda create -y -n cuda117
 # conda install -y -n cuda117 -c conda-forge cudatoolkit=11.7
