@@ -47,6 +47,7 @@ python/openai/data
 python/flask/**/*.sqlite3
 python/replicate/**/.cog/
 python/networkx/data
+python/**/.ruff_cache/
 
 # rust
 rust/**/*.exe
