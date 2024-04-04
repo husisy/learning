@@ -46,3 +46,11 @@ custom optimizer
 
 1. link
    * [pytorch tutorial / adversarial example generation](https://pytorch.org/tutorials/beginner/fgsm_tutorial.html)
+
+## jit
+
+1. link
+   * [torch-doc-link](https://pytorch.org/tutorials/beginner/Intro_to_TorchScript_tutorial.html) Introduction to TorchScript
+   * [torch-doc-link](https://pytorch.org/tutorials/advanced/cpp_export.html) Loading a TorchScript Model in cpp
+2. concept
+   * model authoring
