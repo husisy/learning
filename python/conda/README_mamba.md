@@ -65,10 +65,27 @@ pip install tensorflow
 # export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/zhangc/micromamba/envs/cuda118-tf/lib"
 
 micromamba create -y -n metal
-micromamba install -y -n metal cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cvxpy scs pytest-xdist pytest-cov
+micromamba install -y -n metal python cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cvxpy scs pytest-xdist pytest-cov
 micromamba install -y -n metal -c MOSEK MOSEK
 micromamba activate metal
-pip install torch torchvision #conda-forge/macOS/pytorch is broken
+micromamba install -y -n metal -c pytorch pytorch torchvision #conda-forge/macOS/pytorch is broken
+# pip install torch torchvision #conda-forge/macOS/pytorch is broken
+
+micromamba create -y -n metal311
+micromamba install -y -n metal311 python=3.11 cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cvxpy scs pytest-xdist pytest-cov
+micromamba install -y -n metal311 -c MOSEK MOSEK
+micromamba install -y -n metal311 -c pytorch pytorch torchvision #conda-forge/macOS/pytorch is broken
+micromamba activate metal311
+pip install torchrl
+
+micromamba create -y -n metal310
+micromamba install -y -n metal310 python=3.10 cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cvxpy scs pytest-xdist pytest-cov pennylane docplex qiskit qiskit-terra dwave-system
+# pennylane-lightning
+micromamba install -y -n metal310 -c MOSEK MOSEK
+micromamba install -y -n metal310 -c pytorch pytorch torchvision #conda-forge/macOS/pytorch is broken
+micromamba activate metal310
+pip install openqaoa
+
 
 micromamba create -y -n metal-tf
 micromamba install -y -n metal-tf cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm opt_einsum
