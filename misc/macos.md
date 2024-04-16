@@ -174,7 +174,8 @@ macOS recommanded software
    * metal-related package: `tensorflow`, `pytorch` (see code block below), `taichi`
 8. maccy, history clipboard [github](https://github.com/p0deje/Maccy)
 9. lyx [official-site](https://www.lyx.org/)
-10. 快速纯文本：光标移动至屏幕右下角点击一个方块启动note
+10. [github-link](https://github.com/vercel/hyper) hyper
+11. 快速纯文本：光标移动至屏幕右下角点击一个方块启动note
 
 ```bash
 # MUST do https://apple.stackexchange.com/a/408379
