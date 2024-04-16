@@ -48,7 +48,7 @@ python/flask/**/*.sqlite3
 python/replicate/**/.cog/
 python/networkx/data
 python/**/.ruff_cache/
-python/deepmd/data/
+python/deepmd/**/data/
 python/pygame/ws00/audio
 python/pygame/ws00/font
 python/pygame/ws00/graphics
