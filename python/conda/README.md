@@ -25,38 +25,24 @@
 
 ## quickstart
 
-miniconda安装
+miniconda
 
-1. 下载
-   * windows：[下载链接](https://docs.conda.io/en/latest/miniconda.html)
-   * linux: `wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh`
-2. 安装
-   * windows: 双击run run run
-   * linux: `bash Miniconda3-latest-Linux-x86_64.sh`, run run run，安装完之后必须重新登录黑框框miniconda才会生效
-3. win下是否应该将conda添加至全局路径PATH：**不建议**而且默认安装选项是不添加
+1. install
+   * windows：[link](https://docs.conda.io/en/latest/miniconda.html)
+   * linux: `wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && bash Miniconda3-latest-Linux-x86_64.sh`
+2. win下是否应该将conda添加至全局路径PATH：**不建议**而且默认安装选项是不添加
    * 添加带来的便利：vscode可以“直接”在黑框框中运行代码
    * 添加至PATH会引发的异常包括但不限于：在其它环境下可以访问base的package与可执行文件（例如xxx-env未安装jupyter，base安装了jupyter，但用户可以在xxx-env启动jupyter，但启动的jupyter行为不正确）
-   * 不添加至PATH但想使用vscode-run的解决方案：在powershell中手动执行如下命令（假设用户非常清楚该命令的含义）
-   * `& '/PATH/TO/Miniconda3/shell/condabin/conda-hook.ps1'; conda activate '/PATH/TO/Miniconda3'`
-4. optional 境内使用conda镜像
-   * [清华大学镜像](https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/)
-   * [上海交通大学镜像](https://mirrors.sjtug.sjtu.edu.cn/#/)
-   * [北京外国语大学开源软件镜像站](https://mirrors.bfsu.edu.cn/)
-5. 启动miniconda
-   * windows：开始菜单的`anaconda prompt`应当作为conda环境的唯一入口
-   * linux：登录黑框框即可
-6. 安装环境（见下代码块）
+   * 不添加至PATH但想使用vscode-run的解决方案：在powershell中手动执行 `& '/PATH/TO/Miniconda3/shell/condabin/conda-hook.ps1'; conda activate '/PATH/TO/Miniconda3'`
+3. conda mirror
+   * [link](https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/) 清华大学镜像
+   * [link](https://mirrors.sjtug.sjtu.edu.cn/#/) 上海交通大学镜像
+   * [link](https://mirrors.bfsu.edu.cn/) 北京外国语大学开源软件镜像站
 
 ```bash
 conda create -y -n nocuda
 conda install -y -n nocuda -c pytorch pytorch torchvision torchaudio cpuonly
 conda install -y -n nocuda -c conda-forge cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum
-
-conda create -y -n cuda117
-# conda install -y -n cuda117 -c conda-forge cudatoolkit=11.7
-conda install -y -n cuda117 -c pytorch -c nvidia pytorch torchvision torchaudio pytorch-cuda=11.7
-# conda install -y -n cuda117 -c pytorch pytorch torchvision torchaudio
-conda install -y -n cuda117 -c conda-forge cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cupy nccl
 
 conda create -y -n cuda118
 conda install -y -n cuda118 pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
@@ -85,8 +71,7 @@ conda install -y -n metal -c conda-forge cython ipython pytest matplotlib h5py p
 4. miniconda / anaconda: ananconda默认安装更多的包（例如Spyder），所以anaconda安装文件更大，但功能上两者完全等同，以下统称为conda
 5. install all packages at one command, **NOT** one by one (may lead to dependency conflicts)
 6. channel管理
-7. 镜像源
-8. pip与conda兼容问题：在每个conda环境中都有一个**独立的**pip包，故需要激活环境后方能使用对应环境下的pip包
+7. pip与conda兼容问题：在每个conda环境中都有一个**独立的**pip包，故需要激活环境后方能使用对应环境下的pip包
 
 conda基础命令
 
@@ -119,13 +104,12 @@ conda基础命令
 
 1. link
    * [documentation](https://pip.pypa.io/en/latest/reference/)
-   * [Python Packaging User Guide](https://packaging.python.org/)
-   * [Installing pip/setuptools/wheel with Linux Package Managers](https://packaging.python.org/guides/installing-using-linux-tools/)
-   * why you should use `python -n pip` [link](https://snarky.ca/why-you-should-use-python-m-pip/)
+   * [link](https://packaging.python.org/) Python Packaging User Guide
+   * [link](https://snarky.ca/why-you-should-use-python-m-pip/) why you should use `python -n pip`
 2. install `pip`, `setuptools`, `wheel`
    * win: `python -m pip install --upgrade pip setuptools wheel`
    * ubuntu: `sudo apt install python3-venv python3-pip python3-setuptools python3-wheel`, `alias python=python3`, `alias pip=pip3`
-   * more see [install pip/setuptools/wheel with linux package managers](https://packaging.python.org/guides/installing-using-linux-tools/)
+   * [link](https://packaging.python.org/guides/installing-using-linux-tools/) install pip/setuptools/wheel with linux package managers
 3. update
    * win: `pip install --upgrade pip`
    * ubuntu OS-level: no necessary
@@ -151,8 +135,8 @@ conda基础命令
    * download: `pip download --destination-directory yyy xxx`, `pip download --destination-directory yyy -r requirements.txt`
    * `requiements.txt`: `pip freeze > requirements.txt`, see [link](https://pip.pypa.io/en/latest/reference/pip_install/#requirements-file-format)
 7. 境内使用镜像
-   * [清华大学镜像](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/)
-   * [tencent镜像](https://mirrors.cloud.tencent.com/help/pypi.html)
+   * [link](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/) 清华大学镜像
+   * [link](https://mirrors.cloud.tencent.com/help/pypi.html) tencent镜像
 
 ```bash
 # win
@@ -161,8 +145,6 @@ pip install --upgrade cython ipython matplotlib pandas pylint jupyter Pillow sci
 
 # linux
 pip install --upgrade --user cython ipython matplotlib pandas pylint jupyter Pillow scipy autopep8 tqdm pipenv jupyterlab h5py scikit-learn scikit-image protobuf graphviz lxml seaborn requests bokeh tensorflow
-
-# fail: opencv
 ```
 
 ## pipenv

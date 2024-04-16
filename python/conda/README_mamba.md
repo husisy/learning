@@ -65,10 +65,11 @@ pip install tensorflow
 # export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/zhangc/micromamba/envs/cuda118-tf/lib"
 
 micromamba create -y -n metal
-micromamba install -y -n metal cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cvxpy scs pytest-xdist pytest-cov
+micromamba install -y -n metal cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cvxpy scs pytest-xdist pytest-cov seaborn
 micromamba install -y -n metal -c MOSEK MOSEK
+micromamba install -y -n metal -c pytorch pytorch torchvision torchaudio
 micromamba activate metal
-pip install torch torchvision #conda-forge/macOS/pytorch is broken
+# pip install torch torchvision #conda-forge/macOS/pytorch is broken
 
 micromamba create -y -n metal-tf
 micromamba install -y -n metal-tf cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm opt_einsum
