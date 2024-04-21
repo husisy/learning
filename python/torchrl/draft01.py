@@ -1,35 +1,37 @@
 #https://pytorch.org/tutorials/intermediate/reinforcement_q_learning.html
 import numpy as np
-import collections
-import random
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 import gymnasium as gym
-
 import torch
 
 plt.ion()
 
-Transition = collections.namedtuple('Transition', ('state', 'action', 'next_state', 'reward'))
+np_rng = np.random.default_rng()
+
 
 class ReplayMemory:
     def __init__(self, capacity, seed=None):
-        self.memory = collections.deque([], maxlen=capacity)
-        self.rng = random.Random(seed)
+        self.capacity = capacity
+        self.memory = []
+        self.np_rng = np.random.default_rng(seed)
 
-    def push(self, *args):
-        self.memory.append(Transition(*args))
+    def push(self, state, action, next_state, reward):
+        if len(self.memory) >= self.capacity:
+            for _ in range(1+len(self.memory)-self.capacity):
+                self.memory.pop(0)
+        self.memory.append(dict(state=state, action=action, next_state=next_state, reward=reward))
 
     def sample(self, batch_size):
         assert batch_size>=1
-        transitions = self.rng.sample(self.memory, batch_size)
-        non_final_mask = torch.tensor([(x.next_state is not None) for x in transitions], dtype=torch.bool)
-        non_final_next_state = torch.stack([x.next_state for x in transitions if x.next_state is not None])
-        state = torch.stack([x.state for x in transitions])
-        action = torch.stack([x.action for x in transitions])
-        reward = torch.stack([x.reward for x in transitions])
+        index = np.sort(self.np_rng.choice(len(self.memory), batch_size, replace=False, shuffle=False))
+        transitions = [self.memory[i] for i in index]
+        non_final_mask = torch.tensor([(x['next_state'] is not None) for x in transitions], dtype=torch.bool)
+        non_final_next_state = torch.stack([x['next_state'] for x in transitions if x['next_state'] is not None])
+        state = torch.stack([x['state'] for x in transitions])
+        action = torch.stack([x['action'] for x in transitions])
+        reward = torch.stack([x['reward'] for x in transitions])
         return non_final_mask,non_final_next_state, state, action, reward
-
 
     def __len__(self):
         return len(self.memory)
@@ -55,23 +57,29 @@ def soft_update(target,  policy, tau):
         tmp0[key] = tmp0[key]*(1-tau) + tmp1[key]*tau
     target.load_state_dict(tmp0)
 
+class ExponentialDecay:
+    def __init__(self, start, end, decay):
+        self.ind_step = 0
+        self.start = float(start)
+        self.end = float(end)
+        self.decay = float(decay)
+
+    def __call__(self, step=True):
+        ret = self.end + (self.start - self.end) * np.exp(-self.ind_step / self.decay)
+        if step:
+            self.ind_step += 1
+        return ret
+
 
 batch_size = 128
 discount_factor = 0.99
-EPS_START = 0.9
-EPS_END = 0.05
-EPS_DECAY = 1000
-TAU = 0.005
 num_episodes = 600
-
+epsilon = ExponentialDecay(start=0.9, end=0.05, decay=1000)
 
 env = gym.make("CartPole-v1")
 env = gym.wrappers.RecordEpisodeStatistics(env, buffer_length=num_episodes)
 n_actions = env.action_space.n #Discrete(2)
-# Get the number of state observations
-state, info = env.reset()
-n_observations = len(state) #Box(4,)
-
+n_observations = env.observation_space.shape[0] #4
 policy_net = DQN(n_observations, n_actions)
 target_net = DQN(n_observations, n_actions)
 target_net.load_state_dict(policy_net.state_dict())
@@ -79,25 +87,20 @@ target_net.load_state_dict(policy_net.state_dict())
 optimizer = torch.optim.AdamW(policy_net.parameters(), lr=1e-4, amsgrad=True)
 memory = ReplayMemory(10000)
 
-ind_step = 0
-rng = random.Random()
 
 rewards_list = []
 with tqdm(range(num_episodes)) as pbar:
     for _ in pbar:
-        state, info = env.reset()
+        state, _ = env.reset()
         state = torch.tensor(state, dtype=torch.float32)
         while True:
-            eps_threshold = EPS_END + (EPS_START - EPS_END) * np.exp(-1. * ind_step / EPS_DECAY)
-            ind_step += 1
-            if rng.random() > eps_threshold:
+            if np_rng.uniform(0,1) > epsilon(step=True):
                 with torch.no_grad():
                     action = torch.argmax(policy_net(state.view(1,-1))[0])
             else:
                 action = torch.tensor(env.action_space.sample(), dtype=torch.int64)
             observation, reward, terminated, truncated, _ = env.step(action.item())
             reward = torch.tensor(reward)
-
             if terminated:
                 next_state = None
             else:
@@ -119,7 +122,7 @@ with tqdm(range(num_episodes)) as pbar:
                 torch.nn.utils.clip_grad_value_(policy_net.parameters(), 100)
                 optimizer.step()
 
-                soft_update(target_net,  policy_net, TAU)
+                soft_update(target_net,  policy_net, tau=0.005)
             if terminated or truncated:
                 break
         rewards_list.append(env.return_queue[-1])
@@ -128,7 +131,7 @@ env.close()
 
 
 hf_moving_average = lambda x, w: np.convolve(x, np.ones(w), "same") / w
-ydata = hf_moving_average(np.array(rewards_list), 50)
+ydata = hf_moving_average(np.array(rewards_list), 10)
 fig,ax = plt.subplots()
 ax.plot(ydata)
 fig.tight_layout()

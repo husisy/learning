@@ -97,4 +97,3 @@ ydata = hf_moving_average(np.array(rewards_list), 50)
 fig,ax = plt.subplots()
 ax.plot(ydata)
 fig.tight_layout()
-
