@@ -67,8 +67,8 @@ pip install tensorflow
 micromamba create -y -n metal
 micromamba install -y -n metal python cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cvxpy scs pytest-xdist pytest-cov
 micromamba install -y -n metal -c MOSEK MOSEK
-micromamba activate metal
 micromamba install -y -n metal -c pytorch pytorch torchvision #conda-forge/macOS/pytorch is broken
+micromamba activate metal
 # pip install torch torchvision #conda-forge/macOS/pytorch is broken
 
 micromamba create -y -n metal311
