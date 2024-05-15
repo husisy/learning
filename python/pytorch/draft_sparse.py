@@ -1,4 +1,5 @@
 import numpy as np
+import scipy.sparse
 import torch
 # https://pytorch.org/docs/stable/sparse.html
 # https://github.com/pydata/sparse
@@ -51,3 +52,12 @@ torch0_coo = torch.sparse_coo_tensor(index, value, (N0,N1,N2))
 # torch0_coo = torch.tensor(np0).to_sparse()
 # torch1 = torch.tensor(np_rng.normal(size=(N2,23)))
 # torch0_coo @ torch1 #fail
+
+
+def test_scipy_sparse_csr_to_torch():
+    x0 = scipy.sparse.random(3, 5, density=0.5, format='csr', dtype=np.float64)
+    tmp0 = torch.tensor(x0.indptr, dtype=torch.int64)
+    tmp1 = torch.tensor(x0.indices, dtype=torch.int64)
+    tmp2 = torch.tensor(x0.data, dtype=torch.float64)
+    torch0 = torch.sparse_csr_tensor(tmp0, tmp1, tmp2, dtype=torch.float64)
+    assert np.abs(torch0.to_dense().numpy() - x0.toarray()).max() < 1e-10

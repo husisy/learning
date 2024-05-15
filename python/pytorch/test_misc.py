@@ -158,3 +158,26 @@ def test_softplus(N0=13):
     ret_ = np.log(1 + np.exp(beta*np0)) / beta
     ret0 = torch.nn.functional.softplus(torch0, beta).numpy()
     assert hfe(ret_, ret0) < 1e-5
+
+
+def test_scaled_dot_product_attention():
+    # https://pytorch.org/docs/stable/generated/torch.nn.functional.scaled_dot_product_attention.html
+    N0 = 3 #N
+    N1 = 128 #L
+    N2 = 64 #S
+    N3 = 32 #E
+    N4 = 16 #Ev
+    dtype = torch.float32
+    query = torch.rand(N0, N1, N3, dtype=dtype)
+    key = torch.rand(N0, N2, N3, dtype=dtype)
+    value = torch.rand(N0, N2, N4, dtype=dtype)
+    ret_ = torch.nn.functional.scaled_dot_product_attention(query, key, value)
+    assert ret_.shape==(N0,N1,N4)
+
+    scale_factor = 1 / np.sqrt(query.shape[-1])
+    attn_bias = torch.zeros(query.shape[-2], key.shape[-2], dtype=query.dtype)
+    attn_weight = query @ key.transpose(-2, -1) * scale_factor + attn_bias
+    attn_weight = torch.softmax(attn_weight, dim=-1)
+    # attn_weight = torch.dropout(attn_weight, dropout_p, train=True)
+    ret0 = attn_weight @ value
+    assert torch.abs(ret_-ret0).max().item() < 1e-5
