@@ -108,3 +108,11 @@ def demo_recording_every_episode():
                 break
         logging.info(f"episode-{ind_episode}", info["episode"])
     env.close()
+
+
+def demo_save_gif():
+    import numpy as np
+    import moviepy.editor
+    np0 = np.random.randint(256, size=[20, 64, 64, 3], dtype=np.uint8)  # YOUR DATA HERE
+    clip = moviepy.editor.ImageSequenceClip(list(np0), fps=20)
+    clip.write_gif("tbd00.gif", fps=20)

@@ -7,8 +7,8 @@
    * [documentation - multi gpu, data parallelism](https://pytorch.org/tutorials/beginner/blitz/data_parallel_tutorial.html)
    * [github/conv-arithmetic](https://github.com/vdumoulin/conv_arithmetic)
 2. install
-   * `conda install -c pytorch pytorch torchvision cudatoolkit=10.1`
-   * `pip install torch torchvision`
+   * `conda install -c pytorch pytorch torchvision`
+   * `pip install torch torchvision tensordict`
 3. 建议阅读
    * [official-site/tutorial/learning pytorch](https://pytorch.org/tutorials/#learning-pytorch)下的四个模块
    * [official-site/docs/Notes](https://pytorch.org/docs/stable/index.html)
