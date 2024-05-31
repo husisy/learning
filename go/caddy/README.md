@@ -93,9 +93,9 @@ sudo apt-get update && sudo apt-get install cloudflare-warp
 
 curl https://ipinfo.io/ip
 
-warp-cli register
-warp-cli set-mode proxy
-
+warp-cli registration new
+warp-cli mode proxy
 warp-cli connect # set-mode proxy first!!!
 curl --proxy socks://127.0.0.1:40000/ https://ipinfo.io/ip
+# curl https://www.cloudflare.com/cdn-cgi/trace/
 ```
