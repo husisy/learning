@@ -119,3 +119,14 @@ x2.text
 x1 = requests.get('https://en.wikipedia.org/wiki/Monty_Python')
 x1.headers
 x1.request.headers
+
+
+def get_public_ip(ipv6:bool=False):
+    # https://www.ipify.org/
+    # https://stackoverflow.com/a/3097641/7290857
+    url = 'https://api64.ipify.org' if ipv6 else 'https://api.ipify.org'
+    ret = requests.get(url, params={'format':'json'}).json()['ip']
+    # ret = requests.get(url).text
+    return ret
+print(get_public_ip())
+print(get_public_ip(ipv6=True))
