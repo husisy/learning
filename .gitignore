@@ -52,6 +52,7 @@ python/deepmd/**/data/
 python/pygame/ws00/audio
 python/pygame/ws00/font
 python/pygame/ws00/graphics
+python/pyvista/data/
 
 # rust
 rust/**/*.exe
