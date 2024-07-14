@@ -53,6 +53,7 @@ python/pygame/ws00/audio
 python/pygame/ws00/font
 python/pygame/ws00/graphics
 python/pyvista/data/
+python/trimesh/data/
 
 # rust
 rust/**/*.exe
