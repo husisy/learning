@@ -1,33 +1,26 @@
 # raspberrypi
 
 1. link
-   * [official site](https://www.raspberrypi.org/)
-   * [raspberry pi project](https://projects.raspberrypi.org/en)
+   * [official-site](https://www.raspberrypi.com/)
+   * [raspberrypi-foundation](https://www.raspberrypi.org/)
+   * [github/documentation](https://github.com/raspberrypi/documentation)
+   * [raspberrypi-project](https://projects.raspberrypi.org/en)
+   * [magpi-raspberrypi](https://magpi.raspberrypi.com/)
    * [树莓派实验室](http://shumeipai.nxez.com/)
-   * [magpi-raspberry pi beginner's guide](https://magpi.raspberrypi.org/books/beginners-guide-3rd-ed/pdf)
-   * [ubuntu-mate](https://ubuntu-mate.org/)
-2. [系统下载](https://www.raspberrypi.org/downloads/)
-   * raspbian也是使用apt管理package
-   * [ubuntu for raspberrypi](https://ubuntu.com/download/raspberry-pi)
+2. download and install OS
+   * [raspberrypi-OS](https://www.raspberrypi.com/software/)
+   * Raspberry Pi Imager
 3. software
-   * [balenaetcher](https://www.balena.io/etcher/)
+   * [github/tigervnc](https://github.com/TigerVNC/tigervnc)
+4. concept
+   * multicast DNS
 
 ```bash
-sudo apt update
-sudo apt upgrade
-
-# ssh
-sudo apt install openssh-server
-sudo systemctl enable ssh
-# systemctl disable sshd
-sudo apt install xrdp #for windows remote desktop
+# get ip address
+hostname -I
+nmcli device show
+ping raspberrypi.local
+# nmap -sn 192.168.31.0/24
 
 sudo raspi-config
-
-# user
-sudo adduser xxx
-sudo usermod -a -G sudo xxx
-sudo usermod -a -G video xxx #for camera access
-passwd xxx
-# ssh-copy-id xxx@remotehost #run in host-pc
 ```
