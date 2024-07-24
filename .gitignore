@@ -1,6 +1,7 @@
 # for personal usage
 tbd*
 .vscode/
+.DS_Store
 
 cuda/cuda/include/helper_cuda.h
 cuda/cuda/include/helper_string.h
