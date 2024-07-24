@@ -280,10 +280,20 @@ proxyPort = 8123
 5. 特殊文件`.gitignore`, `.ignore`, `.rgignore`
 6. ripgrep**永远不会**在位修改文件，ripgrep仅修改打印输出内容
 
+## Samba
+
+1. link
+   * [samba-website](https://www.samba.org/samba/)
+   * [samba-wiki](https://wiki.samba.org/index.php/Main_Page)
+   * [samba-documentation](https://www.samba.org/samba/docs/)
+2. concept
+   * AD: Active Directory
+   * DC: domain controller
+
 ## screen
 
 1. link
-   * [official site](https://savannah.gnu.org/projects/screen)
+   * [official-site](https://savannah.gnu.org/projects/screen)
    * [GUN-official-site](https://www.gnu.org/software/screen/)
    * [documentation](https://www.gnu.org/software/screen/manual/html_node/index.html)
    * [linux 技巧：使用 screen 管理你的远程会话](https://www.ibm.com/developerworks/cn/linux/l-cn-screen/index.html)
@@ -572,6 +582,25 @@ sudo update-alternatives --set cc /usr/bin/gcc
 
 sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 30
 sudo update-alternatives --set c++ /usr/bin/g++
+```
+
+## transmission-cli
+
+1. link
+   * [github](https://github.com/transmission/transmission)
+   * [ubuntu-manpage](https://manpages.ubuntu.com/manpages/bionic/man1/transmission-cli.1.html)
+   * [blog-link](https://cli-ck.io/transmission-cli-user-guide/) transmission cli user guide
+2. config `~/.config/transmission-daemon/settings.json`
+
+```bash
+sudo apt install transmission transmission-daemon
+
+transmission-daemon --logfile /path/to/run.log
+transmission-remote --exit
+transmission-remote --add /path/to/file
+transmission-remote --list
+transmission-remote --session-info
+transmission-remote --session-stats
 ```
 
 ## yum
