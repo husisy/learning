@@ -4,7 +4,7 @@
    * [github](https://github.com/Farama-Foundation/Gymnasium)
    * [documentation](https://gymnasium.farama.org/)
 2. install
-   * `pip install gymnasium[box2d]==1.0.0a1`
+   * `pip install gymnasium[box2d]==1.0.0a2`
    * `pip install gymnasium[atari]`
    * `pip install gymnasium[all]` fail on windows
    * `pip install moviepy glfw swig mujoco`
