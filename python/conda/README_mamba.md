@@ -13,6 +13,7 @@
 5. 个人偏见
    * 将`conda-forge`设置为默认channel
 6. `.mambarc`
+7. pip mirror sites [link](https://mirrors.cernet.edu.cn/about)
 
 ```bash
 $PREFIX
@@ -50,6 +51,16 @@ micromamba install -y -n cuda118 pytorch torchvision torchaudio pytorch-cuda=11.
 micromamba install -y -n cuda118 python cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cupy nccl cvxpy pytest-xdist pytest-cov
 micromamba install -y -n cuda118 -c MOSEK MOSEK
 pip install --force-reinstall "numpy>=1.26" #conda-forge/numpy is broken
+
+micromamba create -y -n cuda128
+micromamba install -y -n cuda128 python cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cvxpy pytest-xdist pytest-cov torch
+micromamba install -y -n cuda128 -c MOSEK MOSEK
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
+pip install -U --force-reinstall numpy scipy cvxpy
+
+micromamba create -y -n cuda126
+micromamba install -y -n cuda126 python=3.12 cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cvxpy pytest-xdist pytest-cov pytorch
+micromamba install -y -n cuda126 -c MOSEK MOSEK
 
 # x86-64 cpu environment for tensorflow
 micromamba create -n env-tf
