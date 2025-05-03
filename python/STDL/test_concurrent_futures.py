@@ -71,3 +71,33 @@ def test_thread_safe():
         for x in job_list:
             x.result()
     assert counter.count!=ret_ #when num_repeat is too small, may assert fail
+
+
+def _concurrent_futures_queue_hf0(x):
+    time.sleep(random.uniform(0.5, 1))
+    ret = x + 4
+    return ret
+
+def demo_concurrent_futures_queue():
+    id_to_job_dict = dict()
+    ret_list = []
+    with concurrent.futures.ProcessPoolExecutor(max_workers=4) as executor:
+        for x in [0,1,2,3]:
+            tmp0 = executor.submit(_concurrent_futures_queue_hf0, x)
+            id_to_job_dict[id(tmp0)] = tmp0
+        while True:
+            if len(id_to_job_dict)==0:
+                break
+            job_i = next(iter(concurrent.futures.as_completed(list(id_to_job_dict.values()))))
+            ret_i = job_i.result()
+            id_to_job_dict.pop(id(job_i))
+            ret_list.append(ret_i)
+            print(ret_i)
+            if ret_i>10:
+                for x in id_to_job_dict.values():
+                    x.cancel()
+                break
+            else:
+                x = executor.submit(_concurrent_futures_queue_hf0, ret_i)
+                id_to_job_dict[id(x)] = x
+    return ret_list
