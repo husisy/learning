@@ -8,61 +8,58 @@
    * openai lab-interface [link](https://labs.openai.com/)
    * openai web crawl QA tutorial [link](https://platform.openai.com/docs/tutorials/web-qa-embeddings)
    * [github/openai-python](https://github.com/openai/openai-python)
+   * [github/openai-responses-starter-app](https://github.com/openai/openai-responses-starter-app)
+   * [openai/model-list](https://platform.openai.com/docs/models)
+   * [openai/model-spec](https://model-spec.openai.com/2025-02-12.html)
+   * [openai-cookbook](https://cookbook.openai.com/examples/gpt4-1_prompting_guide)
+   * [github/rich](https://github.com/Textualize/rich) `from rich import print`
 2. install
-   * `conda install -c conda-forge openai tiktoken`
-   * `pip install openai tiktoken`
-3. token
-   * many tokens start with a white space: `" hello"`, `" bye"`
-   * `1` token is approximately `4` characters or `0.75` words for English text
+   * `conda install -c conda-forge openai openai-agents`
+   * `pip install openai openai-agents "httpx[socks]" rich`
+3. concept
+   * Chain-of-Thought (CoT)
+   * Chat Markup Language (ChatML)
+   * vector database: `pinecone`, `weaviate`, `redis`, `qdrant`, `milvus`, `chroma`
+   * message roles, instruction following
+   * [link](https://model-spec.openai.com/2025-02-12.html#chain_of_command) authority level (from higher to lower): `platform`, `developer`, `user`, `guideline`, no authority (`assistant`, tool messaging)
+   * prompt caching: generally remain active for 5 to 10 minutes of inactivity
+   * few shot learning
+   * retrieval-augmented generation (RAG)
+   * context window
+   * token: `1` token is approximately `4` characters or `0.75` words for English text
+   * assistant API (beta)
 4. setting
    * temperature: `[0,1]`, `0` for identitcal or very similar
    * top-p: `[0,1]` the smallest possible set of words whose cumulative probability exceeds the probability `p` [link](https://community.openai.com/t/a-better-explanation-of-top-p/2426/2) [huggingface-blog](https://huggingface.co/blog/how-to-generate)
-   * model: `text-davinci-003`
-5. for most models, a single API request can only process up to `2048` tokens (roughly `1500` words)
-6. vector database
-   * `pinecone`
-   * `weaviate`
-   * `redis`
-   * `qdrant`
-   * `milvus`
-   * `chroma`
-7. suggestions from openai
-   * show and tell
-   * provide quality data
    * check your settings: if only one right answer `temperature=0, top_p=1`
-8. Chat Markup Language (ChatML)
-9. ChatGPT
-   * `role`: `system`, `user`, `assistant`
+5. instruction versus message roles
+   * `instruction=` has a higher priority than `input=`
+   * `instruction=` only applies to the current response generation
+6. how to choose: reasoning model (`o3`, `o4-mini`), GPT model (`gpt-4.1`)
+   * Speed and cost: GPT models are faster and cheaper
+   * Executing well defined tasks: GPT models handle explicitly defined tasks well
+   * Accuracy and reliability: o-series models are reliable decision makers
+   * Complex problem-solving: o-series models work through ambiguity and complexity
 
 minimum python environment in VPS
 
 ```bash
-micromamba create -n test00
-micromamba install -n test00 -c conda-forge cython matplotlib h5py pandas pillow protobuf scipy requests tqdm flask ipython openai python-dotenv tiktoken beautifulsoup4 pandas
+micromamba create -n openai
+micromamba install -y -n openai -c conda-forge "numpy=1.26" cython matplotlib h5py pillow scipy requests tqdm flask ipython openai python-dotenv tiktoken openai-agents
+micromamba activate openai
+pip install torch==2.6 torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+# transformers only support torch<2.6
+pip install 'transformers[torch]'
+pip install open-webui hf-xet "httpx[socks]"
 ```
 
-`.env` file
-
-```bash
-OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-```
-
-```bash
-export OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-
-# list models
-openai api models.list
-
-# create completion
-openai api completions.create -m ada -p "hello world"
-# hello world. Their loyal following grows.
-
-# create a chat completion
-openai api chat_completions.create -m gpt-3.5-turbo -g user "hello world"
-# Hello there! How can I assist you today?
-
-openai api image.create -p "two dogs playing chess, cartoon" -n 1
-```
+| model | o4-mini | o3 | gpt-4.1 |
+|-------|---------|----|---------|
+| input (USD/million tokens) | 1.1 | 10 | 2 |
+| output (USD/million tokens) | 4.4 | 40 | 8 |
+| window | 200,000 | 200,000 | 1,047,576 |
+| Max Output Tokens | 100,000 | 100,000 | 32,768 |
+| Knowledge Cutoff | 20240601 | 20240601 | 20240601 |
 
 ## ChatGPT
 
@@ -239,5 +236,20 @@ other company
    * `Document`: a PDF, an API output, retrieve data from a database
    * `node`: a "chunk" of a `Document`
    * `Connector,Reader`
+   * plan, orchestrate
 4. use cases
    * QA: semantic search (top-k search)
+5. alternatives
+   * llama-index: excels in retrieval-centric applications but is less focused on multi-agent orchestration
+   * CrewAI: robust multi-agent orchestration with modular designs suitable for complex workflows
+   * smolagents: simplicity and minimalism for lightweight agentic AI
+   * langchain: robust multi-agent orchestration with modular designs suitable for complex workflows
+   * Microsoft AutoGen: strong in asynchronous, real-time multi-agent conversations
+   * Microsoft Semantic Kernel: Enterprise data integration for enhanced LLM augmentation
+
+```bash
+mamba install -c conda-forge llama-index
+pip install llama-index-tools-yahoo-finance
+pip install llama-index-tools-tavily-research
+pip install llama-index-utils-workflow
+```

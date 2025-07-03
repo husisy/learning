@@ -4,7 +4,7 @@ import dotenv
 import tiktoken
 import numpy as np
 
-dotenv.load_dotenv()
+dotenv.load_dotenv('.env')
 openai.api_key = os.environ["OPENAI_API_KEY"]
 
 
@@ -59,19 +59,16 @@ print(response.choices[0].text) #' Steed of Justice, Mighty Mare, The Noble Stal
 chatgpt.chat(tmp0, reset=True) #Thunderhoof, Equine Avenger, Galloping Guardian
 
 
-
 # demo a basic chatgpt
-tmp0 = [
-    {"role": "system", "content": "You are a helpful assistant."},
-    {"role": "user", "content": "Who won the world series in 2020?"},
-    {"role": "assistant", "content": "The Los Angeles Dodgers won the World Series in 2020."},
-    {"role": "user", "content": "Where was it played?"},
-]
-response = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=tmp0)
+import httpx
+tmp0 = httpx.Client(proxy='socks5://localhost:9900')
+client = openai.OpenAI(api_key=os.environ['OPENAI_API_KEY'], http_client=tmp0)
+response = client.chat.completions.create(
+    messages=[{"role": "user", "content": "Say this is a test"}],
+    model="gpt-4o",
+)
 response.choices[0].message.role #asisstant
 response.choices[0].message.content
-# 'The 2020 World Series was held at Globe Life Field in Arlington, Texas, which is the home ballpark of the Texas Rangers.'
-
 
 
 text = 'The 2020 World Series was held at Globe Life Field in Arlington, Texas, which is the home ballpark of the Texas Rangers.'
