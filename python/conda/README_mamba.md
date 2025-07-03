@@ -4,6 +4,7 @@
    * [github](https://github.com/mamba-org/mamba)
    * [documentation](https://mamba.readthedocs.io/en/latest/)
    * [github/miniforge](https://github.com/conda-forge/miniforge#mambaforge)
+   * [mirrorz](https://mirrors.cernet.edu.cn/about)
 2. mamba, micromamba, libmamba
 3. install micromamba
    * linux: `curl micro.mamba.pm/install.sh | bash`
@@ -13,7 +14,6 @@
 5. 个人偏见
    * 将`conda-forge`设置为默认channel
 6. `.mambarc`
-7. pip mirror sites [link](https://mirrors.cernet.edu.cn/about)
 
 ```bash
 $PREFIX
@@ -76,11 +76,11 @@ pip install tensorflow
 # export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/zhangc/micromamba/envs/cuda118-tf/lib"
 
 micromamba create -y -n metal
-micromamba install -y -n metal cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cvxpy scs pytest-xdist pytest-cov seaborn
+micromamba install -y -n metal cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cvxpy scs pytest-xdist pytest-cov seaborn pytorch sympy galois mkdocs ipywidgets mkdocs-material mkdocs-jupyter pymdown-extensions mkdocstrings pyyaml sage more-itertools twine
 micromamba install -y -n metal -c MOSEK MOSEK
-micromamba install -y -n metal -c pytorch pytorch torchvision #conda-forge/macOS/pytorch is broken
 micromamba activate metal
 # pip install torch torchvision #conda-forge/macOS/pytorch is broken
+# micromamba install -y -n metal -c pytorch pytorch torchvision #conda-forge/macOS/pytorch is broken
 
 micromamba create -y -n metal311
 micromamba install -y -n metal311 python=3.11 cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cvxpy scs pytest-xdist pytest-cov
