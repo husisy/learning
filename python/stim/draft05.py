@@ -80,7 +80,49 @@ x0 = stim.Circuit('CY 0 1').to_tableau() #[XY ZX] [Z_ ZZ]
 assert x0(stim.PauliString('XY')) == stim.PauliString('X_') #"X_" out-of-place
 # TODO in-place
 
-tab0 = stim.Tableau.random(5)
-sim = stim.TableauSimulator()
-sim.set_inverse_tableau(tab0**-1)
-assert sim.current_inverse_tableau() == tab0**-1
+
+circ = stim.Circuit('''
+X_ERROR(1) 0
+CX 0 1
+''')
+sim = stim.FlipSimulator(batch_size=1, disable_stabilizer_randomization=True) #TODO
+sim.do(circ)
+x0 = sim.peek_pauli_flips()[0] #XX
+
+
+
+tmp0 = '''
+RZ 5 6 7 8
+H 5 6 7 8
+CX 5 0
+CZ 5 1
+CZ 5 2
+CX 5 3
+
+CX 6 1
+CZ 6 2
+CZ 6 3
+CX 6 4
+
+CX 7 2
+CZ 7 3
+CZ 7 4
+CX 7 0
+
+CX 8 3
+CZ 8 4
+CZ 8 0
+CX 8 1
+H 5 6 7 8
+'''
+circ_syndrome = stim.Circuit(tmp0)
+sim = stim.FlipSimulator(batch_size=1, disable_stabilizer_randomization=True) #TODO
+sim.do(stim.Circuit(tmp0))
+result = sim.peek_pauli_flips()
+
+tmp0 = [(i,s) for i in range(5) for s in 'XYZ']
+for ind0, s in tmp0:
+    sim.clear()
+    sim.do(stim.Circuit(f'{s}_ERROR(1) {ind0}') + circ_syndrome)
+    result = sim.peek_pauli_flips()[0]
+    print(f'syndrome({s}{ind0}):', ''.join(['_!'[x] for x in result[5:].to_numpy()[0].tolist()]))

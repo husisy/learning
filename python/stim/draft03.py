@@ -5,7 +5,6 @@ import pymatching
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 import scipy.sparse
-# from scipy.sparse import hstack, kron, eye, csc_matrix, block_diag
 
 
 np_rng = np.random.default_rng()
@@ -48,32 +47,52 @@ def toric_code_x_logicals(L):
     return ret
 
 
+def sample_pymatching(hx, lx, p, max_shot, max_fail:int|None=None, batch_size:int=512, use_tqdm:bool=False):
+    np_rng = np.random.default_rng()
+    matcher = pymatching.Matching.from_check_matrix(hx, weights=np.log((1-p)/p))
+    assert batch_size>=1
+    num_total = 0
+    num_fail = 0
+    for _ in tqdm(range((max_shot+batch_size-1)//batch_size), disable=(not use_tqdm)):
+        # faults_matrix=lx
+        ebit = (np_rng.uniform(0, 1, (batch_size, hx.shape[1])) < p).astype(np.uint8)
+        syndrome = (ebit @ hx.T) % 2
+        rec = matcher.decode_batch(syndrome) #return logical if faults_matrix=lx provided
+        num_fail += ((((rec+ebit) @ lx.T) % 2).any(axis=1)).sum()
+        num_total += batch_size
+        if (max_fail is not None) and (num_fail>=max_fail):
+            break
+    return num_fail, num_total
+
+
 def demo_code_capacity_threshold():
-    num_shots = 5000
+    max_sample = int(1e6)
+    max_fail = 100
     Ls = [4,8,12]
-    noise_list = np.linspace(0.01, 0.2, 9)
+    plist = np.linspace(0.01, 0.2, 9)
     num_fail_list = []
+    num_total_list = []
     for L in Ls:
-        print("Simulating L={}...".format(L))
-        checkX = toric_code_x_stabilisers(L)
-        logicalX = toric_code_x_logicals(L)
-        for p in noise_list:
-            matcher = pymatching.Matching.from_check_matrix(checkX, weights=np.log((1-p)/p), faults_matrix=logicalX)
-            error = (np.random.random((num_shots, checkX.shape[1])) < p).astype(np.uint8)
-            syndrome = (error @ checkX.T) % 2
-            actual_observables = (error @ logicalX.T) % 2
-            predicted_observables = matcher.decode_batch(syndrome)
-            num_fail_list.append(np.sum(np.any(predicted_observables != actual_observables, axis=1)))
-    num_fail_list = np.array(num_fail_list).reshape(len(Ls), len(noise_list))
+        hx = toric_code_x_stabilisers(L)
+        lx = toric_code_x_logicals(L)
+        for p in plist:
+            tmp0 = sample_pymatching(hx, lx, p, max_shot=max_sample, max_fail=max_fail, batch_size=512)
+            num_fail_list.append(tmp0[0])
+            num_total_list.append(tmp0[1])
+    num_fail_list = np.array(num_fail_list).reshape(len(Ls), len(plist))
+    num_total_list = np.array(num_total_list).reshape(len(Ls), len(plist))
 
     fig,ax = plt.subplots()
     for ind0 in range(len(Ls)):
-        tmp0 = num_fail_list[ind0]/num_shots
-        std_err = (tmp0*(1-tmp0)/num_shots)**0.5
-        ax.errorbar(noise_list, tmp0, yerr=std_err, label="L={}".format(L))
+        tmp0 = num_fail_list[ind0]/num_total_list[ind0]
+        std = (tmp0*(1-tmp0)/num_total_list[ind0])**0.5
+        ax.errorbar(plist, tmp0, yerr=std, label="L={}".format(L))
     ax.set_xlabel("Physical error rate")
     ax.set_ylabel("Logical error rate")
     ax.legend()
+    ax.set_xscale('log')
+    ax.set_yscale('log')
+    ax.grid()
     fig.tight_layout()
     fig.savefig('tbd00.png', dpi=200)
 
@@ -104,11 +123,10 @@ Ls = [8,10,12]
 ps = np.linspace(0.02, 0.04, 7)
 num_fail_list = []
 for L in Ls:
-    print("Simulating L={}...".format(L))
-    Hx = toric_code_x_stabilisers(L)
-    logX = toric_code_x_logicals(L)
+    hx = toric_code_x_stabilisers(L)
+    lx = toric_code_x_logicals(L)
     for p in ps:
-        num_fail_list.append(num_decoding_failures_noisy_syndromes(Hx, logX, p, p, num_shots, L))
+        num_fail_list.append(num_decoding_failures_noisy_syndromes(hx, lx, p, p, num_shots, L))
 num_fail_list = np.array(num_fail_list).reshape(len(Ls), len(ps))
 
 fig,ax = plt.subplots()
