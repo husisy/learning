@@ -43,6 +43,28 @@ micromamba repoquery search python-dotenv
 micromamba repoquery depends python-dotenv
 micromamba repoquery depends --recursive conda-forge python-dotenv
 
+micromamba create -y -n metal
+micromamba install -y -n metal cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cvxpy scs pytest-xdist pytest-cov seaborn pytorch sympy galois mkdocs ipywidgets mkdocs-material mkdocs-jupyter pymdown-extensions mkdocstrings pyyaml sage more-itertools twine platformdirs
+micromamba install -y -n metal -c MOSEK MOSEK
+micromamba activate metal
+# pip install torch torchvision #conda-forge/macOS/pytorch is broken
+# micromamba install -y -n metal -c pytorch pytorch torchvision #conda-forge/macOS/pytorch is broken
+
+# linux-cuda
+micromamba create -y -n cuda129
+micromamba install -y -n cuda129 cuda-version=12.9 cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cvxpy scs pytest-xdist pytest-cov seaborn "pytorch=*=*cuda129_generic*" sympy mkdocs ipywidgets mkdocs-material mkdocs-jupyter pymdown-extensions mkdocstrings pyyaml sage more-itertools twine platformdirs numba=0.61 numpy=2.2
+micromamba install -y -n cuda129 -c MOSEK MOSEK
+micromamba activate cuda129
+pip install galois #conda-forge/galois requires numba<0.61 while pip/galois requires numba<0.62
+
+# windows-cuda
+# sage is not available on windows @20250707
+micromamba create -y -n cuda129
+micromamba install -y -n cuda129 cuda-version=12.9 cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cvxpy scs pytest-xdist pytest-cov seaborn pytorch sympy mkdocs ipywidgets mkdocs-material mkdocs-jupyter pymdown-extensions mkdocstrings pyyaml more-itertools twine platformdirs numba=0.61 numpy=2.2
+micromamba install -y -n cuda129 -c MOSEK MOSEK
+micromamba activate cuda129
+pip install galois #conda-forge/galois requires numba<0.61 while pip/galois requires numba<0.62
+
 micromamba create -y -n nocuda
 micromamba install -y -n nocuda pytorch cython ipython pytest matplotlib h5py pandas pillow protobuf scipy requests tqdm lxml opt_einsum
 
@@ -51,12 +73,6 @@ micromamba install -y -n cuda118 pytorch torchvision torchaudio pytorch-cuda=11.
 micromamba install -y -n cuda118 python cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cupy nccl cvxpy pytest-xdist pytest-cov
 micromamba install -y -n cuda118 -c MOSEK MOSEK
 pip install --force-reinstall "numpy>=1.26" #conda-forge/numpy is broken
-
-micromamba create -y -n cuda128
-micromamba install -y -n cuda128 python cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cvxpy pytest-xdist pytest-cov torch
-micromamba install -y -n cuda128 -c MOSEK MOSEK
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
-pip install -U --force-reinstall numpy scipy cvxpy
 
 micromamba create -y -n cuda126
 micromamba install -y -n cuda126 python=3.12 cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cvxpy pytest-xdist pytest-cov pytorch
@@ -74,13 +90,6 @@ micromamba install -y -n cuda118-tf cudatoolkit=11.8 cudnn python=3.11 cython ip
 micromamba activate cuda118-tf
 pip install tensorflow
 # export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/zhangc/micromamba/envs/cuda118-tf/lib"
-
-micromamba create -y -n metal
-micromamba install -y -n metal cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cvxpy scs pytest-xdist pytest-cov seaborn pytorch sympy galois mkdocs ipywidgets mkdocs-material mkdocs-jupyter pymdown-extensions mkdocstrings pyyaml sage more-itertools twine
-micromamba install -y -n metal -c MOSEK MOSEK
-micromamba activate metal
-# pip install torch torchvision #conda-forge/macOS/pytorch is broken
-# micromamba install -y -n metal -c pytorch pytorch torchvision #conda-forge/macOS/pytorch is broken
 
 micromamba create -y -n metal311
 micromamba install -y -n metal311 python=3.11 cython ipython pytest matplotlib h5py pandas pylint jupyterlab pillow protobuf scipy requests tqdm lxml opt_einsum cvxpy scs pytest-xdist pytest-cov
@@ -110,4 +119,6 @@ micromamba install -y -n metal-acc -c MOSEK MOSEK
 micromamba activate metal-acc
 pip install --force-reinstall "numpy>=1.26" #conda-forge/numpy is broken
 pip install torch torchvision #conda-forge/macOS/pytorch is broken
+
+# pip config set global.index-url https://mirrors.cernet.edu.cn/pypi/web/simple
 ```
