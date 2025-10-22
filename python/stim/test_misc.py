@@ -1,7 +1,6 @@
 import numpy as np
 import stim
 import beliefmatching
-import itertools
 import numft
 
 np_rng = np.random.default_rng()
@@ -33,6 +32,54 @@ def test_PauliString():
     assert x0*x1 == stim.PauliString('-iXXY')
 
 
+def test_PauliString_conjugate_by_Clifford():
+    x0 = stim.PauliString('X')
+    x1 = stim.Circuit('S 0')
+    assert x0.after(x1)==stim.PauliString('Y') #S X S^dagger = Y
+    assert x0.before(x1)==stim.PauliString('-Y') #S^dagger X S = -Y
+
+    n = 5
+    x0 = stim.PauliString.random(n)
+    x1 = stim.Tableau.random(n)
+    ret_ = x0.after(x1.to_circuit())
+    ret0 = x0.after(x1, targets=list(range(n)))
+    assert ret_==ret0
+    ret1 = (x1.inverse().to_circuit() + x0.to_tableau().to_circuit() + x1.to_circuit()).to_tableau().to_pauli_string()
+    tmp0 = ret_.to_numpy()
+    tmp1 = ret1.to_numpy()
+    assert np.all(tmp0[0]==tmp1[0]) and np.all(tmp0[1]==tmp1[1])
+    # ret_.sign may differ from ret1.sign
+    ret2 = x1(x0)
+    assert ret_==ret2
+
+    ret_ = x0.before(x1.to_circuit())
+    ret0 = x0.before(x1, targets=list(range(n)))
+    assert ret_==ret0
+    ret1 = (x1.to_circuit() + x0.to_tableau().to_circuit() + x1.inverse().to_circuit()).to_tableau().to_pauli_string()
+    tmp0 = ret_.to_numpy()
+    tmp1 = ret1.to_numpy()
+    assert np.all(tmp0[0]==tmp1[0]) and np.all(tmp0[1]==tmp1[1])
+    # ret_.sign may differ from ret1.sign
+
+    n = 5
+    circ = stim.Tableau.random(n).to_circuit()
+    noise = stim.PauliString(n)
+    noise.after(circ) # this one
+    # noise1  --- c ----
+    # noise2  --- i ----
+    # noise3  --- r ----
+    # noise4  --- c ----
+    # noise5  --- t ----
+
+    # after propagation ?
+
+    # --- c ----  noise'1
+    # --- i ----  noise'2
+    # --- r ----  noise'3
+    # --- c ----  noise'4
+    # --- t ----  noise'5
+
+
 def test_Tableau_CNOT():
     x0 = stim.Circuit('CX 0 1').to_tableau() #stim.Tableau
     assert x0.x_output(0)==stim.PauliString('XX')
@@ -57,6 +104,35 @@ def test_tableau_bell():
     assert x2.z_output(1)==stim.PauliString('ZZ')
 
 
+def test_tableau_stab_destab():
+    tmp0 = ['XZZXI', 'IXZZX', 'XIXZZ', 'ZXIXZ', 'ZZZZZ'] #logical 0 [[5,1,3]]
+    stab_list = [stim.PauliString(x) for x in tmp0]
+    sim = stim.TableauSimulator()
+    sim.set_state_from_stabilizers(stab_list)
+    x0 = sim.current_inverse_tableau()**-1
+    x1 = stim.Tableau.from_stabilizers(stab_list)
+    assert x0==x1
+    assert all(x==y for x,y in zip(x0.to_stabilizers(), stab_list))
+    assert all(x0.z_output(i)==x for i,x in enumerate(stab_list))
+    destab_list = [x0.x_output(i) for i in range(len(x0))]
+    tmp0 = np.array([[1-x.commutes(y) for y in destab_list] for x in stab_list], dtype=np.uint8)
+    assert np.all(tmp0==np.eye(len(stab_list), dtype=np.uint8))
+    circ = x0.to_circuit()
+    # how to verify circ is an encoding circuit?
+
+
+def test_FlipSimulator():
+    sim = stim.FlipSimulator(batch_size=1, disable_stabilizer_randomization=True)
+    sim.do(stim.Circuit('X 0 1'))
+    assert sim.peek_pauli_flips()[0]==stim.PauliString('II')
+
+    sim = stim.FlipSimulator(batch_size=1, disable_stabilizer_randomization=True)
+    sim.do(stim.Circuit('X_ERROR(1) 0 1'))
+    assert sim.peek_pauli_flips()[0]==stim.PauliString("XX")
+    sim.do(stim.Circuit('H 0'))
+    assert sim.peek_pauli_flips()[0]==stim.PauliString('ZX')
+
+
 def test_classical_control():
     circ = stim.Circuit(
     '''
@@ -72,6 +148,24 @@ def test_classical_control():
     assert np.all(tmp0[:,0]==tmp0[:,1]) and np.all(tmp0[:,1]==tmp0[:,2])
     x1 = circ.compile_detector_sampler()
     assert np.all(x1.sample(10)==0)
+
+
+def test_stim_sample_error_bit():
+    tmp0 = '''
+    M 0
+    M(0.5) 0
+    DETECTOR rec[-2]
+    DETECTOR rec[-1]
+    '''
+    circ = stim.Circuit(tmp0)
+    dem = circ.detector_error_model()
+    sampler = dem.compile_sampler()
+    detector,_,ebit = sampler.sample(5, return_errors=True)
+    detector = detector.astype(np.uint8)
+    ebit = ebit.astype(np.uint8)
+    assert np.all(detector[:,0]==0)
+    assert np.all(detector[:,0] + ebit[:,0] == detector[:,1])
+
 
 
 def get_stim_check_matrix(circ:stim.Circuit)->dict[str,np.ndarray]:
@@ -142,3 +236,75 @@ def test_c513_stim_circuit_noise():
     dem = circ.detector_error_model(decompose_errors=True)
     sampler = dem.compile_sampler() #stim.CompiledDemSampler
     syndrome,_,ebit = sampler.sample(10, return_errors=True)
+
+
+def test_Gottesman_S_gate():
+    # The Heisenberg Representation of Quantum Computers
+    # https://arxiv.org/abs/quant-ph/9807006 example9/figure7
+    # implement S gate with CNOT and Pauli
+    circ_Sdag = stim.Circuit('\n'.join(['CX 0 1', 'MY 1', 'CZ rec[-1] 0']))
+    circ_id = circ_Sdag + stim.Circuit('S 0')
+
+    circ = circ_id + stim.Circuit('M 0')
+    assert circ.count_determined_measurements()==(circ_id.count_determined_measurements()+1)
+    x0 = circ.compile_sampler()
+    assert np.all(circ.compile_sampler().sample(10)[:,-1]==0)
+
+    circ = stim.Circuit('X_ERROR(0.5) 0') + circ_id + stim.Circuit('\n'.join(['M 0', 'DETECTOR rec[-1]']))
+    x0 = circ.detector_error_model()
+    x1 = beliefmatching.detector_error_model_to_check_matrices(x0)
+    assert np.all(x1.check_matrix.toarray()==np.ones([1,1], dtype=np.uint8))
+
+    circ = stim.Circuit('\n'.join(['H 0','Z_ERROR(0.5) 0'])) + circ_id + stim.Circuit('\n'.join(['MX 0', 'DETECTOR rec[-1]']))
+    x0 = circ.detector_error_model()
+    x1 = beliefmatching.detector_error_model_to_check_matrices(x0)
+    assert np.all(x1.check_matrix.toarray()==np.ones([1,1], dtype=np.uint8))
+
+
+def test_Gottesman_SWAP_gate():
+    # quantum teleportation
+    tmp0 = ['H 1', 'CX 1 2', 'CX 0 1', 'MX 0', 'CZ rec[-1] 1', 'CZ rec[-1] 2', 'M 1', 'CX rec[-1] 2']
+    circ_swap = stim.Circuit('\n'.join(tmp0))
+    circ_id = circ_swap + stim.Circuit('SWAP 0 2')
+
+    circ = circ_id + stim.Circuit('M 0')
+    assert circ.count_determined_measurements()==(circ_id.count_determined_measurements()+1)
+    x0 = circ.compile_sampler()
+    assert np.all(circ.compile_sampler().sample(10)[:,-1]==0)
+
+    circ = stim.Circuit('X_ERROR(0.5) 0') + circ_id + stim.Circuit('\n'.join(['M 0', 'DETECTOR rec[-1]']))
+    x0 = circ.detector_error_model()
+    x1 = beliefmatching.detector_error_model_to_check_matrices(x0)
+    assert np.all(x1.check_matrix.toarray()==np.ones([1,1], dtype=np.uint8))
+
+    circ = stim.Circuit('\n'.join(['H 0','Z_ERROR(0.5) 0'])) + circ_id + stim.Circuit('\n'.join(['MX 0', 'DETECTOR rec[-1]']))
+    x0 = circ.detector_error_model()
+    x1 = beliefmatching.detector_error_model_to_check_matrices(x0)
+    assert np.all(x1.check_matrix.toarray()==np.ones([1,1], dtype=np.uint8))
+
+
+def test_GHZ_stabilizer():
+    tmp0 = ['H 0', 'CX 0 1', 'CX 0 2']
+    circ = stim.Circuit('\n'.join(tmp0))
+    x0 = circ.to_tableau()
+    # stabilizer
+    assert x0.z_output(0)==stim.PauliString('XXX')
+    assert x0.z_output(1)==stim.PauliString('ZZI')
+    assert x0.z_output(2)==stim.PauliString('ZIZ')
+
+    assert stim.PauliString('XXX').before(circ)==stim.PauliString('ZII')
+    assert stim.PauliString('ZZI').before(circ)==stim.PauliString('IZI')
+    assert stim.PauliString('ZIZ').before(circ)==stim.PauliString('IIZ')
+
+    tmp0 = circ + stim.Circuit('M 0 1 2')
+    x0 = tmp0.compile_sampler().sample(10).astype(np.uint8)
+    assert np.all(x0[:,1]==x0[:,0]) and np.all(x0[:,2]==x0[:,0])
+
+
+def test_basic_detector_example():
+    # Designing fault-tolerant circuits using detector error models
+    # https://arxiv.org/abs/2407.13826 example1
+    tmp0 = ['H 1', 'X 2', 'H 2', 'CX 1 0', 'CX 2 1', 'M 0 1 2']
+    circ = stim.Circuit('\n'.join(tmp0))
+    x0 = circ.compile_sampler().sample(10).astype(np.uint8)
+    assert np.all(x0.sum(axis=1)%2==0)

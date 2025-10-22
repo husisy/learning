@@ -1,3 +1,4 @@
+## classical code
 # https://software.roffe.eu/ldpc/classical_coding.html
 # import ldpc.codes.hamming_code
 import numpy as np

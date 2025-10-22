@@ -158,22 +158,6 @@ assert np.all(~x1[:,1]) #all False
 x1[:,0].mean() #around 0.1*0.9*2
 
 
-circ = stim.Circuit('''
-H 0
-CNOT 0 1
-''')
-x0 = circ.to_tableau()
-x0.to_stabilizers() #XX ZZ
-
-circ = stim.Circuit('''
-QUBIT_COORDS(0) 0
-QUBIT_COORDS(1) 1
-QUBIT_COORDS(2) 2
-''')
-x0 = circ.to_tableau()
-x0.to_stabilizers() #ZII IZI IIZ
-
-
 
 
 # https://quantumcomputing.stackexchange.com/q/33657
